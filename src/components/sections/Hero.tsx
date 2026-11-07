@@ -158,28 +158,28 @@ export default function Hero() {
           </div>
 
           {/* Right Column: Editorial Portrait Frame */}
-          <div className="lg:col-span-5 flex justify-center">
+          <div className="lg:col-span-5 flex justify-center items-center">
             <motion.div
               variants={item}
-              className="relative w-full max-w-[340px] rounded-2xl p-2.5 bg-gradient-to-b from-white/10 via-white/5 to-white/0 border border-white/15 shadow-2xl backdrop-blur-sm"
+              className="relative w-full max-w-[330px] rounded-3xl p-5 bg-[#0d0d10]/95 border border-white/10 shadow-2xl backdrop-blur-md"
             >
-              <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-zinc-900 border border-white/10">
+              <div className="relative w-full aspect-square rounded-full overflow-hidden bg-zinc-900 border border-white/10 mb-4 shadow-inner">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/profile.jpg"
                   alt={profileConfig.name}
-                  className="w-full h-full object-cover object-top filter grayscale contrast-105 hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-cover object-[center_20%] transition-transform duration-500 hover:scale-105"
                 />
               </div>
 
-              <div className="flex items-center justify-between px-3 py-2.5 mt-1">
+              <div className="flex items-center justify-between px-1.5 pt-1">
                 <div>
-                  <div className="text-xs font-bold text-white">{profileConfig.name}</div>
-                  <div className="text-[11px] text-zinc-500 font-mono">GLA University &bull; &apos;26</div>
+                  <div className="text-sm font-bold text-white tracking-tight">{profileConfig.name}</div>
+                  <div className="text-xs text-zinc-400 font-mono mt-0.5">AI &amp; Systems Builder</div>
                 </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-emerald-400 font-mono font-medium">
+                <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-mono font-medium">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Active
+                  ACTIVE
                 </div>
               </div>
             </motion.div>
