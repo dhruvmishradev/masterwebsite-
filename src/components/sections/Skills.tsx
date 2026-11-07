@@ -1,123 +1,122 @@
-—"—u—s—e— —c—l—i—e—n—t—"—;—
-—
-—i—m—p—o—r—t— —R—e—a—c—t—,— —{— —u—s—e—S—t—a—t—e— —}— —f—r—o—m— —"—r—e—a—c—t—"—;—
-—i—m—p—o—r—t— —{— —m—o—t—i—o—n— —}— —f—r—o—m— —"—f—r—a—m—e—r—-—m—o—t—i—o—n—"—;—
-—i—m—p—o—r—t— —{—
-— — —B—r—a—i—n—C—i—r—c—u—i—t—,— —C—p—u—,— —S—e—r—v—e—r—,— —L—a—y—o—u—t—,— —D—a—t—a—b—a—s—e—,— —W—r—e—n—c—h—,— —L—u—c—i—d—e—I—c—o—n—,—
-—}— —f—r—o—m— —"—l—u—c—i—d—e—-—r—e—a—c—t—"—;—
-—i—m—p—o—r—t— —{— —s—k—i—l—l—s—C—o—n—f—i—g—,— —S—k—i—l—l—C—a—t—e—g—o—r—y— —}— —f—r—o—m— —"—@—/—c—o—n—f—i—g—/—s—k—i—l—l—s—"—;—
-—
-—c—o—n—s—t— —i—c—o—n—M—a—p—:— —R—e—c—o—r—d—<—s—t—r—i—n—g—,— —L—u—c—i—d—e—I—c—o—n—>— —=— —{—
-— — —B—r—a—i—n—C—i—r—c—u—i—t—,— —C—p—u—,— —S—e—r—v—e—r—,— —L—a—y—o—u—t—,— —D—a—t—a—b—a—s—e—,— —W—r—e—n—c—h—,—
-—}—;—
-—
-—c—o—n—s—t— —f—a—d—e—U—p— —=— —{—
-— — —h—i—d—d—e—n—:— —{— —o—p—a—c—i—t—y—:— —0—,— —y—:— —2—0— —}—,—
-— — —v—i—s—i—b—l—e—:— —(—i— —=— —0—)— —=—>— —(—{—
-— — — — —o—p—a—c—i—t—y—:— —1—,—
-— — — — —y—:— —0—,—
-— — — — —t—r—a—n—s—i—t—i—o—n—:— —{— —d—u—r—a—t—i—o—n—:— —0—.—5—,— —d—e—l—a—y—:— —i— —*— —0—.—0—8—,— —e—a—s—e—:— —[—0—.—2—2—,— —1—,— —0—.—3—6—,— —1—]— —}—,—
-— — —}—)—,—
-—}—;—
-—
-—e—x—p—o—r—t— —d—e—f—a—u—l—t— —f—u—n—c—t—i—o—n— —S—k—i—l—l—s—(—)— —{—
-— — —c—o—n—s—t— —[—a—c—t—i—v—e—,— —s—e—t—A—c—t—i—v—e—]— —=— —u—s—e—S—t—a—t—e—<—n—u—m—b—e—r— —|— —n—u—l—l—>—(—n—u—l—l—)—;—
-—
-— — —r—e—t—u—r—n— —(—
-— — — — —<—s—e—c—t—i—o—n— —i—d—=—"—s—k—i—l—l—s—"— —c—l—a—s—s—N—a—m—e—=—"—p—y—-—3—2— —r—e—l—a—t—i—v—e— —o—v—e—r—f—l—o—w—-—h—i—d—d—e—n— —b—g—-—t—r—a—n—s—p—a—r—e—n—t—"—>—
-— — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—a—b—s—o—l—u—t—e— —b—o—t—t—o—m—-—0— —l—e—f—t—-—0— —w—-—[—5—0—0—p—x—]— —h—-—[—5—0—0—p—x—]— —r—o—u—n—d—e—d—-—f—u—l—l— —b—g—-—c—y—a—n—-—5—0—0—/—4— —b—l—u—r—-—[—1—6—0—p—x—]— —p—o—i—n—t—e—r—-—e—v—e—n—t—s—-—n—o—n—e—"— —/—>—
-—
-— — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—m—a—x—-—w—-—6—x—l— —m—x—-—a—u—t—o— —p—x—-—6— —r—e—l—a—t—i—v—e— —z—-—1—0—"—>—
-— — — — — — — — —{—/—*— —H—e—a—d—e—r— —*—/—}—
-— — — — — — — — —<—m—o—t—i—o—n—.—d—i—v— —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"— —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"— —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}— —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}—>—
-— — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—a—g— —t—a—g—-—c—y—a—n— —m—b—-—6— —i—n—l—i—n—e—-—f—l—e—x—"—>—S—k—i—l—l—s—<—/—s—p—a—n—>—
-— — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-—
-— — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —f—l—e—x—-—c—o—l— —s—m—:—f—l—e—x—-—r—o—w— —s—m—:—i—t—e—m—s—-—e—n—d— —j—u—s—t—i—f—y—-—b—e—t—w—e—e—n— —g—a—p—-—6— —m—b—-—1—6—"—>—
-— — — — — — — — — — —<—m—o—t—i—o—n—.—h—2—
-— — — — — — — — — — — — —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"—
-— — — — — — — — — — — — —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"—
-— — — — — — — — — — — — —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}—
-— — — — — — — — — — — — —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}—
-— — — — — — — — — — — — —c—u—s—t—o—m—=—{—1—}—
-— — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—4—x—l— —s—m—:—t—e—x—t—-—5—x—l— —f—o—n—t—-—b—l—a—c—k— —t—r—a—c—k—i—n—g—-—t—i—g—h—t— —t—e—x—t—-—w—h—i—t—e— —l—e—a—d—i—n—g—-—[—1—.—1—]—"—
-— — — — — — — — — — —>—
-— — — — — — — — — — — — —T—e—c—h— —S—t—a—c—k— —&—<—b—r— —/—>—
-— — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—g—r—a—d—i—e—n—t—"—>—E—x—p—e—r—t—i—s—e—<—/—s—p—a—n—>—
-— — — — — — — — — — —<—/—m—o—t—i—o—n—.—h—2—>—
-— — — — — — — — — — —<—m—o—t—i—o—n—.—p—
-— — — — — — — — — — — — —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"—
-— — — — — — — — — — — — —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"—
-— — — — — — — — — — — — —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}—
-— — — — — — — — — — — — —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}—
-— — — — — — — — — — — — —c—u—s—t—o—m—=—{—2—}—
-— — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—5—0—0— —t—e—x—t—-—s—m— —m—a—x—-—w—-—x—s— —l—e—a—d—i—n—g—-—r—e—l—a—x—e—d—"—
-— — — — — — — — — — —>—
-— — — — — — — — — — — — —T—e—c—h—n—o—l—o—g—i—e—s— —I— —l—e—a—r—n—,— —b—u—i—l—d— —w—i—t—h—,— —a—n—d— —u—s—e— —t—o— —e—n—g—i—n—e—e—r— —i—n—t—e—l—l—i—g—e—n—t— —s—o—f—t—w—a—r—e— —s—y—s—t—e—m—s—.—
-— — — — — — — — — — —<—/—m—o—t—i—o—n—.—p—>—
-— — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — —{—/—*— —G—r—i—d— —*—/—}—
-— — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—g—r—i—d— —g—r—i—d—-—c—o—l—s—-—1— —m—d—:—g—r—i—d—-—c—o—l—s—-—2— —l—g—:—g—r—i—d—-—c—o—l—s—-—3— —g—a—p—-—4—"—>—
-— — — — — — — — — — —{—s—k—i—l—l—s—C—o—n—f—i—g—.—m—a—p—(—(—c—a—t—e—g—o—r—y—:— —S—k—i—l—l—C—a—t—e—g—o—r—y—,— —i—d—x—:— —n—u—m—b—e—r—)— —=—>— —{—
-— — — — — — — — — — — — —c—o—n—s—t— —I—c—o—n— —=— —i—c—o—n—M—a—p—[—c—a—t—e—g—o—r—y—.—i—c—o—n—N—a—m—e—]— —|—|— —W—r—e—n—c—h—;—
-— — — — — — — — — — — — —c—o—n—s—t— —i—s—A—c—t—i—v—e— —=— —a—c—t—i—v—e— —=—=—=— —i—d—x—;—
-—
-— — — — — — — — — — — — —r—e—t—u—r—n— —(—
-— — — — — — — — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — — — — — — — —k—e—y—=—{—c—a—t—e—g—o—r—y—.—t—i—t—l—e—}—
-— — — — — — — — — — — — — — — — —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"—
-— — — — — — — — — — — — — — — — —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"—
-— — — — — — — — — — — — — — — — —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}—
-— — — — — — — — — — — — — — — — —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}—
-— — — — — — — — — — — — — — — — —c—u—s—t—o—m—=—{—i—d—x— —*— —0—.—1—}—
-— — — — — — — — — — — — — — — — —o—n—M—o—u—s—e—E—n—t—e—r—=—{—(—)— —=—>— —s—e—t—A—c—t—i—v—e—(—i—d—x—)—}—
-— — — — — — — — — — — — — — — — —o—n—M—o—u—s—e—L—e—a—v—e—=—{—(—)— —=—>— —s—e—t—A—c—t—i—v—e—(—n—u—l—l—)—}—
-— — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—{—`—g—r—o—u—p— —r—e—l—a—t—i—v—e— —p—-—6— —r—o—u—n—d—e—d—-—2—x—l— —b—o—r—d—e—r— —t—r—a—n—s—i—t—i—o—n—-—a—l—l— —d—u—r—a—t—i—o—n—-—4—0—0— —c—u—r—s—o—r—-—d—e—f—a—u—l—t— —$—{—
-— — — — — — — — — — — — — — — — — — —i—s—A—c—t—i—v—e—
-— — — — — — — — — — — — — — — — — — — — —?— —"—b—o—r—d—e—r—-—i—n—d—i—g—o—-—5—0—0—/—3—0— —b—g—-—i—n—d—i—g—o—-—5—0—0—/—5— —s—h—a—d—o—w—-—l—g— —s—h—a—d—o—w—-—i—n—d—i—g—o—-—5—0—0—/—5—"—
-— — — — — — — — — — — — — — — — — — — — —:— —"—b—o—r—d—e—r—-—z—i—n—c—-—9—0—0— —b—g—-—z—i—n—c—-—9—5—0—/—5—0— —h—o—v—e—r—:—b—o—r—d—e—r—-—z—i—n—c—-—8—0—0—"—
-— — — — — — — — — — — — — — — — —}—`—}—
-— — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — —{—/—*— —N—u—m—b—e—r— —*—/—}—
-— — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—8—0—0— —t—e—x—t—-—x—s— —f—o—n—t—-—m—o—n—o— —m—b—-—6— —s—e—l—e—c—t—-—n—o—n—e—"—>—
-— — — — — — — — — — — — — — — — — — —{—S—t—r—i—n—g—(—i—d—x— —+— —1—)—.—p—a—d—S—t—a—r—t—(—2—,— —"—0—"—)—}—
-— — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — — — — — — — —{—/—*— —I—c—o—n— —+— —T—i—t—l—e— —*—/—}—
-— — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —i—t—e—m—s—-—s—t—a—r—t— —g—a—p—-—4— —m—b—-—5—"—>—
-— — — — — — — — — — — — — — — — — — —<—d—i—v—
-— — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—{—`—p—-—2—.—5— —r—o—u—n—d—e—d—-—x—l— —t—r—a—n—s—i—t—i—o—n—-—a—l—l— —d—u—r—a—t—i—o—n—-—3—0—0— —$—{—
-— — — — — — — — — — — — — — — — — — — — — — —i—s—A—c—t—i—v—e— —?— —"—b—g—-—i—n—d—i—g—o—-—6—0—0— —t—e—x—t—-—w—h—i—t—e—"— —:— —"—b—g—-—z—i—n—c—-—9—0—0— —t—e—x—t—-—z—i—n—c—-—5—0—0—"—
-— — — — — — — — — — — — — — — — — — — — —}—`—}—
-— — — — — — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — — — — — —<—I—c—o—n— —c—l—a—s—s—N—a—m—e—=—"—w—-—4—.—5— —h—-—4—.—5—"— —/—>—
-— — — — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — — — —<—d—i—v—>—
-— — — — — — — — — — — — — — — — — — — — —<—h—3— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—w—h—i—t—e— —f—o—n—t—-—s—e—m—i—b—o—l—d— —t—e—x—t—-—s—m— —l—e—a—d—i—n—g—-—t—i—g—h—t—"—>—{—c—a—t—e—g—o—r—y—.—t—i—t—l—e—}—<—/—h—3—>—
-— — — — — — — — — — — — — — — — — — — — —<—p— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—6—0—0— —t—e—x—t—-—x—s— —m—t—-—1— —l—e—a—d—i—n—g—-—r—e—l—a—x—e—d— —l—i—n—e—-—c—l—a—m—p—-—2—"—>—
-— — — — — — — — — — — — — — — — — — — — — — —{—c—a—t—e—g—o—r—y—.—d—e—s—c—r—i—p—t—i—o—n—}—
-— — — — — — — — — — — — — — — — — — — — —<—/—p—>—
-— — — — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — — — — — — — —{—/—*— —T—a—g—s— —*—/—}—
-— — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —f—l—e—x—-—w—r—a—p— —g—a—p—-—1—.—5— —p—t—-—5— —b—o—r—d—e—r—-—t— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0—"—>—
-— — — — — — — — — — — — — — — — — — —{—c—a—t—e—g—o—r—y—.—s—k—i—l—l—s—.—m—a—p—(—(—s—k—i—l—l—:— —s—t—r—i—n—g—)— —=—>— —(—
-— — — — — — — — — — — — — — — — — — — — —<—s—p—a—n—
-— — — — — — — — — — — — — — — — — — — — — — —k—e—y—=—{—s—k—i—l—l—}—
-— — — — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—p—x—-—2— —p—y—-—0—.—5— —r—o—u—n—d—e—d—-—m—d— —t—e—x—t—-—[—1—1—p—x—]— —f—o—n—t—-—m—o—n—o— —t—e—x—t—-—z—i—n—c—-—5—0—0— —b—g—-—z—i—n—c—-—9—0—0—/—8—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—z—i—n—c—-—8—0—0—/—6—0— —h—o—v—e—r—:—t—e—x—t—-—z—i—n—c—-—2—0—0— —h—o—v—e—r—:—b—o—r—d—e—r—-—z—i—n—c—-—7—0—0— —t—r—a—n—s—i—t—i—o—n—-—a—l—l— —d—u—r—a—t—i—o—n—-—2—0—0—"—
-— — — — — — — — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — — — — — — — —{—s—k—i—l—l—}—
-— — — — — — — — — — — — — — — — — — — — —<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — —)—)—}—
-— — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-— — — — — — — — — — — — —)—;—
-— — — — — — — — — — —}—)—}—
-— — — — — — — — —<—/—d—i—v—>—
-— — — — — — —<—/—d—i—v—>—
-— — — — —<—/—s—e—c—t—i—o—n—>—
-— — —)—;—
-—}—
-—
+"use client";
+
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  BrainCircuit, Cpu, Server, Layout, Database, Wrench, LucideIcon,
+} from "lucide-react";
+import { skillsConfig, SkillCategory } from "@/config/skills";
+
+const iconMap: Record<string, LucideIcon> = {
+  BrainCircuit, Cpu, Server, Layout, Database, Wrench,
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
+export default function Skills() {
+  const [active, setActive] = useState<number | null>(null);
+
+  return (
+    <section id="skills" className="py-32 relative overflow-hidden bg-transparent">
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-cyan-500/4 blur-[160px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        {/* Header */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+          <span className="tag tag-cyan mb-6 inline-flex">Skills</span>
+        </motion.div>
+
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="text-4xl sm:text-5xl font-black tracking-tight text-white leading-[1.1]"
+          >
+            Tech Stack &<br />
+            <span className="text-gradient">Expertise</span>
+          </motion.h2>
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={2}
+            className="text-zinc-500 text-sm max-w-xs leading-relaxed"
+          >
+            Technologies I learn, build with, and use to engineer intelligent software systems.
+          </motion.p>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {skillsConfig.map((category: SkillCategory, idx: number) => {
+            const Icon = iconMap[category.iconName] || Wrench;
+            const isActive = active === idx;
+
+            return (
+              <motion.div
+                key={category.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={idx * 0.1}
+                onMouseEnter={() => setActive(idx)}
+                onMouseLeave={() => setActive(null)}
+                className={`group relative p-6 rounded-2xl border transition-all duration-400 cursor-default ${
+                  isActive
+                    ? "border-indigo-500/30 bg-indigo-500/5 shadow-lg shadow-indigo-500/5"
+                    : "border-zinc-900 bg-zinc-950/50 hover:border-zinc-800"
+                }`}
+              >
+                {/* Number */}
+                <div className="text-zinc-800 text-xs font-mono mb-6 select-none">
+                  {String(idx + 1).padStart(2, "0")}
+                </div>
+
+                {/* Icon + Title */}
+                <div className="flex items-start gap-4 mb-5">
+                  <div
+                    className={`p-2.5 rounded-xl transition-all duration-300 ${
+                      isActive ? "bg-indigo-600 text-white" : "bg-zinc-900 text-zinc-500"
+                    }`}
+                  >
+                    <Icon className="w-4.5 h-4.5" />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold text-sm leading-tight">{category.title}</h3>
+                    <p className="text-zinc-600 text-xs mt-1 leading-relaxed line-clamp-2">
+                      {category.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5 pt-5 border-t border-zinc-900">
+                  {category.skills.map((skill: string) => (
+                    <span
+                      key={skill}
+                      className="px-2 py-0.5 rounded-md text-[11px] font-mono text-zinc-500 bg-zinc-900/80 border border-zinc-800/60 hover:text-zinc-200 hover:border-zinc-700 transition-all duration-200"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}

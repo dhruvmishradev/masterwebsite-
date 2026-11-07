@@ -1,362 +1,361 @@
-—"—u—s—e— —c—l—i—e—n—t—"—;—
-—
-—i—m—p—o—r—t— —R—e—a—c—t—,— —{— —u—s—e—S—t—a—t—e—,— —u—s—e—E—f—f—e—c—t— —}— —f—r—o—m— —"—r—e—a—c—t—"—;—
-—i—m—p—o—r—t— —{— —m—o—t—i—o—n—,— —A—n—i—m—a—t—e—P—r—e—s—e—n—c—e— —}— —f—r—o—m— —"—f—r—a—m—e—r—-—m—o—t—i—o—n—"—;—
-—i—m—p—o—r—t— —{— —
-— — —M—e—s—s—a—g—e—S—q—u—a—r—e—,— —
-— — —B—i—n—a—r—y—,— —
-— — —D—a—t—a—b—a—s—e—,— —
-— — —S—e—a—r—c—h—,— —
-— — —C—p—u—,— —
-— — —C—h—e—c—k—C—i—r—c—l—e—,—
-— — —A—r—r—o—w—R—i—g—h—t—,—
-— — —S—p—a—r—k—l—e—s—,—
-— — —W—r—e—n—c—h—,—
-— — —B—o—t—,—
-— — —T—e—r—m—i—n—a—l— —a—s— —T—e—r—m—i—n—a—l—I—c—o—n—
-—}— —f—r—o—m— —"—l—u—c—i—d—e—-—r—e—a—c—t—"—;—
-—
-—i—n—t—e—r—f—a—c—e— —N—o—d—e—D—a—t—a— —{—
-— — —i—d—:— —s—t—r—i—n—g—;—
-— — —l—a—b—e—l—:— —s—t—r—i—n—g—;—
-— — —i—c—o—n—:— —R—e—a—c—t—.—C—o—m—p—o—n—e—n—t—T—y—p—e—<—a—n—y—>—;—
-— — —d—e—t—a—i—l—s—:— —s—t—r—i—n—g—;—
-— — —t—e—c—h—:— —s—t—r—i—n—g—;—
-— — —c—o—l—o—r—:— —s—t—r—i—n—g—;—
-— — —l—o—g—s—:— —s—t—r—i—n—g—[—]—;—
-—}—
-—
-—e—x—p—o—r—t— —d—e—f—a—u—l—t— —f—u—n—c—t—i—o—n— —A—i—A—r—c—h—i—t—e—c—t—u—r—e—(—)— —{—
-— — —c—o—n—s—t— —[—a—c—t—i—v—e—N—o—d—e—,— —s—e—t—A—c—t—i—v—e—N—o—d—e—]— —=— —u—s—e—S—t—a—t—e—<—s—t—r—i—n—g—>—(—"—i—n—p—u—t—"—)—;—
-— — —c—o—n—s—t— —[—f—l—o—w—P—h—a—s—e—,— —s—e—t—F—l—o—w—P—h—a—s—e—]— —=— —u—s—e—S—t—a—t—e—<—n—u—m—b—e—r—>—(—0—)—;—
-— — —c—o—n—s—t— —[—t—y—p—e—d—L—o—g—s—,— —s—e—t—T—y—p—e—d—L—o—g—s—]— —=— —u—s—e—S—t—a—t—e—<—s—t—r—i—n—g—[—]—>—(—[—]—)—;—
-— — —c—o—n—s—t— —[—c—u—r—r—e—n—t—L—o—g—I—n—d—e—x—,— —s—e—t—C—u—r—r—e—n—t—L—o—g—I—n—d—e—x—]— —=— —u—s—e—S—t—a—t—e—<—n—u—m—b—e—r—>—(—0—)—;—
-—
-— — —/—/— —P—i—p—e—l—i—n—e— —n—o—d—e— —l—i—s—t—
-— — —c—o—n—s—t— —n—o—d—e—s—:— —N—o—d—e—D—a—t—a—[—]— —=— —[—
-— — — — —{—
-— — — — — — —i—d—:— —"—i—n—p—u—t—"—,—
-— — — — — — —l—a—b—e—l—:— —"—U—s—e—r— —I—n—p—u—t— —&— —I—n—t—e—n—t—"—,—
-— — — — — — —i—c—o—n—:— —M—e—s—s—a—g—e—S—q—u—a—r—e—,—
-— — — — — — —d—e—t—a—i—l—s—:— —"—T—h—e— —u—s—e—r— —s—u—b—m—i—t—s— —a— —p—r—o—m—p—t— —o—r— —p—r—o—g—r—a—m—m—i—n—g— —t—a—s—k—.— —T—h—e— —s—y—s—t—e—m— —c—h—e—c—k—s— —i—n—p—u—t— —s—i—z—e—s—,— —f—i—l—t—e—r—s— —f—o—r— —m—a—l—i—c—i—o—u—s— —i—n—t—e—n—t—,— —a—n—d— —d—e—t—e—r—m—i—n—e—s— —q—u—e—r—y— —c—l—a—s—s—i—f—i—c—a—t—i—o—n— —v—e—c—t—o—r—s—.—"—,—
-— — — — — — —t—e—c—h—:— —"—F—a—s—t—A—P—I— —/— —N—e—x—t—.—j—s— —R—o—u—t—i—n—g—"—,—
-— — — — — — —c—o—l—o—r—:— —"—f—r—o—m—-—b—l—u—e—-—5—0—0— —t—o—-—i—n—d—i—g—o—-—5—0—0—"—,—
-— — — — — — —l—o—g—s—:— —[—
-— — — — — — — — —"—[—S—Y—S—]— —I—n—c—o—m—i—n—g— —P—O—S—T— —/—a—p—i—/—v—1—/—q—u—e—r—y—"—,—
-— — — — — — — — —"—[—S—Y—S—]— —O—r—i—g—i—n— —c—l—i—e—n—t— —v—e—r—i—f—i—e—d— —(—I—P—:— —1—2—7—.—0—.—0—.—1—)—"—,—
-— — — — — — — — —"—[—S—Y—S—]— —P—a—y—l—o—a—d—:— —{— —q—u—e—r—y—:— —'—E—x—p—l—a—i—n— —v—e—c—t—o—r— —i—n—d—i—c—e—s—.—'— —}—"—,—
-— — — — — — — — —"—[—S—Y—S—]— —I—n—t—e—n—t— —p—a—r—s—i—n—g— —c—o—m—p—l—e—t—e—.— —C—l—a—s—s—:— —R—E—S—E—A—R—C—H—_—Q—A—"—
-— — — — — — —]—
-— — — — —}—,—
-— — — — —{—
-— — — — — — —i—d—:— —"—e—m—b—e—d—d—i—n—g—"—,—
-— — — — — — —l—a—b—e—l—:— —"—V—e—c—t—o—r— —E—m—b—e—d—d—i—n—g—"—,—
-— — — — — — —i—c—o—n—:— —B—i—n—a—r—y—,—
-— — — — — — —d—e—t—a—i—l—s—:— —"—T—e—x—t— —q—u—e—r—y— —i—s— —c—o—n—v—e—r—t—e—d— —i—n—t—o— —a— —h—i—g—h—-—d—i—m—e—n—s—i—o—n—a—l— —m—a—t—h—e—m—a—t—i—c—a—l— —v—e—c—t—o—r— —(—e—.—g—.—,— —7—6—8— —d—i—m—e—n—s—i—o—n—s—)— —u—s—i—n—g— —d—e—n—s—e— —s—e—n—t—e—n—c—e—-—t—r—a—n—s—f—o—r—m—e—r— —m—o—d—e—l—s—.—"—,—
-— — — — — — —t—e—c—h—:— —"—H—u—g—g—i—n—g—F—a—c—e— —T—r—a—n—s—f—o—r—m—e—r—s—"—,—
-— — — — — — —c—o—l—o—r—:— —"—f—r—o—m—-—i—n—d—i—g—o—-—5—0—0— —t—o—-—p—u—r—p—l—e—-—5—0—0—"—,—
-— — — — — — —l—o—g—s—:— —[—
-— — — — — — — — —"—[—M—O—D—E—L—]— —L—o—a—d—i—n—g— —H—u—g—g—i—n—g—F—a—c—e— —e—m—b—e—d—d—i—n—g—s—.—.—.—"—,—
-— — — — — — — — —"—[—M—O—D—E—L—]— —T—o—k—e—n—i—z—i—n—g— —i—n—p—u—t—s— —(—5— —w—o—r—d—s—,— —6— —t—o—k—e—n—s—)—"—,—
-— — — — — — — — —"—[—M—O—D—E—L—]— —V—e—c—t—o—r—i—z—a—t—i—o—n— —c—o—m—p—u—t—e—d— —i—n— —1—4—m—s—"—,—
-— — — — — — — — —"—[—M—O—D—E—L—]— —G—e—n—e—r—a—t—e—d— —m—a—t—r—i—x— —t—e—n—s—o—r—:— —[—1—,— —7—6—8—]—"—
-— — — — — — —]—
-— — — — —}—,—
-— — — — —{—
-— — — — — — —i—d—:— —"—v—e—c—t—o—r—d—b—"—,—
-— — — — — — —l—a—b—e—l—:— —"—V—e—c—t—o—r— —S—t—o—r—e— —(—C—h—r—o—m—a—D—B—)—"—,—
-— — — — — — —i—c—o—n—:— —D—a—t—a—b—a—s—e—,—
-— — — — — — —d—e—t—a—i—l—s—:— —"—T—h—e— —g—e—n—e—r—a—t—e—d— —v—e—c—t—o—r— —q—u—e—r—y— —s—c—a—n—s— —i—n—d—i—c—e—s— —i—n— —t—h—e— —v—e—c—t—o—r— —d—a—t—a—b—a—s—e— —l—o—o—k—i—n—g— —f—o—r— —c—h—u—n—k—s— —w—i—t—h— —t—h—e— —h—i—g—h—e—s—t— —c—o—s—i—n—e— —s—i—m—i—l—a—r—i—t—y— —m—a—t—c—h—i—n—g—.—"—,—
-— — — — — — —t—e—c—h—:— —"—C—h—r—o—m—a—D—B— —/— —P—o—s—t—g—r—e—S—Q—L— —p—g—v—e—c—t—o—r—"—,—
-— — — — — — —c—o—l—o—r—:— —"—f—r—o—m—-—p—u—r—p—l—e—-—5—0—0— —t—o—-—f—u—c—h—s—i—a—-—5—0—0—"—,—
-— — — — — — —l—o—g—s—:— —[—
-— — — — — — — — —"—[—C—H—R—O—M—A—]— —Q—u—e—r—y—i—n—g— —d—a—t—a—b—a—s—e— —c—o—l—l—e—c—t—i—o—n—s—.—.—.—"—,—
-— — — — — — — — —"—[—C—H—R—O—M—A—]— —C—o—s—i—n—e— —s—i—m—i—l—a—r—i—t—y— —i—n—d—e—x— —s—c—a—n— —i—n—i—t—i—a—t—e—d—"—,—
-— — — — — — — — —"—[—C—H—R—O—M—A—]— —d—o—c—_—i—d—_—7—7—0—1— —m—a—t—c—h—e—d— —(—s—i—m—i—l—a—r—i—t—y—:— —0—.—8—9—3—)—"—,—
-— — — — — — — — —"—[—C—H—R—O—M—A—]— —d—o—c—_—i—d—_—3—3—0—9— —m—a—t—c—h—e—d— —(—s—i—m—i—l—a—r—i—t—y—:— —0—.—8—1—2—)—"—,—
-— — — — — — — — —"—[—C—H—R—O—M—A—]— —R—e—t—u—r—n—e—d— —t—o—p— —2— —r—e—f—e—r—e—n—c—e— —c—h—u—n—k—s— —(—0—.—8—m—s—)—"—
-— — — — — — —]—
-— — — — —}—,—
-— — — — —{—
-— — — — — — —i—d—:— —"—r—e—t—r—i—e—v—a—l—"—,—
-— — — — — — —l—a—b—e—l—:— —"—C—o—n—t—e—x—t— —R—e—t—r—i—e—v—a—l— —&— —R—A—G—"—,—
-— — — — — — —i—c—o—n—:— —S—e—a—r—c—h—,—
-— — — — — — —d—e—t—a—i—l—s—:— —"—M—a—t—c—h—e—s— —a—r—e— —r—e—t—r—i—e—v—e—d— —a—n—d— —f—o—r—m—a—t—t—e—d— —a—s— —s—y—s—t—e—m— —r—u—l—e—s—,— —a—p—p—e—n—d—i—n—g— —t—h—e— —p—r—i—v—a—t—e— —s—o—u—r—c—e— —d—o—c—u—m—e—n—t— —t—e—x—t—s— —t—o— —t—h—e— —f—i—n—a—l— —L—L—M— —i—n—s—t—r—u—c—t—i—o—n— —c—o—n—t—e—x—t—.—"—,—
-— — — — — — —t—e—c—h—:— —"—L—a—n—g—C—h—a—i—n— —R—e—t—r—i—e—v—e—r—"—,—
-— — — — — — —c—o—l—o—r—:— —"—f—r—o—m—-—f—u—c—h—s—i—a—-—5—0—0— —t—o—-—p—i—n—k—-—5—0—0—"—,—
-— — — — — — —l—o—g—s—:— —[—
-— — — — — — — — —"—[—R—A—G—]— —A—g—g—r—e—g—a—t—i—n—g— —r—e—t—r—i—e—v—e—d— —c—o—n—t—e—x—t—s—"—,—
-— — — — — — — — —"—[—R—A—G—]— —E—x—t—r—a—c—t—e—d— —2— —t—e—x—t— —s—e—g—m—e—n—t—s— —(—6—4—0— —c—h—a—r—s— —t—o—t—a—l—)—"—,—
-— — — — — — — — —"—[—R—A—G—]— —R—e—-—r—a—n—k—i—n—g— —d—o—c—u—m—e—n—t— —m—a—t—c—h—e—s— —u—s—i—n—g— —C—r—o—s—s—E—n—c—o—d—e—r—"—,—
-— — — — — — — — —"—[—R—A—G—]— —A—u—g—m—e—n—t—e—d— —p—r—o—m—p—t— —s—t—r—u—c—t—u—r—e—d— —s—i—z—e—:— —1—4—2—0— —t—o—k—e—n—s—"—
-— — — — — — —]—
-— — — — —}—,—
-— — — — —{—
-— — — — — — —i—d—:— —"—l—l—m—"—,—
-— — — — — — —l—a—b—e—l—:— —"—L—L—M— —O—r—c—h—e—s—t—r—a—t—i—o—n—"—,—
-— — — — — — —i—c—o—n—:— —C—p—u—,—
-— — — — — — —d—e—t—a—i—l—s—:— —"—T—h—e— —a—u—g—m—e—n—t—e—d— —p—r—o—m—p—t— —c—o—n—t—a—i—n—i—n—g— —t—h—e— —o—r—i—g—i—n—a—l— —q—u—e—s—t—i—o—n— —p—l—u—s— —t—h—e— —r—e—t—r—i—e—v—e—d— —c—o—n—t—e—x—t—s— —i—s— —s—e—r—v—e—d— —t—o— —L—l—a—m—a—-—3— —f—o—r— —c—o—n—t—e—x—t—u—a—l—l—y— —g—r—o—u—n—d—e—d— —g—e—n—e—r—a—t—i—o—n—.—"—,—
-— — — — — — —t—e—c—h—:— —"—L—l—a—m—a—-—3— —/— —G—P—T—-—4— —/— —L—a—n—g—G—r—a—p—h—"—,—
-— — — — — — —c—o—l—o—r—:— —"—f—r—o—m—-—p—i—n—k—-—5—0—0— —t—o—-—c—y—a—n—-—5—0—0—"—,—
-— — — — — — —l—o—g—s—:— —[—
-— — — — — — — — —"—[—A—G—E—N—T—]— —F—o—r—w—a—r—d—i—n—g— —s—t—a—t—e— —t—o— —L—l—a—m—a—-—3— —c—o—m—p—i—l—e—r— —n—o—d—e—"—,—
-— — — — — — — — —"—[—L—L—M—]— —G—e—n—e—r—a—t—i—v—e— —i—n—f—e—r—e—n—c—e— —s—t—a—r—t—e—d— —(—t—e—m—p—:— —0—.—2—)—"—,—
-— — — — — — — — —"—[—L—L—M—]— —S—t—r—e—a—m—i—n—g— —r—e—s—p—o—n—s—e— —t—o—k—e—n—s—.—.—.— —[—T—o—t—a—l—:— —8—4— —t—o—k—e—n—s—]—"—,—
-— — — — — — — — —"—[—L—L—M—]— —S—y—n—t—h—e—s—i—s— —c—o—m—p—l—e—t—e—.— —S—t—r—e—a—m— —c—l—o—s—e—d—.—"—,—
-— — — — — — — — —"—[—A—P—I—]— —R—e—s—p—o—n—s—e— —s—t—a—t—u—s—:— —2—0—0— —S—U—C—C—E—S—S— —(—l—a—t—e—n—c—y—:— —1—5—2—m—s—)—"—
-— — — — — — —]—
-— — — — —}—
-— — —]—;—
-—
-— — —/—/— —R—o—t—a—t—e— —t—h—r—o—u—g—h— —p—i—p—e—l—i—n—e— —s—t—e—p—s— —i—n— —a—n— —a—n—i—m—a—t—i—o—n— —l—o—o—p— —t—o— —s—h—o—w— —f—l—o—w—i—n—g— —s—t—a—t—e—
-— — —u—s—e—E—f—f—e—c—t—(—(—)— —=—>— —{—
-— — — — —c—o—n—s—t— —t—i—m—e—r— —=— —s—e—t—I—n—t—e—r—v—a—l—(—(—)— —=—>— —{—
-— — — — — — —s—e—t—F—l—o—w—P—h—a—s—e—(—(—p—r—e—v—)— —=—>— —{—
-— — — — — — — — —c—o—n—s—t— —n—e—x—t—P—h—a—s—e— —=— —(—p—r—e—v— —+— —1—)— —%— —5—;—
-— — — — — — — — —/—/— —A—u—t—o—m—a—t—i—c—a—l—l—y— —m—a—t—c—h— —a—c—t—i—v—e— —n—o—d—e— —t—o— —f—l—o—w— —p—h—a—s—e— —f—o—r— —v—i—s—u—a—l— —s—y—n—c—h—i—n—g—
-— — — — — — — — —s—e—t—A—c—t—i—v—e—N—o—d—e—(—n—o—d—e—s—[—n—e—x—t—P—h—a—s—e—]—.—i—d—)—;—
-— — — — — — — — —r—e—t—u—r—n— —n—e—x—t—P—h—a—s—e—;—
-— — — — — — —}—)—;—
-— — — — —}—,— —4—5—0—0—)—;—
-— — — — —r—e—t—u—r—n— —(—)— —=—>— —c—l—e—a—r—I—n—t—e—r—v—a—l—(—t—i—m—e—r—)—;—
-— — —}—,— —[—]—)—;—
-—
-— — —/—/— —S—i—m—u—l—a—t—e— —t—y—p—i—n—g— —e—f—f—e—c—t— —i—n— —t—e—r—m—i—n—a—l— —l—o—g—s—
-— — —u—s—e—E—f—f—e—c—t—(—(—)— —=—>— —{—
-— — — — —c—o—n—s—t— —a—c—t—i—v—e—L—o—g—s— —=— —n—o—d—e—s—.—f—i—n—d—(—n— —=—>— —n—.—i—d— —=—=—=— —a—c—t—i—v—e—N—o—d—e—)—?—.—l—o—g—s— —|—|— —[—]—;—
-— — — — —s—e—t—T—y—p—e—d—L—o—g—s—(—[—]—)—;—
-— — — — —s—e—t—C—u—r—r—e—n—t—L—o—g—I—n—d—e—x—(—0—)—;—
-—
-— — — — —l—e—t— —i—d—x— —=— —0—;—
-— — — — —c—o—n—s—t— —l—o—g—T—i—m—e—r— —=— —s—e—t—I—n—t—e—r—v—a—l—(—(—)— —=—>— —{—
-— — — — — — —i—f— —(—i—d—x— —<— —a—c—t—i—v—e—L—o—g—s—.—l—e—n—g—t—h— —&—&— —a—c—t—i—v—e—L—o—g—s—[—i—d—x—]— —!—=—=— —u—n—d—e—f—i—n—e—d—)— —{—
-— — — — — — — — —s—e—t—T—y—p—e—d—L—o—g—s—(—p—r—e—v— —=—>— —[—.—.—.—p—r—e—v—,— —a—c—t—i—v—e—L—o—g—s—[—i—d—x—]—]—)—;—
-— — — — — — — — —i—d—x—+—+—;—
-— — — — — — — — —s—e—t—C—u—r—r—e—n—t—L—o—g—I—n—d—e—x—(—i—d—x—)—;—
-— — — — — — —}— —e—l—s—e— —{—
-— — — — — — — — —c—l—e—a—r—I—n—t—e—r—v—a—l—(—l—o—g—T—i—m—e—r—)—;—
-— — — — — — —}—
-— — — — —}—,— —6—0—0—)—;—
-—
-— — — — —r—e—t—u—r—n— —(—)— —=—>— —c—l—e—a—r—I—n—t—e—r—v—a—l—(—l—o—g—T—i—m—e—r—)—;—
-— — —}—,— —[—a—c—t—i—v—e—N—o—d—e—]—)—;—
-—
-— — —r—e—t—u—r—n— —(—
-— — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—w—-—f—u—l—l— —r—e—l—a—t—i—v—e— —b—g—-—z—i—n—c—-—9—5—0—/—4—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0—/—6—0— —r—o—u—n—d—e—d—-—2—x—l— —p—-—6— —m—d—:—p—-—8— —o—v—e—r—f—l—o—w—-—h—i—d—d—e—n—"—>—
-— — — — — — —{—/—*— —B—a—c—k—g—r—o—u—n—d— —g—r—i—d— —m—a—t—r—i—x— —l—i—n—e—s— —*—/—}—
-— — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—a—b—s—o—l—u—t—e— —i—n—s—e—t—-—0— —b—g—-—[—l—i—n—e—a—r—-—g—r—a—d—i—e—n—t—(—t—o—_—r—i—g—h—t—,—r—g—b—a—(—2—5—5—,—2—5—5—,—2—5—5—,—0—.—0—0—5—)—_—1—p—x—,—t—r—a—n—s—p—a—r—e—n—t—_—1—p—x—)—,—l—i—n—e—a—r—-—g—r—a—d—i—e—n—t—(—t—o—_—b—o—t—t—o—m—,—r—g—b—a—(—2—5—5—,—2—5—5—,—2—5—5—,—0—.—0—0—5—)—_—1—p—x—,—t—r—a—n—s—p—a—r—e—n—t—_—1—p—x—)—]— —b—g—-—[—s—i—z—e—:—1—.—2—r—e—m—_—1—.—2—r—e—m—]— —p—o—i—n—t—e—r—-—e—v—e—n—t—s—-—n—o—n—e—"— —/—>—
-—
-— — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—r—e—l—a—t—i—v—e— —z—-—1—0— —f—l—e—x— —f—l—e—x—-—c—o—l— —l—g—:—f—l—e—x—-—r—o—w— —g—a—p—-—8— —i—t—e—m—s—-—s—t—r—e—t—c—h—"—>—
-— — — — — — — — —
-— — — — — — — — —{—/—*— —I—n—t—e—r—a—c—t—i—v—e— —D—i—a—g—r—a—m— —(—L—e—f—t— —s—i—d—e—,— —t—a—k—e—s— —3—/—5— —o—n— —l—a—r—g—e— —d—i—s—p—l—a—y—s—)— —*—/—}—
-— — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x—-—1— —f—l—e—x— —f—l—e—x—-—c—o—l— —j—u—s—t—i—f—y—-—b—e—t—w—e—e—n— —m—i—n—-—h—-—[—3—8—0—p—x—]— —m—d—:—m—i—n—-—h—-—[—4—2—0—p—x—]— —r—e—l—a—t—i—v—e—"—>—
-— — — — — — — — — — —
-— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—m—b—-—6—"—>—
-— — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—i—n—l—i—n—e—-—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—2— —p—x—-—3— —p—y—-—1— —r—o—u—n—d—e—d—-—f—u—l—l— —b—g—-—i—n—d—i—g—o—-—5—0—0—/—1—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—i—n—d—i—g—o—-—5—0—0—/—2—0— —t—e—x—t—-—i—n—d—i—g—o—-—4—0—0— —t—e—x—t—-—x—s— —f—o—n—t—-—m—o—n—o— —m—b—-—3—"—>—
-— — — — — — — — — — — — — — —<—S—p—a—r—k—l—e—s— —c—l—a—s—s—N—a—m—e—=—"—w—-—3—.—5— —h—-—3—.—5—"— —/—>—
-— — — — — — — — — — — — — — —<—s—p—a—n—>—I—n—t—e—r—a—c—t—i—v—e— —P—i—p—e—l—i—n—e— —S—i—m—u—l—a—t—i—o—n—<—/—s—p—a—n—>—
-— — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — —<—h—3— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—2—x—l— —f—o—n—t—-—b—o—l—d— —t—r—a—c—k—i—n—g—-—t—i—g—h—t— —t—e—x—t—-—w—h—i—t—e—"—>—
-— — — — — — — — — — — — — — —R—e—t—r—i—e—v—a—l—-—A—u—g—m—e—n—t—e—d— —G—e—n—e—r—a—t—i—o—n— —A—r—c—h—i—t—e—c—t—u—r—e—
-— — — — — — — — — — — — —<—/—h—3—>—
-— — — — — — — — — — — — —<—p— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—s—m— —t—e—x—t—-—z—i—n—c—-—4—0—0— —m—t—-—1— —m—a—x—-—w—-—x—l—"—>—
-— — — — — — — — — — — — — — —H—o—v—e—r— —o—r— —c—l—i—c—k— —o—n— —t—h—e— —n—o—d—e—s— —t—o— —i—n—s—p—e—c—t— —e—a—c—h— —p—r—o—c—e—s—s—i—n—g— —l—a—y—e—r— —a—n—d— —w—i—t—n—e—s—s— —l—i—v—e— —e—x—e—c—u—t—i—o—n— —t—r—a—c—e—s— —i—n— —t—h—e— —t—e—r—m—i—n—a—l— —c—o—n—s—o—l—e—.—
-— — — — — — — — — — — — —<—/—p—>—
-— — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — —{—/—*— —S—V—G— —C—o—n—n—e—c—t—i—o—n— —p—a—t—h—s— —(—a—b—s—o—l—u—t—e— —b—a—c—k— —l—a—y—e—r—)— —*—/—}—
-— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—a—b—s—o—l—u—t—e— —i—n—s—e—t—-—0— —w—-—f—u—l—l— —h—-—f—u—l—l— —p—o—i—n—t—e—r—-—e—v—e—n—t—s—-—n—o—n—e— —h—i—d—d—e—n— —m—d—:—b—l—o—c—k—"—>—
-— — — — — — — — — — — — —<—s—v—g— —c—l—a—s—s—N—a—m—e—=—"—w—-—f—u—l—l— —h—-—f—u—l—l—"— —s—t—y—l—e—=—{—{— —m—i—n—H—e—i—g—h—t—:— —"—4—0—0—p—x—"— —}—}—>—
-— — — — — — — — — — — — — — —<—d—e—f—s—>—
-— — — — — — — — — — — — — — — — —<—l—i—n—e—a—r—G—r—a—d—i—e—n—t— —i—d—=—"—l—i—n—e—-—g—r—a—d—"— —x—1—=—"—0—%—"— —y—1—=—"—0—%—"— —x—2—=—"—1—0—0—%—"— —y—2—=—"—0—%—"—>—
-— — — — — — — — — — — — — — — — — — —<—s—t—o—p— —o—f—f—s—e—t—=—"—0—%—"— —s—t—o—p—C—o—l—o—r—=—"—#—6—3—6—6—f—1—"— —s—t—o—p—O—p—a—c—i—t—y—=—"—0—.—2—"— —/—>—
-— — — — — — — — — — — — — — — — — — —<—s—t—o—p— —o—f—f—s—e—t—=—"—5—0—%—"— —s—t—o—p—C—o—l—o—r—=—"—#—d—9—4—6—e—f—"— —s—t—o—p—O—p—a—c—i—t—y—=—"—0—.—3—"— —/—>—
-— — — — — — — — — — — — — — — — — — —<—s—t—o—p— —o—f—f—s—e—t—=—"—1—0—0—%—"— —s—t—o—p—C—o—l—o—r—=—"—#—0—6—b—6—d—4—"— —s—t—o—p—O—p—a—c—i—t—y—=—"—0—.—2—"— —/—>—
-— — — — — — — — — — — — — — — — —<—/—l—i—n—e—a—r—G—r—a—d—i—e—n—t—>—
-— — — — — — — — — — — — — — —<—/—d—e—f—s—>—
-— — — — — — — — — — — — — — —{—/—*— —P—a—t—h— —c—o—n—n—e—c—t—i—n—g— —t—h—e— —n—o—d—e—s— —*—/—}—
-— — — — — — — — — — — — — — —<—p—a—t—h—
-— — — — — — — — — — — — — — — — —d—=—"—M— —8—0— —1—2—0— —Q— —2—0—0— —2—4—0— —3—2—0— —2—4—0— —T— —5—6—0— —3—8—0— —T— —8—0—0— —2—4—0— —T— —9—6—0— —1—2—0—"—
-— — — — — — — — — — — — — — — — —f—i—l—l—=—"—n—o—n—e—"—
-— — — — — — — — — — — — — — — — —s—t—r—o—k—e—=—"—u—r—l—(—#—l—i—n—e—-—g—r—a—d—)—"—
-— — — — — — — — — — — — — — — — —s—t—r—o—k—e—W—i—d—t—h—=—"—2—"—
-— — — — — — — — — — — — — — — — —s—t—r—o—k—e—D—a—s—h—a—r—r—a—y—=—"—8— —6—"—
-— — — — — — — — — — — — — — —/—>—
-— — — — — — — — — — — — — — —
-— — — — — — — — — — — — — — —{—/—*— —F—l—o—w— —p—a—r—t—i—c—l—e— —a—n—i—m—a—t—i—o—n— —*—/—}—
-— — — — — — — — — — — — — — —<—m—o—t—i—o—n—.—c—i—r—c—l—e—
-— — — — — — — — — — — — — — — — —r—=—"—4—"—
-— — — — — — — — — — — — — — — — —f—i—l—l—=—"—#—0—6—b—6—d—4—"—
-— — — — — — — — — — — — — — — — —f—i—l—t—e—r—=—"—d—r—o—p—-—s—h—a—d—o—w—(—0— —0— —8—p—x— —#—0—6—b—6—d—4—)—"—
-— — — — — — — — — — — — — — — — —s—t—y—l—e—=—{—{—
-— — — — — — — — — — — — — — — — — — —o—f—f—s—e—t—P—a—t—h—:— —`—p—a—t—h—(—"—M— —8—0— —1—2—0— —Q— —2—0—0— —2—4—0— —3—2—0— —2—4—0— —T— —5—6—0— —3—8—0— —T— —8—0—0— —2—4—0— —T— —9—6—0— —1—2—0—"—)—`—,—
-— — — — — — — — — — — — — — — — — — —o—f—f—s—e—t—D—i—s—t—a—n—c—e—:— —"—0—%—"—
-— — — — — — — — — — — — — — — — —}— —a—s— —a—n—y—}—
-— — — — — — — — — — — — — — — — —a—n—i—m—a—t—e—=—{—{—
-— — — — — — — — — — — — — — — — — — —o—f—f—s—e—t—D—i—s—t—a—n—c—e—:— —"—1—0—0—%—"—
-— — — — — — — — — — — — — — — — —}—}—
-— — — — — — — — — — — — — — — — —t—r—a—n—s—i—t—i—o—n—=—{—{—
-— — — — — — — — — — — — — — — — — — —d—u—r—a—t—i—o—n—:— —9—,—
-— — — — — — — — — — — — — — — — — — —r—e—p—e—a—t—:— —I—n—f—i—n—i—t—y—,—
-— — — — — — — — — — — — — — — — — — —e—a—s—e—:— —"—l—i—n—e—a—r—"—
-— — — — — — — — — — — — — — — — —}—}—
-— — — — — — — — — — — — — — —/—>—
-— — — — — — — — — — — — —<—/—s—v—g—>—
-— — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — —{—/—*— —G—r—i—d— —L—a—y—o—u—t— —o—f— —P—i—p—e—l—i—n—e— —n—o—d—e—s— —*—/—}—
-— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—g—r—i—d— —g—r—i—d—-—c—o—l—s—-—1— —s—m—:—g—r—i—d—-—c—o—l—s—-—2— —m—d—:—g—r—i—d—-—c—o—l—s—-—5— —g—a—p—-—4— —r—e—l—a—t—i—v—e— —z—-—1—0— —p—y—-—6—"—>—
-— — — — — — — — — — — — —{—n—o—d—e—s—.—m—a—p—(—(—n—o—d—e—,— —i—n—d—e—x—)— —=—>— —{—
-— — — — — — — — — — — — — — —c—o—n—s—t— —I—c—o—n— —=— —n—o—d—e—.—i—c—o—n—;—
-— — — — — — — — — — — — — — —c—o—n—s—t— —i—s—A—c—t—i—v—e— —=— —a—c—t—i—v—e—N—o—d—e— —=—=—=— —n—o—d—e—.—i—d—;—
-— — — — — — — — — — — — — — —c—o—n—s—t— —i—s—F—l—o—w—A—c—t—i—v—e— —=— —f—l—o—w—P—h—a—s—e— —=—=—=— —i—n—d—e—x—;—
-—
-— — — — — — — — — — — — — — —r—e—t—u—r—n— —(—
-— — — — — — — — — — — — — — — — —<—b—u—t—t—o—n—
-— — — — — — — — — — — — — — — — — — —k—e—y—=—{—n—o—d—e—.—i—d—}—
-— — — — — — — — — — — — — — — — — — —o—n—C—l—i—c—k—=—{—(—)— —=—>— —s—e—t—A—c—t—i—v—e—N—o—d—e—(—n—o—d—e—.—i—d—)—}—
-— — — — — — — — — — — — — — — — — — —o—n—M—o—u—s—e—E—n—t—e—r—=—{—(—)— —=—>— —s—e—t—A—c—t—i—v—e—N—o—d—e—(—n—o—d—e—.—i—d—)—}—
-— — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—{—`—t—e—x—t—-—l—e—f—t— —r—e—l—a—t—i—v—e— —f—l—e—x— —f—l—e—x—-—c—o—l— —p—-—4— —r—o—u—n—d—e—d—-—x—l— —t—r—a—n—s—i—t—i—o—n—-—a—l—l— —d—u—r—a—t—i—o—n—-—3—0—0— —$—{—
-— — — — — — — — — — — — — — — — — — — — —i—s—A—c—t—i—v—e— —
-— — — — — — — — — — — — — — — — — — — — — — —?— —"—b—g—-—z—i—n—c—-—9—0—0— —b—o—r—d—e—r—-—i—n—d—i—g—o—-—5—0—0—/—4—0— —b—o—r—d—e—r—-—[—1—.—5—p—x—]— —s—h—a—d—o—w—-—[—0—_—0—_—2—0—p—x—_—r—g—b—a—(—9—9—,—1—0—2—,—2—4—1—,—0—.—1—2—)—]— —t—r—a—n—s—l—a—t—e—-—y—-—[—-—4—p—x—]—"— —
-— — — — — — — — — — — — — — — — — — — — — — —:— —i—s—F—l—o—w—A—c—t—i—v—e— —
-— — — — — — — — — — — — — — — — — — — — — — — — —?— —"—b—g—-—z—i—n—c—-—9—0—0—/—3—0— —b—o—r—d—e—r—-—c—y—a—n—-—5—0—0—/—2—5— —b—o—r—d—e—r—"—
-— — — — — — — — — — — — — — — — — — — — — — — — —:— —"—b—g—-—z—i—n—c—-—9—5—0—/—2—0— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0—/—6—0— —b—o—r—d—e—r— —h—o—v—e—r—:—b—g—-—z—i—n—c—-—9—0—0—/—4—0— —h—o—v—e—r—:—b—o—r—d—e—r—-—z—i—n—c—-—8—0—0—"—
-— — — — — — — — — — — — — — — — — — —}—`—}—
-— — — — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — — — —{—/—*— —G—l—o—w—i—n—g— —c—o—r—e— —i—n—d—i—c—a—t—o—r— —*—/—}—
-— — — — — — — — — — — — — — — — — — —{—i—s—F—l—o—w—A—c—t—i—v—e— —&—&— —(—
-— — — — — — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—a—b—s—o—l—u—t—e— —t—o—p—-—2— —r—i—g—h—t—-—2— —f—l—e—x— —h—-—2— —w—-—2—"—>—
-— — — — — — — — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—a—n—i—m—a—t—e—-—p—i—n—g— —a—b—s—o—l—u—t—e— —i—n—l—i—n—e—-—f—l—e—x— —h—-—f—u—l—l— —w—-—f—u—l—l— —r—o—u—n—d—e—d—-—f—u—l—l— —b—g—-—c—y—a—n—-—4—0—0— —o—p—a—c—i—t—y—-—7—5—"—>—<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—r—e—l—a—t—i—v—e— —i—n—l—i—n—e—-—f—l—e—x— —r—o—u—n—d—e—d—-—f—u—l—l— —h—-—2— —w—-—2— —b—g—-—c—y—a—n—-—5—0—0—"—>—<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — — — —<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — —)—}—
-— — — — — — — — — — — — — — — — — — —
-— — — — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—{—`—w—-—1—0— —h—-—1—0— —r—o—u—n—d—e—d—-—l—g— —f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —j—u—s—t—i—f—y—-—c—e—n—t—e—r— —b—g—-—g—r—a—d—i—e—n—t—-—t—o—-—b—r— —$—{—n—o—d—e—.—c—o—l—o—r—}— —t—e—x—t—-—w—h—i—t—e— —m—b—-—4—`—}—>—
-— — — — — — — — — — — — — — — — — — — — —<—I—c—o—n— —c—l—a—s—s—N—a—m—e—=—"—w—-—5— —h—-—5—"— —/—>—
-— — — — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — — — —
-— — — — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—6—0—0— —t—e—x—t—-—[—1—0—p—x—]— —f—o—n—t—-—m—o—n—o— —m—b—-—1—"—>—S—T—E—P— —0—{—i—n—d—e—x— —+— —1—}—<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — — — —<—h—4— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—s—m— —f—o—n—t—-—s—e—m—i—b—o—l—d— —t—e—x—t—-—w—h—i—t—e— —t—r—a—c—k—i—n—g—-—w—i—d—e—"—>—{—n—o—d—e—.—l—a—b—e—l—}—<—/—h—4—>—
-— — — — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—[—1—1—p—x—]— —t—e—x—t—-—z—i—n—c—-—5—0—0— —f—o—n—t—-—m—o—n—o— —m—t—-—2— —l—i—n—e—-—c—l—a—m—p—-—1—"—>—{—n—o—d—e—.—t—e—c—h—}—<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — —<—/—b—u—t—t—o—n—>—
-— — — — — — — — — — — — — — —)—;—
-— — — — — — — — — — — — —}—)—}—
-— — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — —{—/—*— —C—o—r—e— —l—o—o—p— —f—e—e—d—b—a—c—k— —d—e—t—a—i—l— —*—/—}—
-— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—g—r—i—d— —g—r—i—d—-—c—o—l—s—-—2— —g—a—p—-—4— —b—o—r—d—e—r—-—t— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0—/—6—0— —p—t—-—6—"—>—
-— — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —g—a—p—-—3— —b—g—-—z—i—n—c—-—9—5—0—/—1—0— —p—-—3— —r—o—u—n—d—e—d—-—l—g— —b—o—r—d—e—r— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0—/—6—0—"—>—
-— — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—p—-—2— —r—o—u—n—d—e—d— —b—g—-—z—i—n—c—-—9—0—0— —t—e—x—t—-—i—n—d—i—g—o—-—4—0—0— —h—-—9— —w—-—9— —f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —j—u—s—t—i—f—y—-—c—e—n—t—e—r— —f—l—e—x—-—s—h—r—i—n—k—-—0—"—>—
-— — — — — — — — — — — — — — — — —<—B—o—t— —c—l—a—s—s—N—a—m—e—=—"—w—-—4— —h—-—4—"— —/—>—
-— — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — —<—d—i—v—>—
-— — — — — — — — — — — — — — — — —<—h—5— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—x—s— —f—o—n—t—-—s—e—m—i—b—o—l—d— —t—e—x—t—-—z—i—n—c—-—3—0—0—"—>—A—I— —A—g—e—n—t—s— —C—o—o—r—d—i—n—a—t—i—o—n—<—/—h—5—>—
-— — — — — — — — — — — — — — — — —<—p— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—[—1—1—p—x—]— —t—e—x—t—-—z—i—n—c—-—5—0—0— —l—i—n—e—-—c—l—a—m—p—-—1— —m—t—-—0—.—5—"—>—L—a—n—g—G—r—a—p—h— —S—t—a—t—e— —R—o—u—t—i—n—g—<—/—p—>—
-— — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —g—a—p—-—3— —b—g—-—z—i—n—c—-—9—5—0—/—1—0— —p—-—3— —r—o—u—n—d—e—d—-—l—g— —b—o—r—d—e—r— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0—/—6—0—"—>—
-— — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—p—-—2— —r—o—u—n—d—e—d— —b—g—-—z—i—n—c—-—9—0—0— —t—e—x—t—-—i—n—d—i—g—o—-—4—0—0— —h—-—9— —w—-—9— —f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —j—u—s—t—i—f—y—-—c—e—n—t—e—r— —f—l—e—x—-—s—h—r—i—n—k—-—0—"—>—
-— — — — — — — — — — — — — — — — —<—W—r—e—n—c—h— —c—l—a—s—s—N—a—m—e—=—"—w—-—4— —h—-—4—"— —/—>—
-— — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — —<—d—i—v—>—
-— — — — — — — — — — — — — — — — —<—h—5— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—x—s— —f—o—n—t—-—s—e—m—i—b—o—l—d— —t—e—x—t—-—z—i—n—c—-—3—0—0—"—>—T—o—o—l— —E—x—e—c—u—t—i—o—n—s—<—/—h—5—>—
-— — — — — — — — — — — — — — — — —<—p— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—[—1—1—p—x—]— —t—e—x—t—-—z—i—n—c—-—5—0—0— —l—i—n—e—-—c—l—a—m—p—-—1— —m—t—-—0—.—5—"—>—D—o—c—k—e—r— —S—a—n—d—b—o—x—e—d— —W—o—r—k—s—p—a—c—e—s—<—/—p—>—
-— — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — —{—/—*— —💻— —N—e—x—t—-—L—e—v—e—l— —T—e—c—h— —C—o—n—s—o—l—e— —&— —T—e—r—m—i—n—a—l— —L—o—g—s— —(—R—i—g—h—t— —s—i—d—e—,— —t—a—k—e—s— —2—/—5—)— —*—/—}—
-— — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—w—-—f—u—l—l— —l—g—:—w—-—[—4—0—0—p—x—]— —f—l—e—x— —f—l—e—x—-—c—o—l— —j—u—s—t—i—f—y—-—b—e—t—w—e—e—n— —g—a—p—-—6—"—>—
-— — — — — — — — — — —{—/—*— —C—a—r—d— —n—o—d—e— —d—e—s—c—r—i—p—t—i—o—n— —*—/—}—
-— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—b—g—-—z—i—n—c—-—9—5—0—/—8—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0— —r—o—u—n—d—e—d—-—x—l— —p—-—6—"—>—
-— — — — — — — — — — — — —<—A—n—i—m—a—t—e—P—r—e—s—e—n—c—e— —m—o—d—e—=—"—w—a—i—t—"—>—
-— — — — — — — — — — — — — — —{—a—c—t—i—v—e—N—o—d—e— —&—&— —(—(—)— —=—>— —{—
-— — — — — — — — — — — — — — — — —c—o—n—s—t— —n—o—d—e— —=— —n—o—d—e—s—.—f—i—n—d—(—n— —=—>— —n—.—i—d— —=—=—=— —a—c—t—i—v—e—N—o—d—e—)—;—
-— — — — — — — — — — — — — — — — —i—f— —(—!—n—o—d—e—)— —r—e—t—u—r—n— —n—u—l—l—;—
-— — — — — — — — — — — — — — — — —c—o—n—s—t— —I—c—o—n— —=— —n—o—d—e—.—i—c—o—n—;—
-— — — — — — — — — — — — — — — — —r—e—t—u—r—n— —(—
-— — — — — — — — — — — — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — — — — — — — — — — — —k—e—y—=—{—n—o—d—e—.—i—d—}—
-— — — — — — — — — — — — — — — — — — — — —i—n—i—t—i—a—l—=—{—{— —o—p—a—c—i—t—y—:— —0—,— —y—:— —1—0— —}—}—
-— — — — — — — — — — — — — — — — — — — — —a—n—i—m—a—t—e—=—{—{— —o—p—a—c—i—t—y—:— —1—,— —y—:— —0— —}—}—
-— — — — — — — — — — — — — — — — — — — — —e—x—i—t—=—{—{— —o—p—a—c—i—t—y—:— —0—,— —y—:— —-—1—0— —}—}—
-— — — — — — — — — — — — — — — — — — — — —t—r—a—n—s—i—t—i—o—n—=—{—{— —d—u—r—a—t—i—o—n—:— —0—.—2— —}—}—
-— — — — — — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—3— —b—o—r—d—e—r—-—b— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0— —p—b—-—4— —m—b—-—4—"—>—
-— — — — — — — — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—{—`—w—-—9— —h—-—9— —r—o—u—n—d—e—d—-—l—g— —f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —j—u—s—t—i—f—y—-—c—e—n—t—e—r— —b—g—-—g—r—a—d—i—e—n—t—-—t—o—-—b—r— —$—{—n—o—d—e—.—c—o—l—o—r—}— —t—e—x—t—-—w—h—i—t—e—`—}—>—
-— — — — — — — — — — — — — — — — — — — — — — — — —<—I—c—o—n— —c—l—a—s—s—N—a—m—e—=—"—w—-—4—.—5— —h—-—4—.—5—"— —/—>—
-— — — — — — — — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — — — — — — — —<—d—i—v—>—
-— — — — — — — — — — — — — — — — — — — — — — — — —<—h—4— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—s—m— —f—o—n—t—-—b—o—l—d— —t—e—x—t—-—w—h—i—t—e— —l—e—a—d—i—n—g—-—t—i—g—h—t—"—>—{—n—o—d—e—.—l—a—b—e—l—}—<—/—h—4—>—
-— — — — — — — — — — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—[—1—0—p—x—]— —f—o—n—t—-—m—o—n—o— —t—e—x—t—-—i—n—d—i—g—o—-—4—0—0—"—>—{—n—o—d—e—.—t—e—c—h—}—<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — — — — — —<—p— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—x—s— —t—e—x—t—-—z—i—n—c—-—4—0—0— —l—e—a—d—i—n—g—-—r—e—l—a—x—e—d—"—>—
-— — — — — — — — — — — — — — — — — — — — — — —{—n—o—d—e—.—d—e—t—a—i—l—s—}—
-— — — — — — — — — — — — — — — — — — — — —<—/—p—>—
-— — — — — — — — — — — — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-— — — — — — — — — — — — — — — — —)—;—
-— — — — — — — — — — — — — — —}—)—(—)—}—
-— — — — — — — — — — — — —<—/—A—n—i—m—a—t—e—P—r—e—s—e—n—c—e—>—
-— — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — —{—/—*— —M—a—c—-—s—t—y—l—e— —L—i—v—e— —T—e—r—m—i—n—a—l— —C—o—n—s—o—l—e— —*—/—}—
-— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—b—g—-—z—i—n—c—-—9—5—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0— —r—o—u—n—d—e—d—-—x—l— —o—v—e—r—f—l—o—w—-—h—i—d—d—e—n— —f—l—e—x—-—1— —f—l—e—x— —f—l—e—x—-—c—o—l— —m—i—n—-—h—-—[—2—2—0—p—x—]—"—>—
-— — — — — — — — — — — — —{—/—*— —M—a—c—O—S— —W—i—n—d—o—w— —C—o—n—t—r—o—l— —B—u—t—t—o—n—s— —*—/—}—
-— — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—b—g—-—z—i—n—c—-—9—0—0—/—6—0— —p—x—-—4— —p—y—-—2—.—5— —f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —j—u—s—t—i—f—y—-—b—e—t—w—e—e—n— —b—o—r—d—e—r—-—b— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0—"—>—
-— — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—1—.—5—"—>—
-— — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—w—-—2—.—5— —h—-—2—.—5— —r—o—u—n—d—e—d—-—f—u—l—l— —b—g—-—r—e—d—-—5—0—0—/—7—0—"— —/—>—
-— — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—w—-—2—.—5— —h—-—2—.—5— —r—o—u—n—d—e—d—-—f—u—l—l— —b—g—-—y—e—l—l—o—w—-—5—0—0—/—7—0—"— —/—>—
-— — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—w—-—2—.—5— —h—-—2—.—5— —r—o—u—n—d—e—d—-—f—u—l—l— —b—g—-—g—r—e—e—n—-—5—0—0—/—7—0—"— —/—>—
-— — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—[—1—0—p—x—]— —f—o—n—t—-—m—o—n—o— —t—e—x—t—-—z—i—n—c—-—5—0—0— —f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—1—"—>—
-— — — — — — — — — — — — — — — — —<—T—e—r—m—i—n—a—l—I—c—o—n— —c—l—a—s—s—N—a—m—e—=—"—w—-—3—.—5— —h—-—3—.—5— —t—e—x—t—-—z—i—n—c—-—5—0—0—"— —/—>—
-— — — — — — — — — — — — — — — — —<—s—p—a—n—>—r—a—g—_—l—o—g—g—e—r—.—s—h—<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — — — —{—/—*— —A—c—t—i—v—e— —O—u—t—p—u—t— —l—o—g—s— —d—i—s—p—l—a—y— —*—/—}—
-— — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—p—-—4— —f—l—e—x—-—1— —f—o—n—t—-—m—o—n—o— —t—e—x—t—-—[—1—1—p—x—]— —t—e—x—t—-—c—y—a—n—-—4—0—0—/—9—0— —l—e—a—d—i—n—g—-—r—e—l—a—x—e—d— —o—v—e—r—f—l—o—w—-—y—-—a—u—t—o— —s—p—a—c—e—-—y—-—1—"—>—
-— — — — — — — — — — — — — — —<—A—n—i—m—a—t—e—P—r—e—s—e—n—c—e—>—
-— — — — — — — — — — — — — — — — —{—t—y—p—e—d—L—o—g—s—.—m—a—p—(—(—l—o—g—,— —i—)— —=—>— —(—
-— — — — — — — — — — — — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — — — — — — — — — — — —k—e—y—=—{—`—$—{—l—o—g—}—-—$—{—i—}—`—}—
-— — — — — — — — — — — — — — — — — — — — —i—n—i—t—i—a—l—=—{—{— —o—p—a—c—i—t—y—:— —0—,— —x—:— —-—1—0— —}—}—
-— — — — — — — — — — — — — — — — — — — — —a—n—i—m—a—t—e—=—{—{— —o—p—a—c—i—t—y—:— —1—,— —x—:— —0— —}—}—
-— — — — — — — — — — — — — — — — — — — — —t—r—a—n—s—i—t—i—o—n—=—{—{— —d—u—r—a—t—i—o—n—:— —0—.—1—5— —}—}—
-— — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—{—
-— — — — — — — — — — — — — — — — — — — — — — —l—o—g— —&—&— —l—o—g—.—i—n—c—l—u—d—e—s—(—"—[—S—Y—S—]—"—)— —
-— — — — — — — — — — — — — — — — — — — — — — — — —?— —"—t—e—x—t—-—z—i—n—c—-—5—0—0—"— —
-— — — — — — — — — — — — — — — — — — — — — — — — —:— —l—o—g— —&—&— —l—o—g—.—i—n—c—l—u—d—e—s—(—"—[—M—O—D—E—L—]—"—)— —
-— — — — — — — — — — — — — — — — — — — — — — — — — — —?— —"—t—e—x—t—-—p—u—r—p—l—e—-—4—0—0—"—
-— — — — — — — — — — — — — — — — — — — — — — — — — — —:— —l—o—g— —&—&— —l—o—g—.—i—n—c—l—u—d—e—s—(—"—[—C—H—R—O—M—A—]—"—)— —
-— — — — — — — — — — — — — — — — — — — — — — — — — — — — —?— —"—t—e—x—t—-—f—u—c—h—s—i—a—-—4—0—0—"— —
-— — — — — — — — — — — — — — — — — — — — — — — — — — — — —:— —l—o—g— —&—&— —l—o—g—.—i—n—c—l—u—d—e—s—(—"—[—R—A—G—]—"—)—
-— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —?— —"—t—e—x—t—-—p—i—n—k—-—4—0—0—"—
-— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —:— —"—t—e—x—t—-—c—y—a—n—-—4—0—0—"—
-— — — — — — — — — — — — — — — — — — — — —}—
-— — — — — — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — — — — — —{—l—o—g—}—
-— — — — — — — — — — — — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-— — — — — — — — — — — — — — — — —)—)—}—
-— — — — — — — — — — — — — — —<—/—A—n—i—m—a—t—e—P—r—e—s—e—n—c—e—>—
-— — — — — — — — — — — — — — —
-— — — — — — — — — — — — — — —{—/—*— —P—u—l—s—i—n—g— —b—l—i—n—k—i—n—g— —i—n—s—e—r—t—i—o—n— —c—u—r—s—o—r— —*—/—}—
-— — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—1— —t—e—x—t—-—z—i—n—c—-—6—0—0— —m—t—-—2—"—>—
-— — — — — — — — — — — — — — — — —<—s—p—a—n—>—$—<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—w—-—1—.—5— —h—-—3—.—5— —b—g—-—z—i—n—c—-—5—0—0— —a—n—i—m—a—t—e—-—p—u—l—s—e—"— —/—>—
-— — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — —<—/—d—i—v—>—
-— — — — —<—/—d—i—v—>—
-— — —)—;—
-—}—
-—
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  MessageSquare, 
+  Binary, 
+  Database, 
+  Search, 
+  Cpu, 
+  CheckCircle,
+  ArrowRight,
+  Sparkles,
+  Wrench,
+  Bot,
+  Terminal as TerminalIcon
+} from "lucide-react";
+
+interface NodeData {
+  id: string;
+  label: string;
+  icon: React.ComponentType<any>;
+  details: string;
+  tech: string;
+  color: string;
+  logs: string[];
+}
+
+export default function AiArchitecture() {
+  const [activeNode, setActiveNode] = useState<string>("input");
+  const [flowPhase, setFlowPhase] = useState<number>(0);
+  const [typedLogs, setTypedLogs] = useState<string[]>([]);
+  const [currentLogIndex, setCurrentLogIndex] = useState<number>(0);
+
+  // Pipeline node list
+  const nodes: NodeData[] = [
+    {
+      id: "input",
+      label: "User Input & Intent",
+      icon: MessageSquare,
+      details: "The user submits a prompt or programming task. The system checks input sizes, filters for malicious intent, and determines query classification vectors.",
+      tech: "FastAPI / Next.js Routing",
+      color: "from-blue-500 to-indigo-500",
+      logs: [
+        "[SYS] Incoming POST /api/v1/query",
+        "[SYS] Origin client verified (IP: 127.0.0.1)",
+        "[SYS] Payload: { query: 'Explain vector indices.' }",
+        "[SYS] Intent parsing complete. Class: RESEARCH_QA"
+      ]
+    },
+    {
+      id: "embedding",
+      label: "Vector Embedding",
+      icon: Binary,
+      details: "Text query is converted into a high-dimensional mathematical vector (e.g., 768 dimensions) using dense sentence-transformer models.",
+      tech: "HuggingFace Transformers",
+      color: "from-indigo-500 to-purple-500",
+      logs: [
+        "[MODEL] Loading HuggingFace embeddings...",
+        "[MODEL] Tokenizing inputs (5 words, 6 tokens)",
+        "[MODEL] Vectorization computed in 14ms",
+        "[MODEL] Generated matrix tensor: [1, 768]"
+      ]
+    },
+    {
+      id: "vectordb",
+      label: "Vector Store (ChromaDB)",
+      icon: Database,
+      details: "The generated vector query scans indices in the vector database looking for chunks with the highest cosine similarity matching.",
+      tech: "ChromaDB / PostgreSQL pgvector",
+      color: "from-purple-500 to-fuchsia-500",
+      logs: [
+        "[CHROMA] Querying database collections...",
+        "[CHROMA] Cosine similarity index scan initiated",
+        "[CHROMA] doc_id_7701 matched (similarity: 0.893)",
+        "[CHROMA] doc_id_3309 matched (similarity: 0.812)",
+        "[CHROMA] Returned top 2 reference chunks (0.8ms)"
+      ]
+    },
+    {
+      id: "retrieval",
+      label: "Context Retrieval & RAG",
+      icon: Search,
+      details: "Matches are retrieved and formatted as system rules, appending the private source document texts to the final LLM instruction context.",
+      tech: "LangChain Retriever",
+      color: "from-fuchsia-500 to-pink-500",
+      logs: [
+        "[RAG] Aggregating retrieved contexts",
+        "[RAG] Extracted 2 text segments (640 chars total)",
+        "[RAG] Re-ranking document matches using CrossEncoder",
+        "[RAG] Augmented prompt structured size: 1420 tokens"
+      ]
+    },
+    {
+      id: "llm",
+      label: "LLM Orchestration",
+      icon: Cpu,
+      details: "The augmented prompt containing the original question plus the retrieved contexts is served to Llama-3 for contextually grounded generation.",
+      tech: "Llama-3 / GPT-4 / LangGraph",
+      color: "from-pink-500 to-cyan-500",
+      logs: [
+        "[AGENT] Forwarding state to Llama-3 compiler node",
+        "[LLM] Generative inference started (temp: 0.2)",
+        "[LLM] Streaming response tokens... [Total: 84 tokens]",
+        "[LLM] Synthesis complete. Stream closed.",
+        "[API] Response status: 200 SUCCESS (latency: 152ms)"
+      ]
+    }
+  ];
+
+  // Rotate through pipeline steps in an animation loop to show flowing state
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFlowPhase((prev) => {
+        const nextPhase = (prev + 1) % 5;
+        // Automatically match active node to flow phase for visual synching
+        setActiveNode(nodes[nextPhase].id);
+        return nextPhase;
+      });
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Simulate typing effect in terminal logs
+  useEffect(() => {
+    const activeLogs = nodes.find(n => n.id === activeNode)?.logs || [];
+    setTypedLogs([]);
+    setCurrentLogIndex(0);
+
+    let idx = 0;
+    const logTimer = setInterval(() => {
+      if (idx < activeLogs.length && activeLogs[idx] !== undefined) {
+        setTypedLogs(prev => [...prev, activeLogs[idx]]);
+        idx++;
+        setCurrentLogIndex(idx);
+      } else {
+        clearInterval(logTimer);
+      }
+    }, 600);
+
+    return () => clearInterval(logTimer);
+  }, [activeNode]);
+
+  return (
+    <div className="w-full relative bg-zinc-950/40 border border-zinc-900/60 rounded-2xl p-6 md:p-8 overflow-hidden">
+      {/* Background grid matrix lines */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.005)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.005)_1px,transparent_1px)] bg-[size:1.2rem_1.2rem] pointer-events-none" />
+
+      <div className="relative z-10 flex flex-col lg:flex-row gap-8 items-stretch">
+        
+        {/* Interactive Diagram (Left side, takes 3/5 on large displays) */}
+        <div className="flex-1 flex flex-col justify-between min-h-[380px] md:min-h-[420px] relative">
+          
+          <div className="mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono mb-3">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Interactive Pipeline Simulation</span>
+            </div>
+            <h3 className="text-2xl font-bold tracking-tight text-white">
+              Retrieval-Augmented Generation Architecture
+            </h3>
+            <p className="text-sm text-zinc-400 mt-1 max-w-xl">
+              Hover or click on the nodes to inspect each processing layer and witness live execution traces in the terminal console.
+            </p>
+          </div>
+
+          {/* SVG Connection paths (absolute back layer) */}
+          <div className="absolute inset-0 w-full h-full pointer-events-none hidden md:block">
+            <svg className="w-full h-full" style={{ minHeight: "400px" }}>
+              <defs>
+                <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0.2" />
+                  <stop offset="50%" stopColor="#d946ef" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.2" />
+                </linearGradient>
+              </defs>
+              {/* Path connecting the nodes */}
+              <path
+                d="M 80 120 Q 200 240 320 240 T 560 380 T 800 240 T 960 120"
+                fill="none"
+                stroke="url(#line-grad)"
+                strokeWidth="2"
+                strokeDasharray="8 6"
+              />
+              
+              {/* Flow particle animation */}
+              <motion.circle
+                r="4"
+                fill="#06b6d4"
+                filter="drop-shadow(0 0 8px #06b6d4)"
+                style={{
+                  offsetPath: `path("M 80 120 Q 200 240 320 240 T 560 380 T 800 240 T 960 120")`,
+                  offsetDistance: "0%"
+                } as any}
+                animate={{
+                  offsetDistance: "100%"
+                }}
+                transition={{
+                  duration: 9,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+            </svg>
+          </div>
+
+          {/* Grid Layout of Pipeline nodes */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 relative z-10 py-6">
+            {nodes.map((node, index) => {
+              const Icon = node.icon;
+              const isActive = activeNode === node.id;
+              const isFlowActive = flowPhase === index;
+
+              return (
+                <button
+                  key={node.id}
+                  onClick={() => setActiveNode(node.id)}
+                  onMouseEnter={() => setActiveNode(node.id)}
+                  className={`text-left relative flex flex-col p-4 rounded-xl transition-all duration-300 ${
+                    isActive 
+                      ? "bg-zinc-900 border-indigo-500/40 border-[1.5px] shadow-[0_0_20px_rgba(99,102,241,0.12)] translate-y-[-4px]" 
+                      : isFlowActive 
+                        ? "bg-zinc-900/30 border-cyan-500/25 border"
+                        : "bg-zinc-950/20 border-zinc-900/60 border hover:bg-zinc-900/40 hover:border-zinc-800"
+                  }`}
+                >
+                  {/* Glowing core indicator */}
+                  {isFlowActive && (
+                    <span className="absolute top-2 right-2 flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                    </span>
+                  )}
+                  
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br ${node.color} text-white mb-4`}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  
+                  <div className="text-zinc-600 text-[10px] font-mono mb-1">STEP 0{index + 1}</div>
+                  <h4 className="text-sm font-semibold text-white tracking-wide">{node.label}</h4>
+                  <div className="text-[11px] text-zinc-500 font-mono mt-2 line-clamp-1">{node.tech}</div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Core loop feedback detail */}
+          <div className="grid grid-cols-2 gap-4 border-t border-zinc-900/60 pt-6">
+            <div className="flex gap-3 bg-zinc-950/10 p-3 rounded-lg border border-zinc-900/60">
+              <div className="p-2 rounded bg-zinc-900 text-indigo-400 h-9 w-9 flex items-center justify-center flex-shrink-0">
+                <Bot className="w-4 h-4" />
+              </div>
+              <div>
+                <h5 className="text-xs font-semibold text-zinc-300">AI Agents Coordination</h5>
+                <p className="text-[11px] text-zinc-500 line-clamp-1 mt-0.5">LangGraph State Routing</p>
+              </div>
+            </div>
+
+            <div className="flex gap-3 bg-zinc-950/10 p-3 rounded-lg border border-zinc-900/60">
+              <div className="p-2 rounded bg-zinc-900 text-indigo-400 h-9 w-9 flex items-center justify-center flex-shrink-0">
+                <Wrench className="w-4 h-4" />
+              </div>
+              <div>
+                <h5 className="text-xs font-semibold text-zinc-300">Tool Executions</h5>
+                <p className="text-[11px] text-zinc-500 line-clamp-1 mt-0.5">Docker Sandboxed Workspaces</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* 💻 Next-Level Tech Console & Terminal Logs (Right side, takes 2/5) */}
+        <div className="w-full lg:w-[400px] flex flex-col justify-between gap-6">
+          {/* Card node description */}
+          <div className="bg-zinc-950/80 border border-zinc-900 rounded-xl p-6">
+            <AnimatePresence mode="wait">
+              {activeNode && (() => {
+                const node = nodes.find(n => n.id === activeNode);
+                if (!node) return null;
+                const Icon = node.icon;
+                return (
+                  <motion.div
+                    key={node.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="flex items-center gap-3 border-b border-zinc-900 pb-4 mb-4">
+                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br ${node.color} text-white`}>
+                        <Icon className="w-4.5 h-4.5" />
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-bold text-white leading-tight">{node.label}</h4>
+                        <span className="text-[10px] font-mono text-indigo-400">{node.tech}</span>
+                      </div>
+                    </div>
+                    <p className="text-xs text-zinc-400 leading-relaxed">
+                      {node.details}
+                    </p>
+                  </motion.div>
+                );
+              })()}
+            </AnimatePresence>
+          </div>
+
+          {/* Mac-style Live Terminal Console */}
+          <div className="bg-zinc-950 border border-zinc-900 rounded-xl overflow-hidden flex-1 flex flex-col min-h-[220px]">
+            {/* MacOS Window Control Buttons */}
+            <div className="bg-zinc-900/60 px-4 py-2.5 flex items-center justify-between border-b border-zinc-900">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+              </div>
+              <div className="text-[10px] font-mono text-zinc-500 flex items-center gap-1">
+                <TerminalIcon className="w-3.5 h-3.5 text-zinc-500" />
+                <span>rag_logger.sh</span>
+              </div>
+            </div>
+
+            {/* Active Output logs display */}
+            <div className="p-4 flex-1 font-mono text-[11px] text-cyan-400/90 leading-relaxed overflow-y-auto space-y-1">
+              <AnimatePresence>
+                {typedLogs.map((log, i) => (
+                  <motion.div
+                    key={`${log}-${i}`}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className={
+                      log && log.includes("[SYS]") 
+                        ? "text-zinc-500" 
+                        : log && log.includes("[MODEL]") 
+                          ? "text-purple-400"
+                          : log && log.includes("[CHROMA]") 
+                            ? "text-fuchsia-400" 
+                            : log && log.includes("[RAG]")
+                              ? "text-pink-400"
+                              : "text-cyan-400"
+                    }
+                  >
+                    {log}
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+              
+              {/* Pulsing blinking insertion cursor */}
+              <div className="flex items-center gap-1 text-zinc-600 mt-2">
+                <span>$</span>
+                <span className="w-1.5 h-3.5 bg-zinc-500 animate-pulse" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  );
+}

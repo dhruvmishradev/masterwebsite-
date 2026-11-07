@@ -1,105 +1,104 @@
-—"—u—s—e— —c—l—i—e—n—t—"—;—
-—
-—i—m—p—o—r—t— —R—e—a—c—t— —f—r—o—m— —"—r—e—a—c—t—"—;—
-—i—m—p—o—r—t— —{— —m—o—t—i—o—n— —}— —f—r—o—m— —"—f—r—a—m—e—r—-—m—o—t—i—o—n—"—;—
-—i—m—p—o—r—t— —{— —p—r—o—f—i—l—e—C—o—n—f—i—g— —}— —f—r—o—m— —"—@—/—c—o—n—f—i—g—/—p—r—o—f—i—l—e—"—;—
-—
-—c—o—n—s—t— —f—a—d—e—U—p— —=— —{—
-— — —h—i—d—d—e—n—:— —{— —o—p—a—c—i—t—y—:— —0—,— —y—:— —2—4— —}—,—
-— — —v—i—s—i—b—l—e—:— —(—i— —=— —0—)— —=—>— —(—{—
-— — — — —o—p—a—c—i—t—y—:— —1—,—
-— — — — —y—:— —0—,—
-— — — — —t—r—a—n—s—i—t—i—o—n—:— —{— —d—u—r—a—t—i—o—n—:— —0—.—6—,— —d—e—l—a—y—:— —i— —*— —0—.—1—,— —e—a—s—e—:— —[—0—.—2—2—,— —1—,— —0—.—3—6—,— —1—]— —}—,—
-— — —}—)—,—
-—}—;—
-—
-—e—x—p—o—r—t— —d—e—f—a—u—l—t— —f—u—n—c—t—i—o—n— —A—b—o—u—t—(—)— —{—
-— — —c—o—n—s—t— —f—o—c—u—s—e—s— —=— —p—r—o—f—i—l—e—C—o—n—f—i—g—.—a—b—o—u—t—M—e—.—f—o—c—u—s—A—r—e—a—s—;—
-—
-— — —r—e—t—u—r—n— —(—
-— — — — —<—s—e—c—t—i—o—n— —i—d—=—"—a—b—o—u—t—"— —c—l—a—s—s—N—a—m—e—=—"—p—y—-—3—2— —r—e—l—a—t—i—v—e— —o—v—e—r—f—l—o—w—-—h—i—d—d—e—n— —b—g—-—t—r—a—n—s—p—a—r—e—n—t—"—>—
-— — — — — — —{—/—*— —A—m—b—i—e—n—t— —*—/—}—
-— — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—a—b—s—o—l—u—t—e— —t—o—p—-—1—/—3— —r—i—g—h—t—-—0— —w—-—[—5—0—0—p—x—]— —h—-—[—5—0—0—p—x—]— —r—o—u—n—d—e—d—-—f—u—l—l— —b—g—-—i—n—d—i—g—o—-—5—0—0—/—4— —b—l—u—r—-—[—1—6—0—p—x—]— —p—o—i—n—t—e—r—-—e—v—e—n—t—s—-—n—o—n—e—"— —/—>—
-—
-— — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—m—a—x—-—w—-—6—x—l— —m—x—-—a—u—t—o— —p—x—-—6— —r—e—l—a—t—i—v—e— —z—-—1—0—"—>—
-— — — — — — — — —{—/—*— —S—e—c—t—i—o—n— —l—a—b—e—l— —*—/—}—
-— — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"—
-— — — — — — — — — — —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"—
-— — — — — — — — — — —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}—
-— — — — — — — — — — —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}—
-— — — — — — — — —>—
-— — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—a—g— —t—a—g—-—p—u—r—p—l—e— —m—b—-—6— —i—n—l—i—n—e—-—f—l—e—x—"—>—A—b—o—u—t—<—/—s—p—a—n—>—
-— — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-—
-— — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—g—r—i—d— —g—r—i—d—-—c—o—l—s—-—1— —l—g—:—g—r—i—d—-—c—o—l—s—-—2— —g—a—p—-—1—6— —l—g—:—g—a—p—-—2—4— —i—t—e—m—s—-—s—t—a—r—t—"—>—
-— — — — — — — — — — —{—/—*— —L—e—f—t—:— —h—e—a—d—l—i—n—e— —*—/—}—
-— — — — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — — — —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"—
-— — — — — — — — — — — — —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"—
-— — — — — — — — — — — — —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}—
-— — — — — — — — — — — — —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}—
-— — — — — — — — — — — — —c—u—s—t—o—m—=—{—1—}—
-— — — — — — — — — — —>—
-— — — — — — — — — — — — —<—h—2— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—4—x—l— —s—m—:—t—e—x—t—-—5—x—l— —f—o—n—t—-—b—l—a—c—k— —t—r—a—c—k—i—n—g—-—t—i—g—h—t— —t—e—x—t—-—w—h—i—t—e— —l—e—a—d—i—n—g—-—[—1—.—1—]— —m—b—-—6—"—>—
-— — — — — — — — — — — — — — —B—u—i—l—d—i—n—g— —A—I— —s—y—s—t—e—m—s—<—b—r— —/—>—
-— — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—g—r—a—d—i—e—n—t—"—>—t—h—a—t— —a—c—t—u—a—l—l—y— —w—o—r—k—.—<—/—s—p—a—n—>—
-— — — — — — — — — — — — —<—/—h—2—>—
-— — — — — — — — — — — — —<—p— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—4—0—0— —t—e—x—t—-—b—a—s—e— —l—e—a—d—i—n—g—-—r—e—l—a—x—e—d—"—>—
-— — — — — — — — — — — — — — —{—p—r—o—f—i—l—e—C—o—n—f—i—g—.—a—b—o—u—t—M—e—.—s—t—o—r—y—}—
-— — — — — — — — — — — — —<—/—p—>—
-—
-— — — — — — — — — — — — —{—/—*— —S—t—a—t— —r—o—w— —*—/—}—
-— — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—g—r—i—d— —g—r—i—d—-—c—o—l—s—-—3— —g—a—p—-—6— —m—t—-—1—2— —p—t—-—1—0— —b—o—r—d—e—r—-—t— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0—"—>—
-— — — — — — — — — — — — — — —{—[—
-— — — — — — — — — — — — — — — — —{— —l—a—b—e—l—:— —"—F—o—c—u—s—"—,— —v—a—l—u—e—:— —"—A—I—/—M—L—"— —}—,—
-— — — — — — — — — — — — — — — — —{— —l—a—b—e—l—:— —"—Y—e—a—r—"—,— —v—a—l—u—e—:— —"—B—.—T—e—c—h—"— —}—,—
-— — — — — — — — — — — — — — — — —{— —l—a—b—e—l—:— —"—S—t—a—t—u—s—"—,— —v—a—l—u—e—:— —"—B—u—i—l—d—i—n—g—"— —}—,—
-— — — — — — — — — — — — — — —]—.—m—a—p—(—(—s—)— —=—>— —(—
-— — — — — — — — — — — — — — — — —<—d—i—v— —k—e—y—=—{—s—.—l—a—b—e—l—}—>—
-— — — — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—2—x—l— —f—o—n—t—-—b—l—a—c—k— —t—e—x—t—-—w—h—i—t—e— —m—b—-—1—"—>—{—s—.—v—a—l—u—e—}—<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—6—0—0— —t—e—x—t—-—x—s— —f—o—n—t—-—m—o—n—o— —u—p—p—e—r—c—a—s—e— —t—r—a—c—k—i—n—g—-—w—i—d—e—r—"—>—{—s—.—l—a—b—e—l—}—<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — —)—)—}—
-— — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-—
-— — — — — — — — — — —{—/—*— —R—i—g—h—t—:— —f—o—c—u—s— —a—r—e—a—s— —*—/—}—
-— — — — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — — — —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"—
-— — — — — — — — — — — — —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"—
-— — — — — — — — — — — — —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}—
-— — — — — — — — — — — — —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}—
-— — — — — — — — — — — — —c—u—s—t—o—m—=—{—2—}—
-— — — — — — — — — — —>—
-— — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—6—0—0— —t—e—x—t—-—x—s— —f—o—n—t—-—m—o—n—o— —u—p—p—e—r—c—a—s—e— —t—r—a—c—k—i—n—g—-—w—i—d—e—s—t— —m—b—-—6—"—>—
-— — — — — — — — — — — — — — —F—o—c—u—s— —A—r—e—a—s—
-— — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —f—l—e—x—-—c—o—l— —g—a—p—-—3—"—>—
-— — — — — — — — — — — — — — —{—f—o—c—u—s—e—s—.—m—a—p—(—(—a—r—e—a—,— —i—)— —=—>— —(—
-— — — — — — — — — — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — — — — — — — — — —k—e—y—=—{—a—r—e—a—}—
-— — — — — — — — — — — — — — — — — — —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"—
-— — — — — — — — — — — — — — — — — — —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"—
-— — — — — — — — — — — — — — — — — — —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}—
-— — — — — — — — — — — — — — — — — — —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}—
-— — — — — — — — — — — — — — — — — — —c—u—s—t—o—m—=—{—2— —+— —i— —*— —0—.—3—}—
-— — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—g—r—o—u—p— —f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—4— —p—y—-—4— —b—o—r—d—e—r—-—b— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0— —h—o—v—e—r—:—b—o—r—d—e—r—-—z—i—n—c—-—7—0—0— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s— —d—u—r—a—t—i—o—n—-—3—0—0—"—
-— — — — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—8—0—0— —g—r—o—u—p—-—h—o—v—e—r—:—t—e—x—t—-—i—n—d—i—g—o—-—5—0—0— —t—e—x—t—-—x—s— —f—o—n—t—-—m—o—n—o— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s— —d—u—r—a—t—i—o—n—-—3—0—0—"—>—
-— — — — — — — — — — — — — — — — — — — — —{—S—t—r—i—n—g—(—i— —+— —1—)—.—p—a—d—S—t—a—r—t—(—2—,— —"—0—"—)—}—
-— — — — — — — — — — — — — — — — — — —<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—3—0—0— —g—r—o—u—p—-—h—o—v—e—r—:—t—e—x—t—-—w—h—i—t—e— —f—o—n—t—-—m—e—d—i—u—m— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s— —d—u—r—a—t—i—o—n—-—3—0—0— —t—e—x—t—-—s—m—"—>—
-— — — — — — — — — — — — — — — — — — — — —{—a—r—e—a—}—
-— — — — — — — — — — — — — — — — — — —<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—m—l—-—a—u—t—o— —t—e—x—t—-—z—i—n—c—-—8—0—0— —g—r—o—u—p—-—h—o—v—e—r—:—t—e—x—t—-—z—i—n—c—-—5—0—0— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s— —d—u—r—a—t—i—o—n—-—3—0—0— —t—e—x—t—-—x—s—"—>—→—<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-— — — — — — — — — — — — — — —)—)—}—
-— — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-— — — — — — — — —<—/—d—i—v—>—
-— — — — — — —<—/—d—i—v—>—
-— — — — —<—/—s—e—c—t—i—o—n—>—
-— — —)—;—
-—}—
-—
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { profileConfig } from "@/config/profile";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
+export default function About() {
+  const focuses = profileConfig.aboutMe.focusAreas;
+
+  return (
+    <section id="about" className="py-32 relative overflow-hidden bg-transparent">
+      {/* Ambient */}
+      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full bg-indigo-500/4 blur-[160px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        {/* Section label */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+        >
+          <span className="tag tag-purple mb-6 inline-flex">About</span>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          {/* Left: headline */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+          >
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-white leading-[1.1] mb-6">
+              Building AI systems<br />
+              <span className="text-gradient">that actually work.</span>
+            </h2>
+            <p className="text-zinc-400 text-base leading-relaxed">
+              {profileConfig.aboutMe.story}
+            </p>
+
+            {/* Stat row */}
+            <div className="grid grid-cols-3 gap-6 mt-12 pt-10 border-t border-zinc-900">
+              {[
+                { label: "Focus", value: "AI/ML" },
+                { label: "Year", value: "B.Tech" },
+                { label: "Status", value: "Building" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div className="text-2xl font-black text-white mb-1">{s.value}</div>
+                  <div className="text-zinc-600 text-xs font-mono uppercase tracking-wider">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right: focus areas */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={2}
+          >
+            <div className="text-zinc-600 text-xs font-mono uppercase tracking-widest mb-6">
+              Focus Areas
+            </div>
+            <div className="flex flex-col gap-3">
+              {focuses.map((area, i) => (
+                <motion.div
+                  key={area}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeUp}
+                  custom={2 + i * 0.3}
+                  className="group flex items-center gap-4 py-4 border-b border-zinc-900 hover:border-zinc-700 transition-colors duration-300"
+                >
+                  <span className="text-zinc-800 group-hover:text-indigo-500 text-xs font-mono transition-colors duration-300">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-zinc-300 group-hover:text-white font-medium transition-colors duration-300 text-sm">
+                    {area}
+                  </span>
+                  <span className="ml-auto text-zinc-800 group-hover:text-zinc-500 transition-colors duration-300 text-xs">→</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}

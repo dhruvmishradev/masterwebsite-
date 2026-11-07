@@ -1,68 +1,67 @@
-—"—u—s—e— —c—l—i—e—n—t—"—;—
-—
-—i—m—p—o—r—t— —R—e—a—c—t—,— —{— —u—s—e—E—f—f—e—c—t—,— —u—s—e—S—t—a—t—e—,— —u—s—e—R—e—f— —}— —f—r—o—m— —"—r—e—a—c—t—"—;—
-—i—m—p—o—r—t— —{— —m—o—t—i—o—n—,— —A—n—i—m—a—t—e—P—r—e—s—e—n—c—e— —}— —f—r—o—m— —"—f—r—a—m—e—r—-—m—o—t—i—o—n—"—;—
-—
-—e—x—p—o—r—t— —d—e—f—a—u—l—t— —f—u—n—c—t—i—o—n— —P—r—e—l—o—a—d—e—r—(—{— —o—n—C—o—m—p—l—e—t—e— —}—:— —{— —o—n—C—o—m—p—l—e—t—e—:— —(—)— —=—>— —v—o—i—d— —}—)— —{—
-— — —c—o—n—s—t— —[—p—r—o—g—r—e—s—s—,— —s—e—t—P—r—o—g—r—e—s—s—]— —=— —u—s—e—S—t—a—t—e—(—0—)—;—
-— — —c—o—n—s—t— —[—d—o—n—e—,— —s—e—t—D—o—n—e—]— —=— —u—s—e—S—t—a—t—e—(—f—a—l—s—e—)—;—
-—
-— — —u—s—e—E—f—f—e—c—t—(—(—)— —=—>— —{—
-— — — — —c—o—n—s—t— —s—t—a—r—t— —=— —p—e—r—f—o—r—m—a—n—c—e—.—n—o—w—(—)—;—
-— — — — —c—o—n—s—t— —d—u—r—a—t—i—o—n— —=— —1—8—0—0—;—
-—
-— — — — —c—o—n—s—t— —r—a—f— —=— —(—n—o—w—:— —n—u—m—b—e—r—)— —=—>— —{—
-— — — — — — —c—o—n—s—t— —e—l—a—p—s—e—d— —=— —n—o—w— —-— —s—t—a—r—t—;—
-— — — — — — —c—o—n—s—t— —p— —=— —M—a—t—h—.—m—i—n—(—e—l—a—p—s—e—d— —/— —d—u—r—a—t—i—o—n—,— —1—)—;—
-— — — — — — —/—/— —E—a—s—e— —o—u—t—
-— — — — — — —c—o—n—s—t— —e—a—s—e—d— —=— —1— —-— —M—a—t—h—.—p—o—w—(—1— —-— —p—,— —3—)—;—
-— — — — — — —s—e—t—P—r—o—g—r—e—s—s—(—M—a—t—h—.—f—l—o—o—r—(—e—a—s—e—d— —*— —1—0—0—)—)—;—
-— — — — — — —i—f— —(—p— —<— —1—)— —{—
-— — — — — — — — —r—e—q—u—e—s—t—A—n—i—m—a—t—i—o—n—F—r—a—m—e—(—r—a—f—)—;—
-— — — — — — —}— —e—l—s—e— —{—
-— — — — — — — — —s—e—t—T—i—m—e—o—u—t—(—(—)— —=—>— —s—e—t—D—o—n—e—(—t—r—u—e—)—,— —3—0—0—)—;—
-— — — — — — —}—
-— — — — —}—;—
-— — — — —r—e—q—u—e—s—t—A—n—i—m—a—t—i—o—n—F—r—a—m—e—(—r—a—f—)—;—
-— — —}—,— —[—]—)—;—
-—
-— — —r—e—t—u—r—n— —(—
-— — — — —<—A—n—i—m—a—t—e—P—r—e—s—e—n—c—e— —o—n—E—x—i—t—C—o—m—p—l—e—t—e—=—{—o—n—C—o—m—p—l—e—t—e—}—>—
-— — — — — — —{—!—d—o—n—e— —&—&— —(—
-— — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — —k—e—y—=—"—p—r—e—l—o—a—d—e—r—"—
-— — — — — — — — — — —i—n—i—t—i—a—l—=—{—{— —o—p—a—c—i—t—y—:— —1— —}—}—
-— — — — — — — — — — —e—x—i—t—=—{—{— —o—p—a—c—i—t—y—:— —0— —}—}—
-— — — — — — — — — — —t—r—a—n—s—i—t—i—o—n—=—{—{— —d—u—r—a—t—i—o—n—:— —0—.—5—,— —e—a—s—e—:— —"—e—a—s—e—I—n—O—u—t—"— —}—}—
-— — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—f—i—x—e—d— —i—n—s—e—t—-—0— —z—-—[—9—9—9—9—]— —b—g—-—[—#—0—3—0—3—0—3—]— —f—l—e—x— —f—l—e—x—-—c—o—l— —i—t—e—m—s—-—c—e—n—t—e—r— —j—u—s—t—i—f—y—-—c—e—n—t—e—r— —s—e—l—e—c—t—-—n—o—n—e—"—
-— — — — — — — — —>—
-— — — — — — — — — — —{—/—*— —L—o—g—o— —/— —n—a—m—e— —*—/—}—
-— — — — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — — — —i—n—i—t—i—a—l—=—{—{— —o—p—a—c—i—t—y—:— —0—,— —y—:— —1—2— —}—}—
-— — — — — — — — — — — — —a—n—i—m—a—t—e—=—{—{— —o—p—a—c—i—t—y—:— —1—,— —y—:— —0— —}—}—
-— — — — — — — — — — — — —t—r—a—n—s—i—t—i—o—n—=—{—{— —d—u—r—a—t—i—o—n—:— —0—.—5— —}—}—
-— — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—w—h—i—t—e— —f—o—n—t—-—b—l—a—c—k— —t—e—x—t—-—2—x—l— —t—r—a—c—k—i—n—g—-—t—i—g—h—t— —m—b—-—1—2—"—
-— — — — — — — — — — —>—
-— — — — — — — — — — — — —D—h—r—u—v—<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—i—n—d—i—g—o—-—4—0—0—"—>—.—<—/—s—p—a—n—>—
-— — — — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-—
-— — — — — — — — — — —{—/—*— —P—r—o—g—r—e—s—s— —b—a—r— —*—/—}—
-— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—w—-—4—8— —h—-—p—x— —b—g—-—z—i—n—c—-—9—0—0— —r—o—u—n—d—e—d—-—f—u—l—l— —o—v—e—r—f—l—o—w—-—h—i—d—d—e—n—"—>—
-— — — — — — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—h—-—f—u—l—l— —b—g—-—i—n—d—i—g—o—-—5—0—0— —r—o—u—n—d—e—d—-—f—u—l—l—"—
-— — — — — — — — — — — — — — —i—n—i—t—i—a—l—=—{—{— —w—i—d—t—h—:— —0— —}—}—
-— — — — — — — — — — — — — — —a—n—i—m—a—t—e—=—{—{— —w—i—d—t—h—:— —`—$—{—p—r—o—g—r—e—s—s—}—%—`— —}—}—
-— — — — — — — — — — — — — — —t—r—a—n—s—i—t—i—o—n—=—{—{— —e—a—s—e—:— —"—l—i—n—e—a—r—"—,— —d—u—r—a—t—i—o—n—:— —0—.—0—5— —}—}—
-— — — — — — — — — — — — —/—>—
-— — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — —{—/—*— —P—e—r—c—e—n—t— —*—/—}—
-— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—m—t—-—5— —t—e—x—t—-—z—i—n—c—-—7—0—0— —t—e—x—t—-—x—s— —f—o—n—t—-—m—o—n—o— —t—a—b—u—l—a—r—-—n—u—m—s—"—>—
-— — — — — — — — — — — — —{—p—r—o—g—r—e—s—s—}—%—
-— — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-— — — — — — —)—}—
-— — — — —<—/—A—n—i—m—a—t—e—P—r—e—s—e—n—c—e—>—
-— — —)—;—
-—}—
-—
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+export default function Preloader({ onComplete }: { onComplete: () => void }) {
+  const [progress, setProgress] = useState(0);
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    const start = performance.now();
+    const duration = 1800;
+
+    const raf = (now: number) => {
+      const elapsed = now - start;
+      const p = Math.min(elapsed / duration, 1);
+      // Ease out
+      const eased = 1 - Math.pow(1 - p, 3);
+      setProgress(Math.floor(eased * 100));
+      if (p < 1) {
+        requestAnimationFrame(raf);
+      } else {
+        setTimeout(() => setDone(true), 300);
+      }
+    };
+    requestAnimationFrame(raf);
+  }, []);
+
+  return (
+    <AnimatePresence onExitComplete={onComplete}>
+      {!done && (
+        <motion.div
+          key="preloader"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="fixed inset-0 z-[9999] bg-[#030303] flex flex-col items-center justify-center select-none"
+        >
+          {/* Logo / name */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-white font-black text-2xl tracking-tight mb-12"
+          >
+            Dhruv<span className="text-indigo-400">.</span>
+          </motion.div>
+
+          {/* Progress bar */}
+          <div className="w-48 h-px bg-zinc-900 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-indigo-500 rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ ease: "linear", duration: 0.05 }}
+            />
+          </div>
+
+          {/* Percent */}
+          <div className="mt-5 text-zinc-700 text-xs font-mono tabular-nums">
+            {progress}%
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}

@@ -1,200 +1,199 @@
-—"—u—s—e— —c—l—i—e—n—t—"—;—
-—
-—i—m—p—o—r—t— —R—e—a—c—t—,— —{— —u—s—e—S—t—a—t—e— —}— —f—r—o—m— —"—r—e—a—c—t—"—;—
-—i—m—p—o—r—t— —{— —m—o—t—i—o—n— —}— —f—r—o—m— —"—f—r—a—m—e—r—-—m—o—t—i—o—n—"—;—
-—i—m—p—o—r—t— —{— —E—x—t—e—r—n—a—l—L—i—n—k—,— —G—i—t—h—u—b—,— —A—r—r—o—w—R—i—g—h—t—,— —B—o—o—k—O—p—e—n— —}— —f—r—o—m— —"—l—u—c—i—d—e—-—r—e—a—c—t—"—;—
-—i—m—p—o—r—t— —L—i—n—k— —f—r—o—m— —"—n—e—x—t—/—l—i—n—k—"—;—
-—i—m—p—o—r—t— —{— —G—i—t—h—u—b—I—c—o—n— —}— —f—r—o—m— —"—@—/—c—o—m—p—o—n—e—n—t—s—/—u—i—/—I—c—o—n—s—"—;—
-—i—m—p—o—r—t— —{— —p—r—o—j—e—c—t—s—C—o—n—f—i—g— —}— —f—r—o—m— —"—@—/—c—o—n—f—i—g—/—p—r—o—j—e—c—t—s—"—;—
-—
-—c—o—n—s—t— —f—a—d—e—U—p— —=— —{—
-— — —h—i—d—d—e—n—:— —{— —o—p—a—c—i—t—y—:— —0—,— —y—:— —2—4— —}—,—
-— — —v—i—s—i—b—l—e—:— —(—i— —=— —0—)— —=—>— —(—{—
-— — — — —o—p—a—c—i—t—y—:— —1—,—
-— — — — —y—:— —0—,—
-— — — — —t—r—a—n—s—i—t—i—o—n—:— —{— —d—u—r—a—t—i—o—n—:— —0—.—5—,— —d—e—l—a—y—:— —i— —*— —0—.—0—8—,— —e—a—s—e—:— —[—0—.—2—2—,— —1—,— —0—.—3—6—,— —1—]— —}—,—
-— — —}—)—,—
-—}—;—
-—
-—e—x—p—o—r—t— —d—e—f—a—u—l—t— —f—u—n—c—t—i—o—n— —P—r—o—j—e—c—t—s—(—)— —{—
-— — —c—o—n—s—t— —[—h—o—v—e—r—e—d—,— —s—e—t—H—o—v—e—r—e—d—]— —=— —u—s—e—S—t—a—t—e—<—n—u—m—b—e—r— —|— —n—u—l—l—>—(—n—u—l—l—)—;—
-—
-— — —c—o—n—s—t— —f—e—a—t—u—r—e—d— —=— —p—r—o—j—e—c—t—s—C—o—n—f—i—g—.—s—l—i—c—e—(—0—,— —2—)—;—
-— — —c—o—n—s—t— —r—e—s—t— —=— —p—r—o—j—e—c—t—s—C—o—n—f—i—g—.—s—l—i—c—e—(—2—)—;—
-—
-— — —r—e—t—u—r—n— —(—
-— — — — —<—s—e—c—t—i—o—n— —i—d—=—"—p—r—o—j—e—c—t—s—"— —c—l—a—s—s—N—a—m—e—=—"—p—y—-—3—2— —r—e—l—a—t—i—v—e— —o—v—e—r—f—l—o—w—-—h—i—d—d—e—n— —b—g—-—t—r—a—n—s—p—a—r—e—n—t—"—>—
-— — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—a—b—s—o—l—u—t—e— —t—o—p—-—1—/—4— —l—e—f—t—-—1—/—2— —w—-—[—6—0—0—p—x—]— —h—-—[—4—0—0—p—x—]— —r—o—u—n—d—e—d—-—f—u—l—l— —b—g—-—p—u—r—p—l—e—-—6—0—0—/—4— —b—l—u—r—-—[—1—6—0—p—x—]— —p—o—i—n—t—e—r—-—e—v—e—n—t—s—-—n—o—n—e— —-—t—r—a—n—s—l—a—t—e—-—x—-—1—/—2—"— —/—>—
-—
-— — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—m—a—x—-—w—-—6—x—l— —m—x—-—a—u—t—o— —p—x—-—6— —r—e—l—a—t—i—v—e— —z—-—1—0—"—>—
-— — — — — — — — —{—/—*— —H—e—a—d—e—r— —*—/—}—
-— — — — — — — — —<—m—o—t—i—o—n—.—d—i—v— —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"— —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"— —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}— —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}—>—
-— — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—a—g— —t—a—g—-—p—u—r—p—l—e— —m—b—-—6— —i—n—l—i—n—e—-—f—l—e—x—"—>—P—r—o—j—e—c—t—s—<—/—s—p—a—n—>—
-— — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-—
-— — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —f—l—e—x—-—c—o—l— —s—m—:—f—l—e—x—-—r—o—w— —s—m—:—i—t—e—m—s—-—e—n—d— —j—u—s—t—i—f—y—-—b—e—t—w—e—e—n— —g—a—p—-—6— —m—b—-—1—6—"—>—
-— — — — — — — — — — —<—m—o—t—i—o—n—.—h—2—
-— — — — — — — — — — — — —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"— —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"— —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}—
-— — — — — — — — — — — — —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}— —c—u—s—t—o—m—=—{—1—}—
-— — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—4—x—l— —s—m—:—t—e—x—t—-—5—x—l— —f—o—n—t—-—b—l—a—c—k— —t—r—a—c—k—i—n—g—-—t—i—g—h—t— —t—e—x—t—-—w—h—i—t—e— —l—e—a—d—i—n—g—-—[—1—.—1—]—"—
-— — — — — — — — — — —>—
-— — — — — — — — — — — — —S—e—l—e—c—t—e—d—<—b—r— —/—>—
-— — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—g—r—a—d—i—e—n—t—"—>—W—o—r—k—<—/—s—p—a—n—>—
-— — — — — — — — — — —<—/—m—o—t—i—o—n—.—h—2—>—
-— — — — — — — — — — —<—m—o—t—i—o—n—.—p—
-— — — — — — — — — — — — —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"— —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"— —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}—
-— — — — — — — — — — — — —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}— —c—u—s—t—o—m—=—{—2—}—
-— — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—5—0—0— —t—e—x—t—-—s—m— —m—a—x—-—w—-—x—s— —l—e—a—d—i—n—g—-—r—e—l—a—x—e—d—"—
-— — — — — — — — — — —>—
-— — — — — — — — — — — — —A— —c—u—r—a—t—e—d— —s—e—l—e—c—t—i—o—n— —o—f— —p—r—o—j—e—c—t—s— —I—&—a—p—o—s—;—v—e— —b—u—i—l—t— ——— —f—r—o—m— —R—A—G— —p—i—p—e—l—i—n—e—s— —t—o— —a—g—e—n—t—i—c— —i—n—t—e—r—f—a—c—e—s—.—
-— — — — — — — — — — —<—/—m—o—t—i—o—n—.—p—>—
-— — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — —{—/—*— —F—e—a—t—u—r—e—d— —2— —l—a—r—g—e— —c—a—r—d—s— —*—/—}—
-— — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—g—r—i—d— —g—r—i—d—-—c—o—l—s—-—1— —m—d—:—g—r—i—d—-—c—o—l—s—-—2— —g—a—p—-—5— —m—b—-—5—"—>—
-— — — — — — — — — — —{—f—e—a—t—u—r—e—d—.—m—a—p—(—(—p—r—o—j—e—c—t—,— —i—d—x—)— —=—>— —{—
-— — — — — — — — — — — — —c—o—n—s—t— —i—s—P—l—a—c—e—h—o—l—d—e—r— —=— —!—p—r—o—j—e—c—t—.—l—i—v—e—U—r—l— —&—&— —!—p—r—o—j—e—c—t—.—g—i—t—h—u—b—U—r—l—;—
-— — — — — — — — — — — — —c—o—n—s—t— —i—s—H—o—v— —=— —h—o—v—e—r—e—d— —=—=—=— —i—d—x—;—
-—
-— — — — — — — — — — — — —r—e—t—u—r—n— —(—
-— — — — — — — — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — — — — — — — —k—e—y—=—{—p—r—o—j—e—c—t—.—s—l—u—g—}—
-— — — — — — — — — — — — — — — — —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"— —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"— —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}—
-— — — — — — — — — — — — — — — — —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}— —c—u—s—t—o—m—=—{—i—d—x— —*— —0—.—1—}—
-— — — — — — — — — — — — — — — — —o—n—M—o—u—s—e—E—n—t—e—r—=—{—(—)— —=—>— —s—e—t—H—o—v—e—r—e—d—(—i—d—x—)—}—
-— — — — — — — — — — — — — — — — —o—n—M—o—u—s—e—L—e—a—v—e—=—{—(—)— —=—>— —s—e—t—H—o—v—e—r—e—d—(—n—u—l—l—)—}—
-— — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—{—`—g—r—o—u—p— —r—e—l—a—t—i—v—e— —p—-—8— —r—o—u—n—d—e—d—-—2—x—l— —b—o—r—d—e—r— —t—r—a—n—s—i—t—i—o—n—-—a—l—l— —d—u—r—a—t—i—o—n—-—4—0—0— —f—l—e—x— —f—l—e—x—-—c—o—l— —$—{—
-— — — — — — — — — — — — — — — — — — —i—s—H—o—v—
-— — — — — — — — — — — — — — — — — — — — —?— —"—b—o—r—d—e—r—-—z—i—n—c—-—7—0—0— —b—g—-—z—i—n—c—-—9—0—0—/—6—0—"—
-— — — — — — — — — — — — — — — — — — — — —:— —"—b—o—r—d—e—r—-—z—i—n—c—-—9—0—0— —b—g—-—z—i—n—c—-—9—5—0—/—4—0— —h—o—v—e—r—:—b—o—r—d—e—r—-—z—i—n—c—-—8—0—0—"—
-— — — — — — — — — — — — — — — — —}—`—}—
-— — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — —{—/—*— —T—o—p— —r—o—w— —*—/—}—
-— — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —i—t—e—m—s—-—s—t—a—r—t— —j—u—s—t—i—f—y—-—b—e—t—w—e—e—n— —m—b—-—6—"—>—
-— — — — — — — — — — — — — — — — — — —<—d—i—v—>—
-— — — — — — — — — — — — — — — — — — — — —{—p—r—o—j—e—c—t—.—c—a—t—e—g—o—r—y— —&—&— —(—
-— — — — — — — — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—a—g— —t—a—g—-—i—n—d—i—g—o— —m—b—-—3— —i—n—l—i—n—e—-—f—l—e—x—"—>—{—p—r—o—j—e—c—t—.—c—a—t—e—g—o—r—y—}—<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — — — —)—}—
-— — — — — — — — — — — — — — — — — — — — —<—h—3— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—w—h—i—t—e— —f—o—n—t—-—b—o—l—d— —t—e—x—t—-—x—l— —l—e—a—d—i—n—g—-—t—i—g—h—t—"—>—{—p—r—o—j—e—c—t—.—t—i—t—l—e—}—<—/—h—3—>—
-— — — — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—3—"—>—
-— — — — — — — — — — — — — — — — — — — — —{—p—r—o—j—e—c—t—.—g—i—t—h—u—b—U—r—l— —&—&— —(—
-— — — — — — — — — — — — — — — — — — — — — — —<—a—
-— — — — — — — — — — — — — — — — — — — — — — — — —h—r—e—f—=—{—p—r—o—j—e—c—t—.—g—i—t—h—u—b—U—r—l—}—
-— — — — — — — — — — — — — — — — — — — — — — — — —t—a—r—g—e—t—=—"—_—b—l—a—n—k—"—
-— — — — — — — — — — — — — — — — — — — — — — — — —r—e—l—=—"—n—o—o—p—e—n—e—r— —n—o—r—e—f—e—r—r—e—r—"—
-— — — — — — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—6—0—0— —h—o—v—e—r—:—t—e—x—t—-—z—i—n—c—-—2—0—0— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s—"—
-— — — — — — — — — — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — — — — — — — — — —<—G—i—t—h—u—b—I—c—o—n— —c—l—a—s—s—N—a—m—e—=—"—w—-—4—.—5— —h—-—4—.—5—"— —/—>—
-— — — — — — — — — — — — — — — — — — — — — — —<—/—a—>—
-— — — — — — — — — — — — — — — — — — — — —)—}—
-— — — — — — — — — — — — — — — — — — — — —{—p—r—o—j—e—c—t—.—l—i—v—e—U—r—l— —&—&— —(—
-— — — — — — — — — — — — — — — — — — — — — — —<—a—
-— — — — — — — — — — — — — — — — — — — — — — — — —h—r—e—f—=—{—p—r—o—j—e—c—t—.—l—i—v—e—U—r—l—}—
-— — — — — — — — — — — — — — — — — — — — — — — — —t—a—r—g—e—t—=—"—_—b—l—a—n—k—"—
-— — — — — — — — — — — — — — — — — — — — — — — — —r—e—l—=—"—n—o—o—p—e—n—e—r— —n—o—r—e—f—e—r—r—e—r—"—
-— — — — — — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—6—0—0— —h—o—v—e—r—:—t—e—x—t—-—z—i—n—c—-—2—0—0— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s—"—
-— — — — — — — — — — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — — — — — — — — — —<—E—x—t—e—r—n—a—l—L—i—n—k— —c—l—a—s—s—N—a—m—e—=—"—w—-—4— —h—-—4—"— —/—>—
-— — — — — — — — — — — — — — — — — — — — — — —<—/—a—>—
-— — — — — — — — — — — — — — — — — — — — —)—}—
-— — — — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — — — — — — — —<—p— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—4—0—0— —t—e—x—t—-—s—m— —l—e—a—d—i—n—g—-—r—e—l—a—x—e—d— —m—b—-—6— —f—l—e—x—-—1—"—>—
-— — — — — — — — — — — — — — — — — — —{—p—r—o—j—e—c—t—.—s—h—o—r—t—D—e—s—c—r—i—p—t—i—o—n—}—
-— — — — — — — — — — — — — — — — —<—/—p—>—
-—
-— — — — — — — — — — — — — — — — —{—/—*— —T—e—c—h— —t—a—g—s— —*—/—}—
-— — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —f—l—e—x—-—w—r—a—p— —g—a—p—-—1—.—5— —m—b—-—8—"—>—
-— — — — — — — — — — — — — — — — — — —{—p—r—o—j—e—c—t—.—t—e—c—h—n—o—l—o—g—i—e—s—.—s—l—i—c—e—(—0—,— —5—)—.—m—a—p—(—(—t—:— —s—t—r—i—n—g—)— —=—>— —(—
-— — — — — — — — — — — — — — — — — — — — —<—s—p—a—n—
-— — — — — — — — — — — — — — — — — — — — — — —k—e—y—=—{—t—}—
-— — — — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—p—x—-—2— —p—y—-—0—.—5— —r—o—u—n—d—e—d— —t—e—x—t—-—[—1—0—p—x—]— —f—o—n—t—-—m—o—n—o— —t—e—x—t—-—z—i—n—c—-—5—0—0— —b—g—-—z—i—n—c—-—9—0—0—/—8—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—z—i—n—c—-—8—0—0—"—
-— — — — — — — — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — — — — — — — —{—t—}—
-— — — — — — — — — — — — — — — — — — — — —<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — —)—)—}—
-— — — — — — — — — — — — — — — — — — —{—p—r—o—j—e—c—t—.—t—e—c—h—n—o—l—o—g—i—e—s—.—l—e—n—g—t—h— —>— —5— —&—&— —(—
-— — — — — — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—[—1—0—p—x—]— —f—o—n—t—-—m—o—n—o— —t—e—x—t—-—z—i—n—c—-—7—0—0— —s—e—l—f—-—c—e—n—t—e—r—"—>—
-— — — — — — — — — — — — — — — — — — — — — — —+—{—p—r—o—j—e—c—t—.—t—e—c—h—n—o—l—o—g—i—e—s—.—l—e—n—g—t—h— —-— —5—}—
-— — — — — — — — — — — — — — — — — — — — —<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — —)—}—
-— — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — — — — — — — —{—/—*— —F—o—o—t—e—r— —*—/—}—
-— — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —j—u—s—t—i—f—y—-—b—e—t—w—e—e—n— —p—t—-—6— —b—o—r—d—e—r—-—t— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0—"—>—
-— — — — — — — — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—7—0—0— —t—e—x—t—-—x—s— —f—o—n—t—-—m—o—n—o—"—>—
-— — — — — — — — — — — — — — — — — — — — —{—i—s—P—l—a—c—e—h—o—l—d—e—r— —?— —"—P—l—a—c—e—h—o—l—d—e—r— —p—r—o—j—e—c—t—"— —:— —"—P—u—b—l—i—c— —p—r—o—j—e—c—t—"—}—
-— — — — — — — — — — — — — — — — — — —<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — —{—p—r—o—j—e—c—t—.—l—i—v—e—U—r—l— —?— —(—
-— — — — — — — — — — — — — — — — — — — — —<—a—
-— — — — — — — — — — — — — — — — — — — — — — —h—r—e—f—=—{—p—r—o—j—e—c—t—.—l—i—v—e—U—r—l—}—
-— — — — — — — — — — — — — — — — — — — — — — —t—a—r—g—e—t—=—"—_—b—l—a—n—k—"—
-— — — — — — — — — — — — — — — — — — — — — — —r—e—l—=—"—n—o—o—p—e—n—e—r— —n—o—r—e—f—e—r—r—e—r—"—
-— — — — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—i—n—l—i—n—e—-—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—1—.—5— —t—e—x—t—-—x—s— —f—o—n—t—-—s—e—m—i—b—o—l—d— —t—e—x—t—-—w—h—i—t—e— —b—g—-—i—n—d—i—g—o—-—6—0—0— —h—o—v—e—r—:—b—g—-—i—n—d—i—g—o—-—5—0—0— —p—y—-—2— —p—x—-—4— —r—o—u—n—d—e—d—-—f—u—l—l— —t—r—a—n—s—i—t—i—o—n—-—a—l—l— —d—u—r—a—t—i—o—n—-—2—0—0—"—
-— — — — — — — — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — — — — — — — —L—a—u—n—c—h— —<—E—x—t—e—r—n—a—l—L—i—n—k— —c—l—a—s—s—N—a—m—e—=—"—w—-—3— —h—-—3—"— —/—>—
-— — — — — — — — — — — — — — — — — — — — —<—/—a—>—
-— — — — — — — — — — — — — — — — — — —)— —:— —(—
-— — — — — — — — — — — — — — — — — — — — —<—L—i—n—k—
-— — — — — — — — — — — — — — — — — — — — — — —h—r—e—f—=—{—`—/—p—r—o—j—e—c—t—s—/—$—{—p—r—o—j—e—c—t—.—s—l—u—g—}—`—}—
-— — — — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—i—n—l—i—n—e—-—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—1—.—5— —t—e—x—t—-—x—s— —f—o—n—t—-—m—e—d—i—u—m— —t—e—x—t—-—z—i—n—c—-—4—0—0— —h—o—v—e—r—:—t—e—x—t—-—w—h—i—t—e— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s— —d—u—r—a—t—i—o—n—-—2—0—0—"—
-— — — — — — — — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — — — — — — — —C—a—s—e— —s—t—u—d—y— —<—A—r—r—o—w—R—i—g—h—t— —c—l—a—s—s—N—a—m—e—=—"—w—-—3—.—5— —h—-—3—.—5—"— —/—>—
-— — — — — — — — — — — — — — — — — — — — —<—/—L—i—n—k—>—
-— — — — — — — — — — — — — — — — — — —)—}—
-— — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-— — — — — — — — — — — — —)—;—
-— — — — — — — — — — —}—)—}—
-— — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — —{—/—*— —R—e—m—a—i—n—i—n—g— —p—r—o—j—e—c—t—s— —a—s— —c—o—m—p—a—c—t— —l—i—s—t— —*—/—}—
-— — — — — — — — —{—r—e—s—t—.—l—e—n—g—t—h— —>— —0— —&—&— —(—
-— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—b—o—r—d—e—r— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0— —r—o—u—n—d—e—d—-—2—x—l— —d—i—v—i—d—e—-—y— —d—i—v—i—d—e—-—z—i—n—c—-—9—0—0— —o—v—e—r—f—l—o—w—-—h—i—d—d—e—n—"—>—
-— — — — — — — — — — — — —{—r—e—s—t—.—m—a—p—(—(—p—r—o—j—e—c—t—,— —i—d—x—)— —=—>— —(—
-— — — — — — — — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
-— — — — — — — — — — — — — — — — —k—e—y—=—{—p—r—o—j—e—c—t—.—s—l—u—g—}—
-— — — — — — — — — — — — — — — — —i—n—i—t—i—a—l—=—"—h—i—d—d—e—n—"— —w—h—i—l—e—I—n—V—i—e—w—=—"—v—i—s—i—b—l—e—"— —v—i—e—w—p—o—r—t—=—{—{— —o—n—c—e—:— —t—r—u—e— —}—}—
-— — — — — — — — — — — — — — — — —v—a—r—i—a—n—t—s—=—{—f—a—d—e—U—p—}— —c—u—s—t—o—m—=—{—(—i—d—x— —+— —2—)— —*— —0—.—0—8—}—
-— — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—g—r—o—u—p— —f—l—e—x— —f—l—e—x—-—c—o—l— —s—m—:—f—l—e—x—-—r—o—w— —s—m—:—i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—4— —p—x—-—6— —p—y—-—5— —h—o—v—e—r—:—b—g—-—z—i—n—c—-—9—0—0—/—4—0— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s— —d—u—r—a—t—i—o—n—-—2—0—0—"—
-— — — — — — — — — — — — — — —>—
-— — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x—-—1—"—>—
-— — — — — — — — — — — — — — — — — — —<—h—3— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—w—h—i—t—e— —f—o—n—t—-—s—e—m—i—b—o—l—d— —t—e—x—t—-—s—m— —g—r—o—u—p—-—h—o—v—e—r—:—t—e—x—t—-—i—n—d—i—g—o—-—3—0—0— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s—"—>—
-— — — — — — — — — — — — — — — — — — — — —{—p—r—o—j—e—c—t—.—t—i—t—l—e—}—
-— — — — — — — — — — — — — — — — — — —<—/—h—3—>—
-— — — — — — — — — — — — — — — — — — —<—p— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—5—0—0— —t—e—x—t—-—x—s— —m—t—-—1— —l—i—n—e—-—c—l—a—m—p—-—1—"—>—{—p—r—o—j—e—c—t—.—s—h—o—r—t—D—e—s—c—r—i—p—t—i—o—n—}—<—/—p—>—
-— — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —f—l—e—x—-—w—r—a—p— —g—a—p—-—1—.—5— —s—m—:—m—a—x—-—w—-—[—2—6—0—p—x—]—"—>—
-— — — — — — — — — — — — — — — — — — —{—p—r—o—j—e—c—t—.—t—e—c—h—n—o—l—o—g—i—e—s—.—s—l—i—c—e—(—0—,— —3—)—.—m—a—p—(—(—t—:— —s—t—r—i—n—g—)— —=—>— —(—
-— — — — — — — — — — — — — — — — — — — — —<—s—p—a—n— —k—e—y—=—{—t—}— —c—l—a—s—s—N—a—m—e—=—"—p—x—-—2— —p—y—-—0—.—5— —r—o—u—n—d—e—d— —t—e—x—t—-—[—1—0—p—x—]— —f—o—n—t—-—m—o—n—o— —t—e—x—t—-—z—i—n—c—-—6—0—0— —b—g—-—z—i—n—c—-—9—0—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—z—i—n—c—-—8—0—0—"—>—
-— — — — — — — — — — — — — — — — — — — — — — —{—t—}—
-— — — — — — — — — — — — — — — — — — — — —<—/—s—p—a—n—>—
-— — — — — — — — — — — — — — — — — — —)—)—}—
-— — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-—
-— — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—3— —s—h—r—i—n—k—-—0—"—>—
-— — — — — — — — — — — — — — — — — — —{—p—r—o—j—e—c—t—.—g—i—t—h—u—b—U—r—l— —&—&— —(—
-— — — — — — — — — — — — — — — — — — — — —<—a— —h—r—e—f—=—{—p—r—o—j—e—c—t—.—g—i—t—h—u—b—U—r—l—}— —t—a—r—g—e—t—=—"—_—b—l—a—n—k—"— —r—e—l—=—"—n—o—o—p—e—n—e—r— —n—o—r—e—f—e—r—r—e—r—"—
-— — — — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—7—0—0— —h—o—v—e—r—:—t—e—x—t—-—z—i—n—c—-—3—0—0— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s—"—>—
-— — — — — — — — — — — — — — — — — — — — — — —<—G—i—t—h—u—b—I—c—o—n— —c—l—a—s—s—N—a—m—e—=—"—w—-—4— —h—-—4—"— —/—>—
-— — — — — — — — — — — — — — — — — — — — —<—/—a—>—
-— — — — — — — — — — — — — — — — — — —)—}—
-— — — — — — — — — — — — — — — — — — —{—p—r—o—j—e—c—t—.—l—i—v—e—U—r—l— —&—&— —(—
-— — — — — — — — — — — — — — — — — — — — —<—a— —h—r—e—f—=—{—p—r—o—j—e—c—t—.—l—i—v—e—U—r—l—}— —t—a—r—g—e—t—=—"—_—b—l—a—n—k—"— —r—e—l—=—"—n—o—o—p—e—n—e—r— —n—o—r—e—f—e—r—r—e—r—"—
-— — — — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—z—i—n—c—-—7—0—0— —h—o—v—e—r—:—t—e—x—t—-—z—i—n—c—-—3—0—0— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s—"—>—
-— — — — — — — — — — — — — — — — — — — — — — —<—E—x—t—e—r—n—a—l—L—i—n—k— —c—l—a—s—s—N—a—m—e—=—"—w—-—3—.—5— —h—-—3—.—5—"— —/—>—
-— — — — — — — — — — — — — — — — — — — — —<—/—a—>—
-— — — — — — — — — — — — — — — — — — —)—}—
-— — — — — — — — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
-— — — — — — — — — — — — —)—)—}—
-— — — — — — — — — — —<—/—d—i—v—>—
-— — — — — — — — —)—}—
-— — — — — — —<—/—d—i—v—>—
-— — — — —<—/—s—e—c—t—i—o—n—>—
-— — —)—;—
-—}—
-—
+"use client";
+
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { ExternalLink, Github, ArrowRight, BookOpen } from "lucide-react";
+import Link from "next/link";
+import { GithubIcon } from "@/components/ui/Icons";
+import { projectsConfig } from "@/config/projects";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
+export default function Projects() {
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  const featured = projectsConfig.slice(0, 2);
+  const rest = projectsConfig.slice(2);
+
+  return (
+    <section id="projects" className="py-32 relative overflow-hidden bg-transparent">
+      <div className="absolute top-1/4 left-1/2 w-[600px] h-[400px] rounded-full bg-purple-600/4 blur-[160px] pointer-events-none -translate-x-1/2" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        {/* Header */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+          <span className="tag tag-purple mb-6 inline-flex">Projects</span>
+        </motion.div>
+
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+          <motion.h2
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={fadeUp} custom={1}
+            className="text-4xl sm:text-5xl font-black tracking-tight text-white leading-[1.1]"
+          >
+            Selected<br />
+            <span className="text-gradient">Work</span>
+          </motion.h2>
+          <motion.p
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={fadeUp} custom={2}
+            className="text-zinc-500 text-sm max-w-xs leading-relaxed"
+          >
+            A curated selection of projects I&apos;ve built — from RAG pipelines to agentic interfaces.
+          </motion.p>
+        </div>
+
+        {/* Featured 2 large cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+          {featured.map((project, idx) => {
+            const isPlaceholder = !project.liveUrl && !project.githubUrl;
+            const isHov = hovered === idx;
+
+            return (
+              <motion.div
+                key={project.slug}
+                initial="hidden" whileInView="visible" viewport={{ once: true }}
+                variants={fadeUp} custom={idx * 0.1}
+                onMouseEnter={() => setHovered(idx)}
+                onMouseLeave={() => setHovered(null)}
+                className={`group relative p-8 rounded-2xl border transition-all duration-400 flex flex-col ${
+                  isHov
+                    ? "border-zinc-700 bg-zinc-900/60"
+                    : "border-zinc-900 bg-zinc-950/40 hover:border-zinc-800"
+                }`}
+              >
+                {/* Top row */}
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    {project.category && (
+                      <span className="tag tag-indigo mb-3 inline-flex">{project.category}</span>
+                    )}
+                    <h3 className="text-white font-bold text-xl leading-tight">{project.title}</h3>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-zinc-600 hover:text-zinc-200 transition-colors"
+                      >
+                        <GithubIcon className="w-4.5 h-4.5" />
+                      </a>
+                    )}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-zinc-600 hover:text-zinc-200 transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                <p className="text-zinc-400 text-sm leading-relaxed mb-6 flex-1">
+                  {project.shortDescription}
+                </p>
+
+                {/* Tech tags */}
+                <div className="flex flex-wrap gap-1.5 mb-8">
+                  {project.technologies.slice(0, 5).map((t: string) => (
+                    <span
+                      key={t}
+                      className="px-2 py-0.5 rounded text-[10px] font-mono text-zinc-500 bg-zinc-900/80 border border-zinc-800"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                  {project.technologies.length > 5 && (
+                    <span className="text-[10px] font-mono text-zinc-700 self-center">
+                      +{project.technologies.length - 5}
+                    </span>
+                  )}
+                </div>
+
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-6 border-t border-zinc-900">
+                  <span className="text-zinc-700 text-xs font-mono">
+                    {isPlaceholder ? "Placeholder project" : "Public project"}
+                  </span>
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 py-2 px-4 rounded-full transition-all duration-200"
+                    >
+                      Launch <ExternalLink className="w-3 h-3" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-400 hover:text-white transition-colors duration-200"
+                    >
+                      Case study <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Remaining projects as compact list */}
+        {rest.length > 0 && (
+          <div className="border border-zinc-900 rounded-2xl divide-y divide-zinc-900 overflow-hidden">
+            {rest.map((project, idx) => (
+              <motion.div
+                key={project.slug}
+                initial="hidden" whileInView="visible" viewport={{ once: true }}
+                variants={fadeUp} custom={(idx + 2) * 0.08}
+                className="group flex flex-col sm:flex-row sm:items-center gap-4 px-6 py-5 hover:bg-zinc-900/40 transition-colors duration-200"
+              >
+                <div className="flex-1">
+                  <h3 className="text-white font-semibold text-sm group-hover:text-indigo-300 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-zinc-500 text-xs mt-1 line-clamp-1">{project.shortDescription}</p>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 sm:max-w-[260px]">
+                  {project.technologies.slice(0, 3).map((t: string) => (
+                    <span key={t} className="px-2 py-0.5 rounded text-[10px] font-mono text-zinc-600 bg-zinc-900 border border-zinc-800">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-3 shrink-0">
+                  {project.githubUrl && (
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
+                      className="text-zinc-700 hover:text-zinc-300 transition-colors">
+                      <GithubIcon className="w-4 h-4" />
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
+                      className="text-zinc-700 hover:text-zinc-300 transition-colors">
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
