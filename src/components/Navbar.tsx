@@ -6,11 +6,13 @@ import { Menu, X } from "lucide-react";
 import { profileConfig } from "@/config/profile";
 
 const links = [
-  { name: "About",    href: "#about" },
-  { name: "Skills",   href: "#skills" },
+  { name: "About", href: "#about" },
+  { name: "Terminal", href: "#terminal-section" },
+  { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
-  { name: "Journey",  href: "#journey" },
-  { name: "Contact",  href: "#contact" },
+  { name: "Certifications", href: "#certifications" },
+  { name: "Journey", href: "#journey" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -29,7 +31,7 @@ export default function Navbar() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl px-4 sm:px-6`}
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl px-4 sm:px-6"
       >
         <div
           className={`flex items-center justify-between px-5 py-3 rounded-2xl transition-all duration-500 ${

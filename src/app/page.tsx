@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
+import Terminal from "@/components/sections/Terminal";
 import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
+import Certifications from "@/components/sections/Certifications";
 import LearningJourney from "@/components/sections/LearningJourney";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/Footer";
@@ -34,14 +36,17 @@ export default function Home() {
         </div>
 
         <main className="flex-1 flex flex-col w-full relative z-10">
-          {/* Divider between sections */}
           <Hero />
           <div className="divider mx-6" />
           <About />
           <div className="divider mx-6" />
+          <Terminal />
+          <div className="divider mx-6" />
           <Skills />
           <div className="divider mx-6" />
           <Projects />
+          <div className="divider mx-6" />
+          <Certifications />
           <div className="divider mx-6" />
           <LearningJourney />
           <div className="divider mx-6" />
