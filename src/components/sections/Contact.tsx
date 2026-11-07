@@ -6,12 +6,12 @@ import { Mail, Github, Linkedin, Send, ArrowRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 import { profileConfig } from "@/config/profile";
 
-const fadeUp = {
+const fadeUp: any = {
   hidden: { opacity: 0, y: 24 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, delay: i * 0.1, ease: "easeInOut" },
   }),
 };
 

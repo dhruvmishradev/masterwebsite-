@@ -26,13 +26,13 @@ export default function Hero() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const container = {
+  const container: any = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
   };
-  const item = {
+  const item: any = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeInOut" } },
   };
 
   return (

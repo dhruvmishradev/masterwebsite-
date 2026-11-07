@@ -30,7 +30,7 @@ export default function Navbar() {
       <motion.nav
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
         className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl px-4 sm:px-6"
       >
         <div
