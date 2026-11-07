@@ -161,23 +161,24 @@ export default function Hero() {
           <div className="lg:col-span-5 flex justify-center items-center">
             <motion.div
               variants={item}
-              className="relative w-full max-w-[330px] rounded-3xl p-5 bg-[#0d0d10]/95 border border-white/10 shadow-2xl backdrop-blur-md"
+              className="relative w-full max-w-[380px] rounded-[32px] p-3.5 sm:p-4 bg-[#111114] border border-white/[0.08] shadow-2xl backdrop-blur-md"
             >
-              <div className="relative w-full aspect-square rounded-full overflow-hidden bg-zinc-900 border border-white/10 mb-4 shadow-inner">
+              <div className="relative w-full aspect-square rounded-full overflow-hidden bg-zinc-900 border border-white/[0.06] shadow-inner">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/profile.jpg"
                   alt={profileConfig.name}
                   className="w-full h-full object-cover object-[center_20%] transition-transform duration-500 hover:scale-105"
+                  style={{ filter: "none" }}
                 />
               </div>
 
-              <div className="flex items-center justify-between px-1.5 pt-1">
+              <div className="flex items-center justify-between px-3 pt-4 pb-2">
                 <div>
-                  <div className="text-sm font-bold text-white tracking-tight">{profileConfig.name}</div>
+                  <div className="text-base font-bold text-white tracking-tight">{profileConfig.name}</div>
                   <div className="text-xs text-zinc-400 font-mono mt-0.5">GLA University &bull; &apos;26</div>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-mono font-medium">
+                <div className="flex items-center gap-2 text-xs text-emerald-400 font-mono font-medium">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   Active
                 </div>
