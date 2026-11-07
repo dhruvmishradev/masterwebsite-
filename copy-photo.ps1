@@ -1,0 +1,1 @@
+Copy-Item "C:\Users\Asus\.gemini\antigravity\brain\bc8815a6-268b-473f-9803-a7f2b55138d6\.user_uploaded\media_1793982423496_8249c260.jpg" "C:\Users\Asus\.gemini\antigravity\scratch\WebSite-Premium\profile.jpg" -Force
