@@ -76,25 +76,36 @@ export default function About() {
               Focus Areas
             </div>
             <div className="flex flex-col gap-3">
-              {focuses.map((area, i) => (
-                <motion.div
-                  key={area}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeUp}
-                  custom={2 + i * 0.3}
-                  className="group flex items-center gap-4 py-4 border-b border-zinc-900 hover:border-zinc-700 transition-colors duration-300"
-                >
-                  <span className="text-zinc-800 group-hover:text-indigo-500 text-xs font-mono transition-colors duration-300">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-zinc-300 group-hover:text-white font-medium transition-colors duration-300 text-sm">
-                    {area}
-                  </span>
-                  <span className="ml-auto text-zinc-800 group-hover:text-zinc-500 transition-colors duration-300 text-xs">→</span>
-                </motion.div>
-              ))}
+              {focuses.map((area, i) => {
+                const title = typeof area === "string" ? area : area.title;
+                const desc = typeof area === "object" ? area.desc : "";
+                return (
+                  <motion.div
+                    key={title}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeUp}
+                    custom={2 + i * 0.15}
+                    className="group flex flex-col py-3.5 border-b border-zinc-900 hover:border-zinc-800 transition-colors duration-300"
+                  >
+                    <div className="flex items-center gap-4">
+                      <span className="text-zinc-700 group-hover:text-indigo-400 text-xs font-mono transition-colors duration-300">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-zinc-300 group-hover:text-white font-semibold transition-colors duration-300 text-sm">
+                        {title}
+                      </span>
+                      <span className="ml-auto text-zinc-700 group-hover:text-zinc-400 transition-colors duration-300 text-xs">&rarr;</span>
+                    </div>
+                    {desc && (
+                      <p className="text-xs text-zinc-500 ml-9 mt-1 leading-relaxed">
+                        {desc}
+                      </p>
+                    )}
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </div>
