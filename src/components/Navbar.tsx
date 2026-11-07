@@ -1,120 +1,121 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { profileConfig } from "@/config/profile";
-
-const links = [
-  { name: "About", href: "#about" },
-  { name: "Terminal", href: "#terminal-section" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Certifications", href: "#certifications" },
-  { name: "Journey", href: "#journey" },
-  { name: "Contact", href: "#contact" },
-];
-
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return (
-    <>
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl px-4 sm:px-6"
-      >
-        <div
-          className={`flex items-center justify-between px-5 py-3 rounded-2xl transition-all duration-500 ${
-            scrolled
-              ? "glass shadow-2xl shadow-black/40"
-              : "bg-transparent"
-          }`}
-        >
-          {/* Logo */}
-          <a
-            href="#hero"
-            className="text-sm font-black tracking-tight text-white hover:text-indigo-300 transition-colors duration-200"
-          >
-            {profileConfig.name.split(" ")[0]}
-            <span className="text-indigo-400">.</span>
-          </a>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {links.map((l) => (
-              <a
-                key={l.name}
-                href={l.href}
-                className="px-3 py-1.5 text-xs font-medium text-zinc-500 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200"
-              >
-                {l.name}
-              </a>
-            ))}
-          </div>
-
-          {/* CTA + Hamburger */}
-          <div className="flex items-center gap-3">
-            <a
-              href="#contact"
-              className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-zinc-100 text-black text-xs font-semibold transition-all duration-200"
-            >
-              Hire Me
-            </a>
-            <button
-              className="md:hidden p-1.5 text-zinc-400 hover:text-white rounded-lg hover:bg-white/5 transition-all"
-              onClick={() => setOpen(!open)}
-              aria-label="Toggle menu"
-            >
-              {open ? <X className="w-4.5 h-4.5" /> : <Menu className="w-4.5 h-4.5" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile menu */}
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0, y: -8, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.98 }}
-              transition={{ duration: 0.2 }}
-              className="mt-2 glass rounded-2xl overflow-hidden"
-            >
-              <div className="flex flex-col py-3">
-                {links.map((l) => (
-                  <a
-                    key={l.name}
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="px-5 py-3 text-sm text-zinc-400 hover:text-white hover:bg-white/5 transition-all duration-200"
-                  >
-                    {l.name}
-                  </a>
-                ))}
-                <div className="px-5 pt-3 pb-4 border-t border-zinc-900 mt-2">
-                  <a
-                    href="#contact"
-                    onClick={() => setOpen(false)}
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 w-full justify-center rounded-full bg-white text-black text-xs font-semibold transition-all duration-200"
-                  >
-                    Hire Me
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
-    </>
-  );
-}
+—"—u—s—e— —c—l—i—e—n—t—"—;—
+—
+—i—m—p—o—r—t— —R—e—a—c—t—,— —{— —u—s—e—S—t—a—t—e—,— —u—s—e—E—f—f—e—c—t— —}— —f—r—o—m— —"—r—e—a—c—t—"—;—
+—i—m—p—o—r—t— —{— —m—o—t—i—o—n—,— —A—n—i—m—a—t—e—P—r—e—s—e—n—c—e— —}— —f—r—o—m— —"—f—r—a—m—e—r—-—m—o—t—i—o—n—"—;—
+—i—m—p—o—r—t— —{— —M—e—n—u—,— —X— —}— —f—r—o—m— —"—l—u—c—i—d—e—-—r—e—a—c—t—"—;—
+—i—m—p—o—r—t— —{— —p—r—o—f—i—l—e—C—o—n—f—i—g— —}— —f—r—o—m— —"—@—/—c—o—n—f—i—g—/—p—r—o—f—i—l—e—"—;—
+—
+—c—o—n—s—t— —l—i—n—k—s— —=— —[—
+— — —{— —n—a—m—e—:— —"—A—b—o—u—t—"—,— —h—r—e—f—:— —"—#—a—b—o—u—t—"— —}—,—
+— — —{— —n—a—m—e—:— —"—T—e—r—m—i—n—a—l—"—,— —h—r—e—f—:— —"—#—t—e—r—m—i—n—a—l—-—s—e—c—t—i—o—n—"— —}—,—
+— — —{— —n—a—m—e—:— —"—S—k—i—l—l—s—"—,— —h—r—e—f—:— —"—#—s—k—i—l—l—s—"— —}—,—
+— — —{— —n—a—m—e—:— —"—P—r—o—j—e—c—t—s—"—,— —h—r—e—f—:— —"—#—p—r—o—j—e—c—t—s—"— —}—,—
+— — —{— —n—a—m—e—:— —"—C—e—r—t—i—f—i—c—a—t—i—o—n—s—"—,— —h—r—e—f—:— —"—#—c—e—r—t—i—f—i—c—a—t—i—o—n—s—"— —}—,—
+— — —{— —n—a—m—e—:— —"—J—o—u—r—n—e—y—"—,— —h—r—e—f—:— —"—#—j—o—u—r—n—e—y—"— —}—,—
+— — —{— —n—a—m—e—:— —"—C—o—n—t—a—c—t—"—,— —h—r—e—f—:— —"—#—c—o—n—t—a—c—t—"— —}—,—
+—]—;—
+—
+—e—x—p—o—r—t— —d—e—f—a—u—l—t— —f—u—n—c—t—i—o—n— —N—a—v—b—a—r—(—)— —{—
+— — —c—o—n—s—t— —[—s—c—r—o—l—l—e—d—,— —s—e—t—S—c—r—o—l—l—e—d—]— —=— —u—s—e—S—t—a—t—e—(—f—a—l—s—e—)—;—
+— — —c—o—n—s—t— —[—o—p—e—n—,— —s—e—t—O—p—e—n—]— —=— —u—s—e—S—t—a—t—e—(—f—a—l—s—e—)—;—
+—
+— — —u—s—e—E—f—f—e—c—t—(—(—)— —=—>— —{—
+— — — — —c—o—n—s—t— —o—n—S—c—r—o—l—l— —=— —(—)— —=—>— —s—e—t—S—c—r—o—l—l—e—d—(—w—i—n—d—o—w—.—s—c—r—o—l—l—Y— —>— —4—0—)—;—
+— — — — —w—i—n—d—o—w—.—a—d—d—E—v—e—n—t—L—i—s—t—e—n—e—r—(—"—s—c—r—o—l—l—"—,— —o—n—S—c—r—o—l—l—,— —{— —p—a—s—s—i—v—e—:— —t—r—u—e— —}—)—;—
+— — — — —r—e—t—u—r—n— —(—)— —=—>— —w—i—n—d—o—w—.—r—e—m—o—v—e—E—v—e—n—t—L—i—s—t—e—n—e—r—(—"—s—c—r—o—l—l—"—,— —o—n—S—c—r—o—l—l—)—;—
+— — —}—,— —[—]—)—;—
+—
+— — —r—e—t—u—r—n— —(—
+— — — — —<—>—
+— — — — — — —<—m—o—t—i—o—n—.—n—a—v—
+— — — — — — — — —i—n—i—t—i—a—l—=—{—{— —y—:— —-—2—0—,— —o—p—a—c—i—t—y—:— —0— —}—}—
+— — — — — — — — —a—n—i—m—a—t—e—=—{—{— —y—:— —0—,— —o—p—a—c—i—t—y—:— —1— —}—}—
+— — — — — — — — —t—r—a—n—s—i—t—i—o—n—=—{—{— —d—u—r—a—t—i—o—n—:— —0—.—6—,— —e—a—s—e—:— —[—0—.—2—2—,— —1—,— —0—.—3—6—,— —1—]— —}—}—
+— — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—f—i—x—e—d— —t—o—p—-—4— —l—e—f—t—-—1—/—2— —-—t—r—a—n—s—l—a—t—e—-—x—-—1—/—2— —z—-—5—0— —w—-—f—u—l—l— —m—a—x—-—w—-—5—x—l— —p—x—-—4— —s—m—:—p—x—-—6—"—
+— — — — — — —>—
+— — — — — — — — —<—d—i—v—
+— — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—{—`—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —j—u—s—t—i—f—y—-—b—e—t—w—e—e—n— —p—x—-—5— —p—y—-—3— —r—o—u—n—d—e—d—-—2—x—l— —t—r—a—n—s—i—t—i—o—n—-—a—l—l— —d—u—r—a—t—i—o—n—-—5—0—0— —$—{—
+— — — — — — — — — — — — —s—c—r—o—l—l—e—d—
+— — — — — — — — — — — — — — —?— —"—g—l—a—s—s— —s—h—a—d—o—w—-—2—x—l— —s—h—a—d—o—w—-—b—l—a—c—k—/—4—0—"—
+— — — — — — — — — — — — — — —:— —"—b—g—-—t—r—a—n—s—p—a—r—e—n—t—"—
+— — — — — — — — — — —}—`—}—
+— — — — — — — — —>—
+— — — — — — — — — — —{—/—*— —L—o—g—o— —*—/—}—
+— — — — — — — — — — —<—a—
+— — — — — — — — — — — — —h—r—e—f—=—"—#—h—e—r—o—"—
+— — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—s—m— —f—o—n—t—-—b—l—a—c—k— —t—r—a—c—k—i—n—g—-—t—i—g—h—t— —t—e—x—t—-—w—h—i—t—e— —h—o—v—e—r—:—t—e—x—t—-—i—n—d—i—g—o—-—3—0—0— —t—r—a—n—s—i—t—i—o—n—-—c—o—l—o—r—s— —d—u—r—a—t—i—o—n—-—2—0—0—"—
+— — — — — — — — — — —>—
+— — — — — — — — — — — — —{—p—r—o—f—i—l—e—C—o—n—f—i—g—.—n—a—m—e—.—s—p—l—i—t—(—"— —"—)—[—0—]—}—
+— — — — — — — — — — — — —<—s—p—a—n— —c—l—a—s—s—N—a—m—e—=—"—t—e—x—t—-—i—n—d—i—g—o—-—4—0—0—"—>—.—<—/—s—p—a—n—>—
+— — — — — — — — — — —<—/—a—>—
+—
+— — — — — — — — — — —{—/—*— —D—e—s—k—t—o—p— —N—a—v— —*—/—}—
+— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—h—i—d—d—e—n— —m—d—:—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—1—"—>—
+— — — — — — — — — — — — —{—l—i—n—k—s—.—m—a—p—(—(—l—)— —=—>— —(—
+— — — — — — — — — — — — — — —<—a—
+— — — — — — — — — — — — — — — — —k—e—y—=—{—l—.—n—a—m—e—}—
+— — — — — — — — — — — — — — — — —h—r—e—f—=—{—l—.—h—r—e—f—}—
+— — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—p—x—-—3— —p—y—-—1—.—5— —t—e—x—t—-—x—s— —f—o—n—t—-—m—e—d—i—u—m— —t—e—x—t—-—z—i—n—c—-—5—0—0— —h—o—v—e—r—:—t—e—x—t—-—w—h—i—t—e— —r—o—u—n—d—e—d—-—l—g— —h—o—v—e—r—:—b—g—-—w—h—i—t—e—/—5— —t—r—a—n—s—i—t—i—o—n—-—a—l—l— —d—u—r—a—t—i—o—n—-—2—0—0—"—
+— — — — — — — — — — — — — — —>—
+— — — — — — — — — — — — — — — — —{—l—.—n—a—m—e—}—
+— — — — — — — — — — — — — — —<—/—a—>—
+— — — — — — — — — — — — —)—)—}—
+— — — — — — — — — — —<—/—d—i—v—>—
+—
+— — — — — — — — — — —{—/—*— —C—T—A— —+— —H—a—m—b—u—r—g—e—r— —*—/—}—
+— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—3—"—>—
+— — — — — — — — — — — — —<—a—
+— — — — — — — — — — — — — — —h—r—e—f—=—"—#—c—o—n—t—a—c—t—"—
+— — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—h—i—d—d—e—n— —m—d—:—i—n—l—i—n—e—-—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—1—.—5— —p—x—-—4— —p—y—-—2— —r—o—u—n—d—e—d—-—f—u—l—l— —b—g—-—w—h—i—t—e— —h—o—v—e—r—:—b—g—-—z—i—n—c—-—1—0—0— —t—e—x—t—-—b—l—a—c—k— —t—e—x—t—-—x—s— —f—o—n—t—-—s—e—m—i—b—o—l—d— —t—r—a—n—s—i—t—i—o—n—-—a—l—l— —d—u—r—a—t—i—o—n—-—2—0—0—"—
+— — — — — — — — — — — — —>—
+— — — — — — — — — — — — — — —H—i—r—e— —M—e—
+— — — — — — — — — — — — —<—/—a—>—
+— — — — — — — — — — — — —<—b—u—t—t—o—n—
+— — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—m—d—:—h—i—d—d—e—n— —p—-—1—.—5— —t—e—x—t—-—z—i—n—c—-—4—0—0— —h—o—v—e—r—:—t—e—x—t—-—w—h—i—t—e— —r—o—u—n—d—e—d—-—l—g— —h—o—v—e—r—:—b—g—-—w—h—i—t—e—/—5— —t—r—a—n—s—i—t—i—o—n—-—a—l—l—"—
+— — — — — — — — — — — — — — —o—n—C—l—i—c—k—=—{—(—)— —=—>— —s—e—t—O—p—e—n—(—!—o—p—e—n—)—}—
+— — — — — — — — — — — — — — —a—r—i—a—-—l—a—b—e—l—=—"—T—o—g—g—l—e— —m—e—n—u—"—
+— — — — — — — — — — — — —>—
+— — — — — — — — — — — — — — —{—o—p—e—n— —?— —<—X— —c—l—a—s—s—N—a—m—e—=—"—w—-—4—.—5— —h—-—4—.—5—"— —/—>— —:— —<—M—e—n—u— —c—l—a—s—s—N—a—m—e—=—"—w—-—4—.—5— —h—-—4—.—5—"— —/—>—}—
+— — — — — — — — — — — — —<—/—b—u—t—t—o—n—>—
+— — — — — — — — — — —<—/—d—i—v—>—
+— — — — — — — — —<—/—d—i—v—>—
+—
+— — — — — — — — —{—/—*— —M—o—b—i—l—e— —m—e—n—u— —*—/—}—
+— — — — — — — — —<—A—n—i—m—a—t—e—P—r—e—s—e—n—c—e—>—
+— — — — — — — — — — —{—o—p—e—n— —&—&— —(—
+— — — — — — — — — — — — —<—m—o—t—i—o—n—.—d—i—v—
+— — — — — — — — — — — — — — —i—n—i—t—i—a—l—=—{—{— —o—p—a—c—i—t—y—:— —0—,— —y—:— —-—8—,— —s—c—a—l—e—:— —0—.—9—8— —}—}—
+— — — — — — — — — — — — — — —a—n—i—m—a—t—e—=—{—{— —o—p—a—c—i—t—y—:— —1—,— —y—:— —0—,— —s—c—a—l—e—:— —1— —}—}—
+— — — — — — — — — — — — — — —e—x—i—t—=—{—{— —o—p—a—c—i—t—y—:— —0—,— —y—:— —-—8—,— —s—c—a—l—e—:— —0—.—9—8— —}—}—
+— — — — — — — — — — — — — — —t—r—a—n—s—i—t—i—o—n—=—{—{— —d—u—r—a—t—i—o—n—:— —0—.—2— —}—}—
+— — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—m—t—-—2— —g—l—a—s—s— —r—o—u—n—d—e—d—-—2—x—l— —o—v—e—r—f—l—o—w—-—h—i—d—d—e—n—"—
+— — — — — — — — — — — — —>—
+— — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—f—l—e—x— —f—l—e—x—-—c—o—l— —p—y—-—3—"—>—
+— — — — — — — — — — — — — — — — —{—l—i—n—k—s—.—m—a—p—(—(—l—)— —=—>— —(—
+— — — — — — — — — — — — — — — — — — —<—a—
+— — — — — — — — — — — — — — — — — — — — —k—e—y—=—{—l—.—n—a—m—e—}—
+— — — — — — — — — — — — — — — — — — — — —h—r—e—f—=—{—l—.—h—r—e—f—}—
+— — — — — — — — — — — — — — — — — — — — —o—n—C—l—i—c—k—=—{—(—)— —=—>— —s—e—t—O—p—e—n—(—f—a—l—s—e—)—}—
+— — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—p—x—-—5— —p—y—-—3— —t—e—x—t—-—s—m— —t—e—x—t—-—z—i—n—c—-—4—0—0— —h—o—v—e—r—:—t—e—x—t—-—w—h—i—t—e— —h—o—v—e—r—:—b—g—-—w—h—i—t—e—/—5— —t—r—a—n—s—i—t—i—o—n—-—a—l—l— —d—u—r—a—t—i—o—n—-—2—0—0—"—
+— — — — — — — — — — — — — — — — — — —>—
+— — — — — — — — — — — — — — — — — — — — —{—l—.—n—a—m—e—}—
+— — — — — — — — — — — — — — — — — — —<—/—a—>—
+— — — — — — — — — — — — — — — — —)—)—}—
+— — — — — — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—p—x—-—5— —p—t—-—3— —p—b—-—4— —b—o—r—d—e—r—-—t— —b—o—r—d—e—r—-—z—i—n—c—-—9—0—0— —m—t—-—2—"—>—
+— — — — — — — — — — — — — — — — — — —<—a—
+— — — — — — — — — — — — — — — — — — — — —h—r—e—f—=—"—#—c—o—n—t—a—c—t—"—
+— — — — — — — — — — — — — — — — — — — — —o—n—C—l—i—c—k—=—{—(—)— —=—>— —s—e—t—O—p—e—n—(—f—a—l—s—e—)—}—
+— — — — — — — — — — — — — — — — — — — — —c—l—a—s—s—N—a—m—e—=—"—i—n—l—i—n—e—-—f—l—e—x— —i—t—e—m—s—-—c—e—n—t—e—r— —g—a—p—-—1—.—5— —p—x—-—4— —p—y—-—2—.—5— —w—-—f—u—l—l— —j—u—s—t—i—f—y—-—c—e—n—t—e—r— —r—o—u—n—d—e—d—-—f—u—l—l— —b—g—-—w—h—i—t—e— —t—e—x—t—-—b—l—a—c—k— —t—e—x—t—-—x—s— —f—o—n—t—-—s—e—m—i—b—o—l—d— —t—r—a—n—s—i—t—i—o—n—-—a—l—l— —d—u—r—a—t—i—o—n—-—2—0—0—"—
+— — — — — — — — — — — — — — — — — — —>—
+— — — — — — — — — — — — — — — — — — — — —H—i—r—e— —M—e—
+— — — — — — — — — — — — — — — — — — —<—/—a—>—
+— — — — — — — — — — — — — — — — —<—/—d—i—v—>—
+— — — — — — — — — — — — — — —<—/—d—i—v—>—
+— — — — — — — — — — — — —<—/—m—o—t—i—o—n—.—d—i—v—>—
+— — — — — — — — — — —)—}—
+— — — — — — — — —<—/—A—n—i—m—a—t—e—P—r—e—s—e—n—c—e—>—
+— — — — — — —<—/—m—o—t—i—o—n—.—n—a—v—>—
+— — — — —<—/—>—
+— — —)—;—
+—}—
+—

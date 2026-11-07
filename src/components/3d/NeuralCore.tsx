@@ -1,537 +1,538 @@
-"use client";
-
-import React, { useRef, useMemo, useState, useEffect } from "react";
-import { useFrame } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
-import * as THREE from "three";
-
-interface NeuralCoreProps {
-  mouse: React.RefObject<{ x: number; y: number }>;
-  scroll: React.RefObject<number>;
-}
-
-export default function NeuralCore({ mouse, scroll }: NeuralCoreProps) {
-  // --- REFS ---
-  const landscapeRef = useRef<THREE.Group>(null);
-  const ballRef = useRef<THREE.Mesh>(null);
-  const trailRef = useRef<THREE.Line>(null);
-
-  const brainRef = useRef<THREE.Group>(null);
-  const skillsRef = useRef<THREE.Group>(null);
-  const workflowRef = useRef<THREE.Group>(null);
-  const projectsGroupRef = useRef<THREE.Group>(null);
-  const portalRef = useRef<THREE.Group>(null);
-
-  // --- ML METRICS STATE ---
-  const [metrics, setMetrics] = useState({
-    epoch: 124,
-    loss: 0.85,
-    accuracy: 98.2
-  });
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setMetrics(prev => ({
-        epoch: prev.epoch + 1,
-        loss: Math.max(0.005, prev.loss - 0.0002 * Math.random()),
-        accuracy: Math.min(99.9, prev.accuracy + 0.01 * Math.random())
-      }));
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // --- MODEL 1: LOSS LANDSCAPE CONFIG ---
-  const gridSize = 3.5;
-  const segments = 24;
-
-  const lossFunction = (x: number, y: number) => {
-    return (
-      Math.sin(x * 1.2) * Math.cos(y * 1.2) * 0.6 +
-      Math.sin(x * 0.4) * Math.cos(y * 0.4) * 0.3 -
-      (x * x + y * y) * 0.03
-    );
-  };
-
-  const lossGradient = (x: number, y: number) => {
-    const dfdx =
-      Math.cos(x * 1.2) * 1.2 * Math.cos(y * 1.2) * 0.6 +
-      Math.cos(x * 0.4) * 0.4 * Math.cos(y * 0.4) * 0.3 -
-      2 * x * 0.03;
-    const dfdy =
-      -Math.sin(x * 1.2) * Math.sin(y * 1.2) * 1.2 * 0.6 -
-      Math.sin(x * 0.4) * Math.sin(y * 0.4) * 0.3 * 0.3 -
-      2 * y * 0.03;
-    return [dfdx, dfdy];
-  };
-
-  const [landscapeGeometry, wireframeGeometry] = useMemo(() => {
-    const geo = new THREE.PlaneGeometry(gridSize * 2, gridSize * 2, segments, segments);
-    const pos = geo.getAttribute("position") as THREE.BufferAttribute;
-    const arr = pos.array as Float32Array;
-
-    for (let i = 0; i < pos.count; i++) {
-      const x = arr[i * 3];
-      const y = arr[i * 3 + 1];
-      arr[i * 3 + 2] = lossFunction(x, y);
-    }
-    
-    geo.computeVertexNormals();
-    const wireGeo = new THREE.WireframeGeometry(geo);
-    return [geo, wireGeo];
-  }, []);
-
-  const optState = useRef({
-    x: 2.5,
-    y: 2.5,
-    z: 0.0,
-    vx: 0.0,
-    vy: 0.0,
-    trail: [] as THREE.Vector3[],
-    steps: 0
-  });
-
-  // --- MODEL 2: CYBER BRAIN CONFIG ---
-  const brainNodeCount = 45;
-  const [brainNodes, brainConnections] = useMemo(() => {
-    const nodes: THREE.Vector3[] = [];
-    for (let i = 0; i < brainNodeCount; i++) {
-      // Distribute points on a sphere
-      const u = Math.random();
-      const v = Math.random();
-      const theta = u * 2.0 * Math.PI;
-      const phi = Math.acos(2.0 * v - 1.0);
-      const r = 1.3 + Math.random() * 0.3; // radius
-
-      const x = r * Math.sin(phi) * Math.cos(theta);
-      const y = r * Math.sin(phi) * Math.sin(theta);
-      const z = r * Math.cos(phi);
-
-      nodes.push(new THREE.Vector3(x, y, z));
-    }
-
-    const lines: number[] = [];
-    for (let i = 0; i < brainNodeCount; i++) {
-      let count = 0;
-      for (let j = i + 1; j < brainNodeCount; j++) {
-        if (count > 2) break;
-        const dist = nodes[i].distanceTo(nodes[j]);
-        if (dist < 1.4) {
-          lines.push(nodes[i].x, nodes[i].y, nodes[i].z, nodes[j].x, nodes[j].y, nodes[j].z);
-          count++;
-        }
-      }
-    }
-
-    return [nodes, lines];
-  }, []);
-
-  // --- ANIMATION LOOP ---
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime();
-    const s = scroll.current !== null ? scroll.current : 0;
-
-    // 1. CINEMATIC CAMERA FLIGHT COORDINATES MAPPING (PeachWeb Style)
-    const keyframes = [
-      // Hero (Scroll = 0): Center on Loss landscape on the right
-      { s: 0.0, cam: [0, 0, 5.8], target: [1.6, 0, 0] },
-      // About (Scroll = 0.16): Fly camera to Cyber Brain on the left
-      { s: 0.16, cam: [0, -5.5, 5.5], target: [-1.8, -5.5, 0] },
-      // Skills (Scroll = 0.33): Fly to Torus rings on the right
-      { s: 0.33, cam: [0, -11.0, 5.5], target: [1.8, -11.0, 0] },
-      // Workflow (Scroll = 0.50): Fly to RAG nodes in the center
-      { s: 0.50, cam: [0, -16.5, 4.5], target: [0, -16.5, 0] },
-      // Projects (Scroll = 0.68): Fly to Solar cluster on the left
-      { s: 0.68, cam: [0, -22.0, 6.0], target: [-1.8, -22.0, 0] },
-      // Journey (Scroll = 0.84): Dynamic camera sweep down
-      { s: 0.84, cam: [0, -27.5, 6.5], target: [0, -27.5, 0] },
-      // Contact (Scroll = 1.0): Deep plunge look into portal
-      { s: 1.0, cam: [0, -33.0, 4.5], target: [0, -33.0, 0] }
-    ];
-
-    // Interpolate keyframes
-    let lower = keyframes[0];
-    let upper = keyframes[keyframes.length - 1];
-
-    for (let i = 0; i < keyframes.length - 1; i++) {
-      if (s >= keyframes[i].s && s <= keyframes[i + 1].s) {
-        lower = keyframes[i];
-        upper = keyframes[i + 1];
-        break;
-      }
-    }
-
-    const range = upper.s - lower.s;
-    const t = range > 0 ? (s - lower.s) / range : 0;
-    const easeT = t * t * (3 - 2 * t); // Smooth easing curve
-
-    const camX = THREE.MathUtils.lerp(lower.cam[0], upper.cam[0], easeT);
-    const camY = THREE.MathUtils.lerp(lower.cam[1], upper.cam[1], easeT);
-    const camZ = THREE.MathUtils.lerp(lower.cam[2], upper.cam[2], easeT);
-
-    const targetX = THREE.MathUtils.lerp(lower.target[0], upper.target[0], easeT);
-    const targetY = THREE.MathUtils.lerp(lower.target[1], upper.target[1], easeT);
-    const targetZ = THREE.MathUtils.lerp(lower.target[2], upper.target[2], easeT);
-
-    // Apply mouse-move parallax drift to camera coordinates
-    if (mouse.current) {
-      const driftX = mouse.current.x * 0.45;
-      const driftY = mouse.current.y * 0.45;
-      state.camera.position.set(camX + driftX, camY + driftY, camZ);
-    } else {
-      state.camera.position.set(camX, camY, camZ);
-    }
-    state.camera.lookAt(targetX, targetY, targetZ);
-
-    // 2. MODEL 1 ANIMATIONS (Loss Surface)
-    const opt = optState.current;
-    const [dfdx, dfdy] = lossGradient(opt.x, opt.y);
-    const lr = 0.025;
-    const momentum = 0.88;
-
-    opt.vx = momentum * opt.vx - lr * dfdx;
-    opt.vy = momentum * opt.vy - lr * dfdy;
-    opt.x += opt.vx;
-    opt.y += opt.vy;
-    opt.z = lossFunction(opt.x, opt.y) + 0.12;
-
-    if (Math.abs(opt.x) > gridSize || Math.abs(opt.y) > gridSize) {
-      opt.x = (Math.random() - 0.5) * 5.0;
-      opt.y = (Math.random() - 0.5) * 5.0;
-      opt.vx = 0; opt.vy = 0;
-      opt.trail = [];
-      opt.steps = 0;
-    }
-
-    opt.steps++;
-    if (opt.steps > 200 && Math.sqrt(opt.vx * opt.vx + opt.vy * opt.vy) < 0.005) {
-      opt.x = (Math.random() - 0.5) * 6.0;
-      opt.y = (Math.random() - 0.5) * 6.0;
-      opt.vx = 0; opt.vy = 0;
-      opt.trail = [];
-      opt.steps = 0;
-    }
-
-    if (ballRef.current) ballRef.current.position.set(opt.x, opt.y, opt.z);
-
-    if (trailRef.current && ballRef.current) {
-      if (opt.trail.length === 0 || opt.trail[opt.trail.length - 1].distanceTo(ballRef.current.position) > 0.12) {
-        opt.trail.push(ballRef.current.position.clone());
-        if (opt.trail.length > 25) opt.trail.shift();
-
-        const pathCoords: number[] = [];
-        opt.trail.forEach(pt => pathCoords.push(pt.x, pt.y, pt.z));
-        trailRef.current.geometry.setAttribute("position", new THREE.Float32BufferAttribute(pathCoords, 3));
-        trailRef.current.geometry.computeBoundingSphere();
-      }
-    }
-
-    if (landscapeRef.current) {
-      landscapeRef.current.rotation.z = time * 0.05;
-    }
-
-    // 3. MODEL 2 ANIMATIONS (Cyber Brain Node)
-    if (brainRef.current) {
-      brainRef.current.rotation.y = time * 0.12;
-      brainRef.current.rotation.x = Math.sin(time * 0.25) * 0.1;
-    }
-
-    // 4. MODEL 3 ANIMATIONS (Concentric Skills Rings)
-    if (skillsRef.current) {
-      const childs = skillsRef.current.children;
-      if (childs.length >= 2) {
-        childs[0].rotation.y = time * 0.18;
-        childs[0].rotation.x = time * 0.08;
-        childs[1].rotation.x = -time * 0.22;
-        childs[1].rotation.y = time * 0.12;
-      }
-    }
-
-    // 5. MODEL 4 ANIMATIONS (RAG pipeline node links)
-    if (workflowRef.current) {
-      workflowRef.current.rotation.y = Math.sin(time * 0.15) * 0.12;
-    }
-
-    // 6. MODEL 5 ANIMATIONS (Solar projects core)
-    if (projectsGroupRef.current) {
-      projectsGroupRef.current.rotation.y = time * 0.08;
-      const satellites = projectsGroupRef.current.children;
-      // Animate orbiting project nodes
-      for (let i = 1; i < satellites.length; i++) {
-        const sat = satellites[i] as THREE.Mesh;
-        const angle = time * (0.35 + i * 0.1) + i * 2.0;
-        const dist = 1.0 + i * 0.5;
-        sat.position.set(Math.cos(angle) * dist, Math.sin(time * 0.25) * 0.15, Math.sin(angle) * dist);
-      }
-    }
-
-    // 7. MODEL 6 ANIMATIONS (Quantum Portal)
-    if (portalRef.current) {
-      const rings = portalRef.current.children;
-      for (let i = 0; i < rings.length; i++) {
-        const ring = rings[i] as THREE.Mesh;
-        ring.rotation.z = time * (0.4 + i * 0.15) * (i % 2 === 0 ? 1 : -1);
-        const scalePulse = 1.0 + Math.sin(time * 2.0 + i * 0.5) * 0.06;
-        ring.scale.set(scalePulse, scalePulse, scalePulse);
-      }
-    }
-  });
-
-  return (
-    <group>
-      
-      {/* ========================================================
-          MODEL 1: LOSS LANDSCAPE OPTIMIZER (Y = 0)
-          ======================================================== */}
-      <group ref={landscapeRef} position={[1.6, 0, 0]} rotation={[-Math.PI / 3, 0, 0]}>
-        <lineSegments geometry={wireframeGeometry}>
-          <lineBasicMaterial
-            color="#06b6d4"
-            transparent={true}
-            opacity={0.22}
-            blending={THREE.AdditiveBlending}
-          />
-        </lineSegments>
-
-        <mesh geometry={landscapeGeometry}>
-          <meshBasicMaterial
-            color="#1e1b4b"
-            transparent={true}
-            opacity={0.08}
-            side={THREE.DoubleSide}
-            depthWrite={false}
-          />
-        </mesh>
-
-        <mesh ref={ballRef}>
-          <sphereGeometry args={[0.15, 12, 12]} />
-          <meshBasicMaterial color="#a855f7" transparent={true} opacity={0.9} />
-          <Html distanceFactor={5} center>
-            <div className="bg-zinc-950/90 border border-purple-500/30 text-[7px] font-mono px-2 py-0.5 rounded text-purple-400 select-none backdrop-blur-sm shadow-lg tracking-wider whitespace-nowrap translate-y-[-12px]">
-              LOSS: {metrics.loss.toFixed(4)}
-            </div>
-          </Html>
-        </mesh>
-
-        <line ref={trailRef as any}>
-          <bufferGeometry />
-          <lineBasicMaterial color="#6366f1" transparent={true} opacity={0.5} />
-        </line>
-      </group>
-
-      {/* ========================================================
-          MODEL 2: CYBER BRAIN DUAL CORE (Y = -5.5)
-          ======================================================== */}
-      <group ref={brainRef} position={[-1.8, -5.5, 0]}>
-        {/* Glowing brain synapses */}
-        <points>
-          <bufferGeometry>
-            <bufferAttribute
-              attach="attributes-position"
-              args={[new Float32Array(brainNodeCount * 3), 3]}
-              count={brainNodeCount}
-              array={new Float32Array(brainNodes.flatMap(n => [n.x, n.y, n.z]))}
-              itemSize={3}
-            />
-          </bufferGeometry>
-          <pointsMaterial
-            color="#06b6d4"
-            size={0.08}
-            sizeAttenuation={true}
-            transparent={true}
-            opacity={0.8}
-            blending={THREE.AdditiveBlending}
-          />
-        </points>
-
-        {/* Connecting synapse lines */}
-        <lineSegments>
-          <bufferGeometry>
-            <bufferAttribute
-              attach="attributes-position"
-              args={[new Float32Array(brainConnections), 3]}
-              count={brainConnections.length / 3}
-              array={new Float32Array(brainConnections)}
-              itemSize={3}
-            />
-          </bufferGeometry>
-          <lineBasicMaterial
-            color="#6366f1"
-            transparent={true}
-            opacity={0.35}
-            blending={THREE.AdditiveBlending}
-          />
-        </lineSegments>
-
-        {/* Core brain glow sphere */}
-        <mesh>
-          <sphereGeometry args={[0.7, 16, 16]} />
-          <meshBasicMaterial
-            color="#8b5cf6"
-            wireframe={true}
-            transparent={true}
-            opacity={0.25}
-            blending={THREE.AdditiveBlending}
-          />
-        </mesh>
-
-        <Html position={[0, 1.6, 0]} distanceFactor={5} center>
-          <div className="bg-zinc-950/90 border border-indigo-500/25 text-[7px] font-mono px-2 py-0.5 rounded text-indigo-400 select-none tracking-wider whitespace-nowrap">
-            [ AGENT_BRAIN // CONTEXT_SIZE: 128K ]
-          </div>
-        </Html>
-      </group>
-
-      {/* ========================================================
-          MODEL 3: CONCENTRIC SKILLS RINGS (Y = -11.0)
-          ======================================================== */}
-      <group ref={skillsRef} position={[1.8, -11.0, 0]}>
-        {/* Outer Torus */}
-        <mesh>
-          <torusGeometry args={[1.5, 0.03, 10, 48]} />
-          <meshBasicMaterial
-            color="#06b6d4"
-            wireframe={true}
-            transparent={true}
-            opacity={0.35}
-            blending={THREE.AdditiveBlending}
-          />
-        </mesh>
-
-        {/* Inner Torus */}
-        <mesh>
-          <torusGeometry args={[0.9, 0.02, 8, 36]} />
-          <meshBasicMaterial
-            color="#a855f7"
-            wireframe={true}
-            transparent={true}
-            opacity={0.4}
-            blending={THREE.AdditiveBlending}
-          />
-        </mesh>
-
-        {/* Center Nucleus */}
-        <mesh>
-          <octahedronGeometry args={[0.3, 0]} />
-          <meshBasicMaterial
-            color="#6366f1"
-            wireframe={true}
-            transparent={true}
-            opacity={0.6}
-            blending={THREE.AdditiveBlending}
-          />
-        </mesh>
-
-        <Html position={[0, 1.8, 0]} distanceFactor={5} center>
-          <div className="bg-zinc-950/90 border border-cyan-500/25 text-[7px] font-mono px-2 py-0.5 rounded text-cyan-400 select-none tracking-wider whitespace-nowrap">
-            CORE_MATRIX: ONLINE
-          </div>
-        </Html>
-      </group>
-
-      {/* ========================================================
-          MODEL 4: RAG PIPELINE NODES (Y = -16.5)
-          ======================================================== */}
-      <group ref={workflowRef} position={[0, -16.5, 0]}>
-        {/* Node 1: Ingestion */}
-        <mesh position={[-1.8, 0, 0]}>
-          <boxGeometry args={[0.4, 0.4, 0.4]} />
-          <meshBasicMaterial color="#06b6d4" wireframe={true} transparent={true} opacity={0.5} />
-        </mesh>
-
-        {/* Node 2: Vector DB */}
-        <mesh position={[0, 0.3, 0]}>
-          <octahedronGeometry args={[0.3, 0]} />
-          <meshBasicMaterial color="#a855f7" wireframe={true} transparent={true} opacity={0.6} />
-        </mesh>
-
-        {/* Node 3: LLM Reader */}
-        <mesh position={[1.8, 0, 0]}>
-          <boxGeometry args={[0.4, 0.4, 0.4]} />
-          <meshBasicMaterial color="#6366f1" wireframe={true} transparent={true} opacity={0.5} />
-        </mesh>
-
-        {/* Linking lines */}
-        <lineSegments>
-          <bufferGeometry>
-            <bufferAttribute
-              attach="attributes-position"
-              args={[new Float32Array(18), 3]}
-              count={3}
-              array={new Float32Array([
-                -1.8, 0, 0,  0, 0.3, 0,
-                0, 0.3, 0,   1.8, 0, 0,
-                -1.8, 0, 0,  1.8, 0, 0
-              ])}
-              itemSize={3}
-            />
-          </bufferGeometry>
-          <lineBasicMaterial color="#52525b" transparent={true} opacity={0.4} />
-        </lineSegments>
-
-        <Html position={[0, 1.4, 0]} distanceFactor={5} center>
-          <div className="bg-zinc-950/90 border border-zinc-800 text-[7px] font-mono px-2 py-0.5 rounded text-zinc-400 select-none tracking-wider whitespace-nowrap">
-            VECTOR_RETR // COSINE_SIM: {(metrics.accuracy / 100).toFixed(4)}
-          </div>
-        </Html>
-      </group>
-
-      {/* ========================================================
-          MODEL 5: ORBITING PROJECTS SYSTEM (Y = -22.0)
-          ======================================================== */}
-      <group ref={projectsGroupRef} position={[-1.8, -22.0, 0]}>
-        {/* Core Profile Node */}
-        <mesh>
-          <sphereGeometry args={[0.4, 12, 12]} />
-          <meshBasicMaterial color="#6366f1" wireframe={true} transparent={true} opacity={0.7} />
-        </mesh>
-
-        {/* Satellites project coordinates (dynamically updated in useFrame) */}
-        <mesh>
-          <sphereGeometry args={[0.12, 8, 8]} />
-          <meshBasicMaterial color="#06b6d4" transparent={true} opacity={0.8} />
-        </mesh>
-        <mesh>
-          <sphereGeometry args={[0.12, 8, 8]} />
-          <meshBasicMaterial color="#a855f7" transparent={true} opacity={0.8} />
-        </mesh>
-        <mesh>
-          <sphereGeometry args={[0.12, 8, 8]} />
-          <meshBasicMaterial color="#cbd5e1" transparent={true} opacity={0.7} />
-        </mesh>
-
-        <Html position={[0, 1.6, 0]} distanceFactor={5} center>
-          <div className="bg-zinc-950/90 border border-purple-500/25 text-[7px] font-mono px-2 py-0.5 rounded text-purple-400 select-none tracking-wider whitespace-nowrap">
-            PROJECTS_CLUSTER // ACTIVE_REPOS: 4
-          </div>
-        </Html>
-      </group>
-
-      {/* ========================================================
-          MODEL 6: QUANTUM PORTAL WORMHOLE (Y = -33.0)
-          ======================================================== */}
-      <group ref={portalRef} position={[0, -33.0, 0]}>
-        <mesh>
-          <torusGeometry args={[1.5, 0.05, 12, 64]} />
-          <meshBasicMaterial color="#8b5cf6" wireframe={true} transparent={true} opacity={0.3} />
-        </mesh>
-
-        <mesh>
-          <torusGeometry args={[1.0, 0.04, 10, 48]} />
-          <meshBasicMaterial color="#06b6d4" wireframe={true} transparent={true} opacity={0.4} />
-        </mesh>
-
-        <mesh>
-          <torusGeometry args={[0.6, 0.03, 8, 36]} />
-          <meshBasicMaterial color="#ec4899" wireframe={true} transparent={true} opacity={0.45} />
-        </mesh>
-
-        <Html position={[0, 2.2, 0]} distanceFactor={5} center>
-          <div className="bg-zinc-950/90 border border-indigo-500/30 text-[7px] font-mono px-2 py-0.5 rounded text-indigo-400 select-none tracking-wider whitespace-nowrap">
-            [ QUANTUM_BRIDGE // PORTAL_ACTIVE ]
-          </div>
-        </Html>
-      </group>
-
-    </group>
-  );
-}
+—"—u—s—e— —c—l—i—e—n—t—"—;—
+—
+—i—m—p—o—r—t— —R—e—a—c—t—,— —{— —u—s—e—R—e—f—,— —u—s—e—M—e—m—o—,— —u—s—e—S—t—a—t—e—,— —u—s—e—E—f—f—e—c—t— —}— —f—r—o—m— —"—r—e—a—c—t—"—;—
+—i—m—p—o—r—t— —{— —u—s—e—F—r—a—m—e— —}— —f—r—o—m— —"—@—r—e—a—c—t—-—t—h—r—e—e—/—f—i—b—e—r—"—;—
+—i—m—p—o—r—t— —{— —H—t—m—l— —}— —f—r—o—m— —"—@—r—e—a—c—t—-—t—h—r—e—e—/—d—r—e—i—"—;—
+—i—m—p—o—r—t— —*— —a—s— —T—H—R—E—E— —f—r—o—m— —"—t—h—r—e—e—"—;—
+—
+—i—n—t—e—r—f—a—c—e— —N—e—u—r—a—l—C—o—r—e—P—r—o—p—s— —{—
+— — —m—o—u—s—e—:— —R—e—a—c—t—.—R—e—f—O—b—j—e—c—t—<—{— —x—:— —n—u—m—b—e—r—;— —y—:— —n—u—m—b—e—r— —}—>—;—
+— — —s—c—r—o—l—l—:— —R—e—a—c—t—.—R—e—f—O—b—j—e—c—t—<—n—u—m—b—e—r—>—;—
+—}—
+—
+—e—x—p—o—r—t— —d—e—f—a—u—l—t— —f—u—n—c—t—i—o—n— —N—e—u—r—a—l—C—o—r—e—(—{— —m—o—u—s—e—,— —s—c—r—o—l—l— —}—:— —N—e—u—r—a—l—C—o—r—e—P—r—o—p—s—)— —{—
+— — —/—/— —-—-—-— —R—E—F—S— —-—-—-—
+— — —c—o—n—s—t— —l—a—n—d—s—c—a—p—e—R—e—f— —=— —u—s—e—R—e—f—<—T—H—R—E—E—.—G—r—o—u—p—>—(—n—u—l—l—)—;—
+— — —c—o—n—s—t— —b—a—l—l—R—e—f— —=— —u—s—e—R—e—f—<—T—H—R—E—E—.—M—e—s—h—>—(—n—u—l—l—)—;—
+— — —c—o—n—s—t— —t—r—a—i—l—R—e—f— —=— —u—s—e—R—e—f—<—T—H—R—E—E—.—L—i—n—e—>—(—n—u—l—l—)—;—
+—
+— — —c—o—n—s—t— —b—r—a—i—n—R—e—f— —=— —u—s—e—R—e—f—<—T—H—R—E—E—.—G—r—o—u—p—>—(—n—u—l—l—)—;—
+— — —c—o—n—s—t— —s—k—i—l—l—s—R—e—f— —=— —u—s—e—R—e—f—<—T—H—R—E—E—.—G—r—o—u—p—>—(—n—u—l—l—)—;—
+— — —c—o—n—s—t— —w—o—r—k—f—l—o—w—R—e—f— —=— —u—s—e—R—e—f—<—T—H—R—E—E—.—G—r—o—u—p—>—(—n—u—l—l—)—;—
+— — —c—o—n—s—t— —p—r—o—j—e—c—t—s—G—r—o—u—p—R—e—f— —=— —u—s—e—R—e—f—<—T—H—R—E—E—.—G—r—o—u—p—>—(—n—u—l—l—)—;—
+— — —c—o—n—s—t— —p—o—r—t—a—l—R—e—f— —=— —u—s—e—R—e—f—<—T—H—R—E—E—.—G—r—o—u—p—>—(—n—u—l—l—)—;—
+—
+— — —/—/— —-—-—-— —M—L— —M—E—T—R—I—C—S— —S—T—A—T—E— —-—-—-—
+— — —c—o—n—s—t— —[—m—e—t—r—i—c—s—,— —s—e—t—M—e—t—r—i—c—s—]— —=— —u—s—e—S—t—a—t—e—(—{—
+— — — — —e—p—o—c—h—:— —1—2—4—,—
+— — — — —l—o—s—s—:— —0—.—8—5—,—
+— — — — —a—c—c—u—r—a—c—y—:— —9—8—.—2—
+— — —}—)—;—
+—
+— — —u—s—e—E—f—f—e—c—t—(—(—)— —=—>— —{—
+— — — — —c—o—n—s—t— —t—i—m—e—r— —=— —s—e—t—I—n—t—e—r—v—a—l—(—(—)— —=—>— —{—
+— — — — — — —s—e—t—M—e—t—r—i—c—s—(—p—r—e—v— —=—>— —(—{—
+— — — — — — — — —e—p—o—c—h—:— —p—r—e—v—.—e—p—o—c—h— —+— —1—,—
+— — — — — — — — —l—o—s—s—:— —M—a—t—h—.—m—a—x—(—0—.—0—0—5—,— —p—r—e—v—.—l—o—s—s— —-— —0—.—0—0—0—2— —*— —M—a—t—h—.—r—a—n—d—o—m—(—)—)—,—
+— — — — — — — — —a—c—c—u—r—a—c—y—:— —M—a—t—h—.—m—i—n—(—9—9—.—9—,— —p—r—e—v—.—a—c—c—u—r—a—c—y— —+— —0—.—0—1— —*— —M—a—t—h—.—r—a—n—d—o—m—(—)—)—
+— — — — — — —}—)—)—;—
+— — — — —}—,— —3—0—0—0—)—;—
+— — — — —r—e—t—u—r—n— —(—)— —=—>— —c—l—e—a—r—I—n—t—e—r—v—a—l—(—t—i—m—e—r—)—;—
+— — —}—,— —[—]—)—;—
+—
+— — —/—/— —-—-—-— —M—O—D—E—L— —1—:— —L—O—S—S— —L—A—N—D—S—C—A—P—E— —C—O—N—F—I—G— —-—-—-—
+— — —c—o—n—s—t— —g—r—i—d—S—i—z—e— —=— —3—.—5—;—
+— — —c—o—n—s—t— —s—e—g—m—e—n—t—s— —=— —2—4—;—
+—
+— — —c—o—n—s—t— —l—o—s—s—F—u—n—c—t—i—o—n— —=— —(—x—:— —n—u—m—b—e—r—,— —y—:— —n—u—m—b—e—r—)— —=—>— —{—
+— — — — —r—e—t—u—r—n— —(—
+— — — — — — —M—a—t—h—.—s—i—n—(—x— —*— —1—.—2—)— —*— —M—a—t—h—.—c—o—s—(—y— —*— —1—.—2—)— —*— —0—.—6— —+—
+— — — — — — —M—a—t—h—.—s—i—n—(—x— —*— —0—.—4—)— —*— —M—a—t—h—.—c—o—s—(—y— —*— —0—.—4—)— —*— —0—.—3— —-—
+— — — — — — —(—x— —*— —x— —+— —y— —*— —y—)— —*— —0—.—0—3—
+— — — — —)—;—
+— — —}—;—
+—
+— — —c—o—n—s—t— —l—o—s—s—G—r—a—d—i—e—n—t— —=— —(—x—:— —n—u—m—b—e—r—,— —y—:— —n—u—m—b—e—r—)— —=—>— —{—
+— — — — —c—o—n—s—t— —d—f—d—x— —=—
+— — — — — — —M—a—t—h—.—c—o—s—(—x— —*— —1—.—2—)— —*— —1—.—2— —*— —M—a—t—h—.—c—o—s—(—y— —*— —1—.—2—)— —*— —0—.—6— —+—
+— — — — — — —M—a—t—h—.—c—o—s—(—x— —*— —0—.—4—)— —*— —0—.—4— —*— —M—a—t—h—.—c—o—s—(—y— —*— —0—.—4—)— —*— —0—.—3— —-—
+— — — — — — —2— —*— —x— —*— —0—.—0—3—;—
+— — — — —c—o—n—s—t— —d—f—d—y— —=—
+— — — — — — —-—M—a—t—h—.—s—i—n—(—x— —*— —1—.—2—)— —*— —M—a—t—h—.—s—i—n—(—y— —*— —1—.—2—)— —*— —1—.—2— —*— —0—.—6— —-—
+— — — — — — —M—a—t—h—.—s—i—n—(—x— —*— —0—.—4—)— —*— —M—a—t—h—.—s—i—n—(—y— —*— —0—.—4—)— —*— —0—.—3— —*— —0—.—3— —-—
+— — — — — — —2— —*— —y— —*— —0—.—0—3—;—
+— — — — —r—e—t—u—r—n— —[—d—f—d—x—,— —d—f—d—y—]—;—
+— — —}—;—
+—
+— — —c—o—n—s—t— —[—l—a—n—d—s—c—a—p—e—G—e—o—m—e—t—r—y—,— —w—i—r—e—f—r—a—m—e—G—e—o—m—e—t—r—y—]— —=— —u—s—e—M—e—m—o—(—(—)— —=—>— —{—
+— — — — —c—o—n—s—t— —g—e—o— —=— —n—e—w— —T—H—R—E—E—.—P—l—a—n—e—G—e—o—m—e—t—r—y—(—g—r—i—d—S—i—z—e— —*— —2—,— —g—r—i—d—S—i—z—e— —*— —2—,— —s—e—g—m—e—n—t—s—,— —s—e—g—m—e—n—t—s—)—;—
+— — — — —c—o—n—s—t— —p—o—s— —=— —g—e—o—.—g—e—t—A—t—t—r—i—b—u—t—e—(—"—p—o—s—i—t—i—o—n—"—)— —a—s— —T—H—R—E—E—.—B—u—f—f—e—r—A—t—t—r—i—b—u—t—e—;—
+— — — — —c—o—n—s—t— —a—r—r— —=— —p—o—s—.—a—r—r—a—y— —a—s— —F—l—o—a—t—3—2—A—r—r—a—y—;—
+—
+— — — — —f—o—r— —(—l—e—t— —i— —=— —0—;— —i— —<— —p—o—s—.—c—o—u—n—t—;— —i—+—+—)— —{—
+— — — — — — —c—o—n—s—t— —x— —=— —a—r—r—[—i— —*— —3—]—;—
+— — — — — — —c—o—n—s—t— —y— —=— —a—r—r—[—i— —*— —3— —+— —1—]—;—
+— — — — — — —a—r—r—[—i— —*— —3— —+— —2—]— —=— —l—o—s—s—F—u—n—c—t—i—o—n—(—x—,— —y—)—;—
+— — — — —}—
+— — — — —
+— — — — —g—e—o—.—c—o—m—p—u—t—e—V—e—r—t—e—x—N—o—r—m—a—l—s—(—)—;—
+— — — — —c—o—n—s—t— —w—i—r—e—G—e—o— —=— —n—e—w— —T—H—R—E—E—.—W—i—r—e—f—r—a—m—e—G—e—o—m—e—t—r—y—(—g—e—o—)—;—
+— — — — —r—e—t—u—r—n— —[—g—e—o—,— —w—i—r—e—G—e—o—]—;—
+— — —}—,— —[—]—)—;—
+—
+— — —c—o—n—s—t— —o—p—t—S—t—a—t—e— —=— —u—s—e—R—e—f—(—{—
+— — — — —x—:— —2—.—5—,—
+— — — — —y—:— —2—.—5—,—
+— — — — —z—:— —0—.—0—,—
+— — — — —v—x—:— —0—.—0—,—
+— — — — —v—y—:— —0—.—0—,—
+— — — — —t—r—a—i—l—:— —[—]— —a—s— —T—H—R—E—E—.—V—e—c—t—o—r—3—[—]—,—
+— — — — —s—t—e—p—s—:— —0—
+— — —}—)—;—
+—
+— — —/—/— —-—-—-— —M—O—D—E—L— —2—:— —C—Y—B—E—R— —B—R—A—I—N— —C—O—N—F—I—G— —-—-—-—
+— — —c—o—n—s—t— —b—r—a—i—n—N—o—d—e—C—o—u—n—t— —=— —4—5—;—
+— — —c—o—n—s—t— —[—b—r—a—i—n—N—o—d—e—s—,— —b—r—a—i—n—C—o—n—n—e—c—t—i—o—n—s—]— —=— —u—s—e—M—e—m—o—(—(—)— —=—>— —{—
+— — — — —c—o—n—s—t— —n—o—d—e—s—:— —T—H—R—E—E—.—V—e—c—t—o—r—3—[—]— —=— —[—]—;—
+— — — — —f—o—r— —(—l—e—t— —i— —=— —0—;— —i— —<— —b—r—a—i—n—N—o—d—e—C—o—u—n—t—;— —i—+—+—)— —{—
+— — — — — — —/—/— —D—i—s—t—r—i—b—u—t—e— —p—o—i—n—t—s— —o—n— —a— —s—p—h—e—r—e—
+— — — — — — —c—o—n—s—t— —u— —=— —M—a—t—h—.—r—a—n—d—o—m—(—)—;—
+— — — — — — —c—o—n—s—t— —v— —=— —M—a—t—h—.—r—a—n—d—o—m—(—)—;—
+— — — — — — —c—o—n—s—t— —t—h—e—t—a— —=— —u— —*— —2—.—0— —*— —M—a—t—h—.—P—I—;—
+— — — — — — —c—o—n—s—t— —p—h—i— —=— —M—a—t—h—.—a—c—o—s—(—2—.—0— —*— —v— —-— —1—.—0—)—;—
+— — — — — — —c—o—n—s—t— —r— —=— —1—.—3— —+— —M—a—t—h—.—r—a—n—d—o—m—(—)— —*— —0—.—3—;— —/—/— —r—a—d—i—u—s—
+—
+— — — — — — —c—o—n—s—t— —x— —=— —r— —*— —M—a—t—h—.—s—i—n—(—p—h—i—)— —*— —M—a—t—h—.—c—o—s—(—t—h—e—t—a—)—;—
+— — — — — — —c—o—n—s—t— —y— —=— —r— —*— —M—a—t—h—.—s—i—n—(—p—h—i—)— —*— —M—a—t—h—.—s—i—n—(—t—h—e—t—a—)—;—
+— — — — — — —c—o—n—s—t— —z— —=— —r— —*— —M—a—t—h—.—c—o—s—(—p—h—i—)—;—
+—
+— — — — — — —n—o—d—e—s—.—p—u—s—h—(—n—e—w— —T—H—R—E—E—.—V—e—c—t—o—r—3—(—x—,— —y—,— —z—)—)—;—
+— — — — —}—
+—
+— — — — —c—o—n—s—t— —l—i—n—e—s—:— —n—u—m—b—e—r—[—]— —=— —[—]—;—
+— — — — —f—o—r— —(—l—e—t— —i— —=— —0—;— —i— —<— —b—r—a—i—n—N—o—d—e—C—o—u—n—t—;— —i—+—+—)— —{—
+— — — — — — —l—e—t— —c—o—u—n—t— —=— —0—;—
+— — — — — — —f—o—r— —(—l—e—t— —j— —=— —i— —+— —1—;— —j— —<— —b—r—a—i—n—N—o—d—e—C—o—u—n—t—;— —j—+—+—)— —{—
+— — — — — — — — —i—f— —(—c—o—u—n—t— —>— —2—)— —b—r—e—a—k—;—
+— — — — — — — — —c—o—n—s—t— —d—i—s—t— —=— —n—o—d—e—s—[—i—]—.—d—i—s—t—a—n—c—e—T—o—(—n—o—d—e—s—[—j—]—)—;—
+— — — — — — — — —i—f— —(—d—i—s—t— —<— —1—.—4—)— —{—
+— — — — — — — — — — —l—i—n—e—s—.—p—u—s—h—(—n—o—d—e—s—[—i—]—.—x—,— —n—o—d—e—s—[—i—]—.—y—,— —n—o—d—e—s—[—i—]—.—z—,— —n—o—d—e—s—[—j—]—.—x—,— —n—o—d—e—s—[—j—]—.—y—,— —n—o—d—e—s—[—j—]—.—z—)—;—
+— — — — — — — — — — —c—o—u—n—t—+—+—;—
+— — — — — — — — —}—
+— — — — — — —}—
+— — — — —}—
+—
+— — — — —r—e—t—u—r—n— —[—n—o—d—e—s—,— —l—i—n—e—s—]—;—
+— — —}—,— —[—]—)—;—
+—
+— — —/—/— —-—-—-— —A—N—I—M—A—T—I—O—N— —L—O—O—P— —-—-—-—
+— — —u—s—e—F—r—a—m—e—(—(—s—t—a—t—e—)— —=—>— —{—
+— — — — —c—o—n—s—t— —t—i—m—e— —=— —s—t—a—t—e—.—c—l—o—c—k—.—g—e—t—E—l—a—p—s—e—d—T—i—m—e—(—)—;—
+— — — — —c—o—n—s—t— —s— —=— —s—c—r—o—l—l—.—c—u—r—r—e—n—t— —!—=—=— —n—u—l—l— —?— —s—c—r—o—l—l—.—c—u—r—r—e—n—t— —:— —0—;—
+—
+— — — — —/—/— —1—.— —C—I—N—E—M—A—T—I—C— —C—A—M—E—R—A— —F—L—I—G—H—T— —C—O—O—R—D—I—N—A—T—E—S— —M—A—P—P—I—N—G— —(—P—e—a—c—h—W—e—b— —S—t—y—l—e—)—
+— — — — —c—o—n—s—t— —k—e—y—f—r—a—m—e—s— —=— —[—
+— — — — — — —/—/— —H—e—r—o— —(—S—c—r—o—l—l— —=— —0—)—:— —C—e—n—t—e—r— —o—n— —L—o—s—s— —l—a—n—d—s—c—a—p—e— —o—n— —t—h—e— —r—i—g—h—t—
+— — — — — — —{— —s—:— —0—.—0—,— —c—a—m—:— —[—0—,— —0—,— —5—.—8—]—,— —t—a—r—g—e—t—:— —[—1—.—6—,— —0—,— —0—]— —}—,—
+— — — — — — —/—/— —A—b—o—u—t— —(—S—c—r—o—l—l— —=— —0—.—1—6—)—:— —F—l—y— —c—a—m—e—r—a— —t—o— —C—y—b—e—r— —B—r—a—i—n— —o—n— —t—h—e— —l—e—f—t—
+— — — — — — —{— —s—:— —0—.—1—6—,— —c—a—m—:— —[—0—,— —-—5—.—5—,— —5—.—5—]—,— —t—a—r—g—e—t—:— —[—-—1—.—8—,— —-—5—.—5—,— —0—]— —}—,—
+— — — — — — —/—/— —S—k—i—l—l—s— —(—S—c—r—o—l—l— —=— —0—.—3—3—)—:— —F—l—y— —t—o— —T—o—r—u—s— —r—i—n—g—s— —o—n— —t—h—e— —r—i—g—h—t—
+— — — — — — —{— —s—:— —0—.—3—3—,— —c—a—m—:— —[—0—,— —-—1—1—.—0—,— —5—.—5—]—,— —t—a—r—g—e—t—:— —[—1—.—8—,— —-—1—1—.—0—,— —0—]— —}—,—
+— — — — — — —/—/— —W—o—r—k—f—l—o—w— —(—S—c—r—o—l—l— —=— —0—.—5—0—)—:— —F—l—y— —t—o— —R—A—G— —n—o—d—e—s— —i—n— —t—h—e— —c—e—n—t—e—r—
+— — — — — — —{— —s—:— —0—.—5—0—,— —c—a—m—:— —[—0—,— —-—1—6—.—5—,— —4—.—5—]—,— —t—a—r—g—e—t—:— —[—0—,— —-—1—6—.—5—,— —0—]— —}—,—
+— — — — — — —/—/— —P—r—o—j—e—c—t—s— —(—S—c—r—o—l—l— —=— —0—.—6—8—)—:— —F—l—y— —t—o— —S—o—l—a—r— —c—l—u—s—t—e—r— —o—n— —t—h—e— —l—e—f—t—
+— — — — — — —{— —s—:— —0—.—6—8—,— —c—a—m—:— —[—0—,— —-—2—2—.—0—,— —6—.—0—]—,— —t—a—r—g—e—t—:— —[—-—1—.—8—,— —-—2—2—.—0—,— —0—]— —}—,—
+— — — — — — —/—/— —J—o—u—r—n—e—y— —(—S—c—r—o—l—l— —=— —0—.—8—4—)—:— —D—y—n—a—m—i—c— —c—a—m—e—r—a— —s—w—e—e—p— —d—o—w—n—
+— — — — — — —{— —s—:— —0—.—8—4—,— —c—a—m—:— —[—0—,— —-—2—7—.—5—,— —6—.—5—]—,— —t—a—r—g—e—t—:— —[—0—,— —-—2—7—.—5—,— —0—]— —}—,—
+— — — — — — —/—/— —C—o—n—t—a—c—t— —(—S—c—r—o—l—l— —=— —1—.—0—)—:— —D—e—e—p— —p—l—u—n—g—e— —l—o—o—k— —i—n—t—o— —p—o—r—t—a—l—
+— — — — — — —{— —s—:— —1—.—0—,— —c—a—m—:— —[—0—,— —-—3—3—.—0—,— —4—.—5—]—,— —t—a—r—g—e—t—:— —[—0—,— —-—3—3—.—0—,— —0—]— —}—
+— — — — —]—;—
+—
+— — — — —/—/— —I—n—t—e—r—p—o—l—a—t—e— —k—e—y—f—r—a—m—e—s—
+— — — — —l—e—t— —l—o—w—e—r— —=— —k—e—y—f—r—a—m—e—s—[—0—]—;—
+— — — — —l—e—t— —u—p—p—e—r— —=— —k—e—y—f—r—a—m—e—s—[—k—e—y—f—r—a—m—e—s—.—l—e—n—g—t—h— —-— —1—]—;—
+—
+— — — — —f—o—r— —(—l—e—t— —i— —=— —0—;— —i— —<— —k—e—y—f—r—a—m—e—s—.—l—e—n—g—t—h— —-— —1—;— —i—+—+—)— —{—
+— — — — — — —i—f— —(—s— —>—=— —k—e—y—f—r—a—m—e—s—[—i—]—.—s— —&—&— —s— —<—=— —k—e—y—f—r—a—m—e—s—[—i— —+— —1—]—.—s—)— —{—
+— — — — — — — — —l—o—w—e—r— —=— —k—e—y—f—r—a—m—e—s—[—i—]—;—
+— — — — — — — — —u—p—p—e—r— —=— —k—e—y—f—r—a—m—e—s—[—i— —+— —1—]—;—
+— — — — — — — — —b—r—e—a—k—;—
+— — — — — — —}—
+— — — — —}—
+—
+— — — — —c—o—n—s—t— —r—a—n—g—e— —=— —u—p—p—e—r—.—s— —-— —l—o—w—e—r—.—s—;—
+— — — — —c—o—n—s—t— —t— —=— —r—a—n—g—e— —>— —0— —?— —(—s— —-— —l—o—w—e—r—.—s—)— —/— —r—a—n—g—e— —:— —0—;—
+— — — — —c—o—n—s—t— —e—a—s—e—T— —=— —t— —*— —t— —*— —(—3— —-— —2— —*— —t—)—;— —/—/— —S—m—o—o—t—h— —e—a—s—i—n—g— —c—u—r—v—e—
+—
+— — — — —c—o—n—s—t— —c—a—m—X— —=— —T—H—R—E—E—.—M—a—t—h—U—t—i—l—s—.—l—e—r—p—(—l—o—w—e—r—.—c—a—m—[—0—]—,— —u—p—p—e—r—.—c—a—m—[—0—]—,— —e—a—s—e—T—)—;—
+— — — — —c—o—n—s—t— —c—a—m—Y— —=— —T—H—R—E—E—.—M—a—t—h—U—t—i—l—s—.—l—e—r—p—(—l—o—w—e—r—.—c—a—m—[—1—]—,— —u—p—p—e—r—.—c—a—m—[—1—]—,— —e—a—s—e—T—)—;—
+— — — — —c—o—n—s—t— —c—a—m—Z— —=— —T—H—R—E—E—.—M—a—t—h—U—t—i—l—s—.—l—e—r—p—(—l—o—w—e—r—.—c—a—m—[—2—]—,— —u—p—p—e—r—.—c—a—m—[—2—]—,— —e—a—s—e—T—)—;—
+—
+— — — — —c—o—n—s—t— —t—a—r—g—e—t—X— —=— —T—H—R—E—E—.—M—a—t—h—U—t—i—l—s—.—l—e—r—p—(—l—o—w—e—r—.—t—a—r—g—e—t—[—0—]—,— —u—p—p—e—r—.—t—a—r—g—e—t—[—0—]—,— —e—a—s—e—T—)—;—
+— — — — —c—o—n—s—t— —t—a—r—g—e—t—Y— —=— —T—H—R—E—E—.—M—a—t—h—U—t—i—l—s—.—l—e—r—p—(—l—o—w—e—r—.—t—a—r—g—e—t—[—1—]—,— —u—p—p—e—r—.—t—a—r—g—e—t—[—1—]—,— —e—a—s—e—T—)—;—
+— — — — —c—o—n—s—t— —t—a—r—g—e—t—Z— —=— —T—H—R—E—E—.—M—a—t—h—U—t—i—l—s—.—l—e—r—p—(—l—o—w—e—r—.—t—a—r—g—e—t—[—2—]—,— —u—p—p—e—r—.—t—a—r—g—e—t—[—2—]—,— —e—a—s—e—T—)—;—
+—
+— — — — —/—/— —A—p—p—l—y— —m—o—u—s—e—-—m—o—v—e— —p—a—r—a—l—l—a—x— —d—r—i—f—t— —t—o— —c—a—m—e—r—a— —c—o—o—r—d—i—n—a—t—e—s—
+— — — — —i—f— —(—m—o—u—s—e—.—c—u—r—r—e—n—t—)— —{—
+— — — — — — —c—o—n—s—t— —d—r—i—f—t—X— —=— —m—o—u—s—e—.—c—u—r—r—e—n—t—.—x— —*— —0—.—4—5—;—
+— — — — — — —c—o—n—s—t— —d—r—i—f—t—Y— —=— —m—o—u—s—e—.—c—u—r—r—e—n—t—.—y— —*— —0—.—4—5—;—
+— — — — — — —s—t—a—t—e—.—c—a—m—e—r—a—.—p—o—s—i—t—i—o—n—.—s—e—t—(—c—a—m—X— —+— —d—r—i—f—t—X—,— —c—a—m—Y— —+— —d—r—i—f—t—Y—,— —c—a—m—Z—)—;—
+— — — — —}— —e—l—s—e— —{—
+— — — — — — —s—t—a—t—e—.—c—a—m—e—r—a—.—p—o—s—i—t—i—o—n—.—s—e—t—(—c—a—m—X—,— —c—a—m—Y—,— —c—a—m—Z—)—;—
+— — — — —}—
+— — — — —s—t—a—t—e—.—c—a—m—e—r—a—.—l—o—o—k—A—t—(—t—a—r—g—e—t—X—,— —t—a—r—g—e—t—Y—,— —t—a—r—g—e—t—Z—)—;—
+—
+— — — — —/—/— —2—.— —M—O—D—E—L— —1— —A—N—I—M—A—T—I—O—N—S— —(—L—o—s—s— —S—u—r—f—a—c—e—)—
+— — — — —c—o—n—s—t— —o—p—t— —=— —o—p—t—S—t—a—t—e—.—c—u—r—r—e—n—t—;—
+— — — — —c—o—n—s—t— —[—d—f—d—x—,— —d—f—d—y—]— —=— —l—o—s—s—G—r—a—d—i—e—n—t—(—o—p—t—.—x—,— —o—p—t—.—y—)—;—
+— — — — —c—o—n—s—t— —l—r— —=— —0—.—0—2—5—;—
+— — — — —c—o—n—s—t— —m—o—m—e—n—t—u—m— —=— —0—.—8—8—;—
+—
+— — — — —o—p—t—.—v—x— —=— —m—o—m—e—n—t—u—m— —*— —o—p—t—.—v—x— —-— —l—r— —*— —d—f—d—x—;—
+— — — — —o—p—t—.—v—y— —=— —m—o—m—e—n—t—u—m— —*— —o—p—t—.—v—y— —-— —l—r— —*— —d—f—d—y—;—
+— — — — —o—p—t—.—x— —+—=— —o—p—t—.—v—x—;—
+— — — — —o—p—t—.—y— —+—=— —o—p—t—.—v—y—;—
+— — — — —o—p—t—.—z— —=— —l—o—s—s—F—u—n—c—t—i—o—n—(—o—p—t—.—x—,— —o—p—t—.—y—)— —+— —0—.—1—2—;—
+—
+— — — — —i—f— —(—M—a—t—h—.—a—b—s—(—o—p—t—.—x—)— —>— —g—r—i—d—S—i—z—e— —|—|— —M—a—t—h—.—a—b—s—(—o—p—t—.—y—)— —>— —g—r—i—d—S—i—z—e—)— —{—
+— — — — — — —o—p—t—.—x— —=— —(—M—a—t—h—.—r—a—n—d—o—m—(—)— —-— —0—.—5—)— —*— —5—.—0—;—
+— — — — — — —o—p—t—.—y— —=— —(—M—a—t—h—.—r—a—n—d—o—m—(—)— —-— —0—.—5—)— —*— —5—.—0—;—
+— — — — — — —o—p—t—.—v—x— —=— —0—;— —o—p—t—.—v—y— —=— —0—;—
+— — — — — — —o—p—t—.—t—r—a—i—l— —=— —[—]—;—
+— — — — — — —o—p—t—.—s—t—e—p—s— —=— —0—;—
+— — — — —}—
+—
+— — — — —o—p—t—.—s—t—e—p—s—+—+—;—
+— — — — —i—f— —(—o—p—t—.—s—t—e—p—s— —>— —2—0—0— —&—&— —M—a—t—h—.—s—q—r—t—(—o—p—t—.—v—x— —*— —o—p—t—.—v—x— —+— —o—p—t—.—v—y— —*— —o—p—t—.—v—y—)— —<— —0—.—0—0—5—)— —{—
+— — — — — — —o—p—t—.—x— —=— —(—M—a—t—h—.—r—a—n—d—o—m—(—)— —-— —0—.—5—)— —*— —6—.—0—;—
+— — — — — — —o—p—t—.—y— —=— —(—M—a—t—h—.—r—a—n—d—o—m—(—)— —-— —0—.—5—)— —*— —6—.—0—;—
+— — — — — — —o—p—t—.—v—x— —=— —0—;— —o—p—t—.—v—y— —=— —0—;—
+— — — — — — —o—p—t—.—t—r—a—i—l— —=— —[—]—;—
+— — — — — — —o—p—t—.—s—t—e—p—s— —=— —0—;—
+— — — — —}—
+—
+— — — — —i—f— —(—b—a—l—l—R—e—f—.—c—u—r—r—e—n—t—)— —b—a—l—l—R—e—f—.—c—u—r—r—e—n—t—.—p—o—s—i—t—i—o—n—.—s—e—t—(—o—p—t—.—x—,— —o—p—t—.—y—,— —o—p—t—.—z—)—;—
+—
+— — — — —i—f— —(—t—r—a—i—l—R—e—f—.—c—u—r—r—e—n—t— —&—&— —b—a—l—l—R—e—f—.—c—u—r—r—e—n—t—)— —{—
+— — — — — — —i—f— —(—o—p—t—.—t—r—a—i—l—.—l—e—n—g—t—h— —=—=—=— —0— —|—|— —o—p—t—.—t—r—a—i—l—[—o—p—t—.—t—r—a—i—l—.—l—e—n—g—t—h— —-— —1—]—.—d—i—s—t—a—n—c—e—T—o—(—b—a—l—l—R—e—f—.—c—u—r—r—e—n—t—.—p—o—s—i—t—i—o—n—)— —>— —0—.—1—2—)— —{—
+— — — — — — — — —o—p—t—.—t—r—a—i—l—.—p—u—s—h—(—b—a—l—l—R—e—f—.—c—u—r—r—e—n—t—.—p—o—s—i—t—i—o—n—.—c—l—o—n—e—(—)—)—;—
+— — — — — — — — —i—f— —(—o—p—t—.—t—r—a—i—l—.—l—e—n—g—t—h— —>— —2—5—)— —o—p—t—.—t—r—a—i—l—.—s—h—i—f—t—(—)—;—
+—
+— — — — — — — — —c—o—n—s—t— —p—a—t—h—C—o—o—r—d—s—:— —n—u—m—b—e—r—[—]— —=— —[—]—;—
+— — — — — — — — —o—p—t—.—t—r—a—i—l—.—f—o—r—E—a—c—h—(—p—t— —=—>— —p—a—t—h—C—o—o—r—d—s—.—p—u—s—h—(—p—t—.—x—,— —p—t—.—y—,— —p—t—.—z—)—)—;—
+— — — — — — — — —t—r—a—i—l—R—e—f—.—c—u—r—r—e—n—t—.—g—e—o—m—e—t—r—y—.—s—e—t—A—t—t—r—i—b—u—t—e—(—"—p—o—s—i—t—i—o—n—"—,— —n—e—w— —T—H—R—E—E—.—F—l—o—a—t—3—2—B—u—f—f—e—r—A—t—t—r—i—b—u—t—e—(—p—a—t—h—C—o—o—r—d—s—,— —3—)—)—;—
+— — — — — — — — —t—r—a—i—l—R—e—f—.—c—u—r—r—e—n—t—.—g—e—o—m—e—t—r—y—.—c—o—m—p—u—t—e—B—o—u—n—d—i—n—g—S—p—h—e—r—e—(—)—;—
+— — — — — — —}—
+— — — — —}—
+—
+— — — — —i—f— —(—l—a—n—d—s—c—a—p—e—R—e—f—.—c—u—r—r—e—n—t—)— —{—
+— — — — — — —l—a—n—d—s—c—a—p—e—R—e—f—.—c—u—r—r—e—n—t—.—r—o—t—a—t—i—o—n—.—z— —=— —t—i—m—e— —*— —0—.—0—5—;—
+— — — — —}—
+—
+— — — — —/—/— —3—.— —M—O—D—E—L— —2— —A—N—I—M—A—T—I—O—N—S— —(—C—y—b—e—r— —B—r—a—i—n— —N—o—d—e—)—
+— — — — —i—f— —(—b—r—a—i—n—R—e—f—.—c—u—r—r—e—n—t—)— —{—
+— — — — — — —b—r—a—i—n—R—e—f—.—c—u—r—r—e—n—t—.—r—o—t—a—t—i—o—n—.—y— —=— —t—i—m—e— —*— —0—.—1—2—;—
+— — — — — — —b—r—a—i—n—R—e—f—.—c—u—r—r—e—n—t—.—r—o—t—a—t—i—o—n—.—x— —=— —M—a—t—h—.—s—i—n—(—t—i—m—e— —*— —0—.—2—5—)— —*— —0—.—1—;—
+— — — — —}—
+—
+— — — — —/—/— —4—.— —M—O—D—E—L— —3— —A—N—I—M—A—T—I—O—N—S— —(—C—o—n—c—e—n—t—r—i—c— —S—k—i—l—l—s— —R—i—n—g—s—)—
+— — — — —i—f— —(—s—k—i—l—l—s—R—e—f—.—c—u—r—r—e—n—t—)— —{—
+— — — — — — —c—o—n—s—t— —c—h—i—l—d—s— —=— —s—k—i—l—l—s—R—e—f—.—c—u—r—r—e—n—t—.—c—h—i—l—d—r—e—n—;—
+— — — — — — —i—f— —(—c—h—i—l—d—s—.—l—e—n—g—t—h— —>—=— —2—)— —{—
+— — — — — — — — —c—h—i—l—d—s—[—0—]—.—r—o—t—a—t—i—o—n—.—y— —=— —t—i—m—e— —*— —0—.—1—8—;—
+— — — — — — — — —c—h—i—l—d—s—[—0—]—.—r—o—t—a—t—i—o—n—.—x— —=— —t—i—m—e— —*— —0—.—0—8—;—
+— — — — — — — — —c—h—i—l—d—s—[—1—]—.—r—o—t—a—t—i—o—n—.—x— —=— —-—t—i—m—e— —*— —0—.—2—2—;—
+— — — — — — — — —c—h—i—l—d—s—[—1—]—.—r—o—t—a—t—i—o—n—.—y— —=— —t—i—m—e— —*— —0—.—1—2—;—
+— — — — — — —}—
+— — — — —}—
+—
+— — — — —/—/— —5—.— —M—O—D—E—L— —4— —A—N—I—M—A—T—I—O—N—S— —(—R—A—G— —p—i—p—e—l—i—n—e— —n—o—d—e— —l—i—n—k—s—)—
+— — — — —i—f— —(—w—o—r—k—f—l—o—w—R—e—f—.—c—u—r—r—e—n—t—)— —{—
+— — — — — — —w—o—r—k—f—l—o—w—R—e—f—.—c—u—r—r—e—n—t—.—r—o—t—a—t—i—o—n—.—y— —=— —M—a—t—h—.—s—i—n—(—t—i—m—e— —*— —0—.—1—5—)— —*— —0—.—1—2—;—
+— — — — —}—
+—
+— — — — —/—/— —6—.— —M—O—D—E—L— —5— —A—N—I—M—A—T—I—O—N—S— —(—S—o—l—a—r— —p—r—o—j—e—c—t—s— —c—o—r—e—)—
+— — — — —i—f— —(—p—r—o—j—e—c—t—s—G—r—o—u—p—R—e—f—.—c—u—r—r—e—n—t—)— —{—
+— — — — — — —p—r—o—j—e—c—t—s—G—r—o—u—p—R—e—f—.—c—u—r—r—e—n—t—.—r—o—t—a—t—i—o—n—.—y— —=— —t—i—m—e— —*— —0—.—0—8—;—
+— — — — — — —c—o—n—s—t— —s—a—t—e—l—l—i—t—e—s— —=— —p—r—o—j—e—c—t—s—G—r—o—u—p—R—e—f—.—c—u—r—r—e—n—t—.—c—h—i—l—d—r—e—n—;—
+— — — — — — —/—/— —A—n—i—m—a—t—e— —o—r—b—i—t—i—n—g— —p—r—o—j—e—c—t— —n—o—d—e—s—
+— — — — — — —f—o—r— —(—l—e—t— —i— —=— —1—;— —i— —<— —s—a—t—e—l—l—i—t—e—s—.—l—e—n—g—t—h—;— —i—+—+—)— —{—
+— — — — — — — — —c—o—n—s—t— —s—a—t— —=— —s—a—t—e—l—l—i—t—e—s—[—i—]— —a—s— —T—H—R—E—E—.—M—e—s—h—;—
+— — — — — — — — —c—o—n—s—t— —a—n—g—l—e— —=— —t—i—m—e— —*— —(—0—.—3—5— —+— —i— —*— —0—.—1—)— —+— —i— —*— —2—.—0—;—
+— — — — — — — — —c—o—n—s—t— —d—i—s—t— —=— —1—.—0— —+— —i— —*— —0—.—5—;—
+— — — — — — — — —s—a—t—.—p—o—s—i—t—i—o—n—.—s—e—t—(—M—a—t—h—.—c—o—s—(—a—n—g—l—e—)— —*— —d—i—s—t—,— —M—a—t—h—.—s—i—n—(—t—i—m—e— —*— —0—.—2—5—)— —*— —0—.—1—5—,— —M—a—t—h—.—s—i—n—(—a—n—g—l—e—)— —*— —d—i—s—t—)—;—
+— — — — — — —}—
+— — — — —}—
+—
+— — — — —/—/— —7—.— —M—O—D—E—L— —6— —A—N—I—M—A—T—I—O—N—S— —(—Q—u—a—n—t—u—m— —P—o—r—t—a—l—)—
+— — — — —i—f— —(—p—o—r—t—a—l—R—e—f—.—c—u—r—r—e—n—t—)— —{—
+— — — — — — —c—o—n—s—t— —r—i—n—g—s— —=— —p—o—r—t—a—l—R—e—f—.—c—u—r—r—e—n—t—.—c—h—i—l—d—r—e—n—;—
+— — — — — — —f—o—r— —(—l—e—t— —i— —=— —0—;— —i— —<— —r—i—n—g—s—.—l—e—n—g—t—h—;— —i—+—+—)— —{—
+— — — — — — — — —c—o—n—s—t— —r—i—n—g— —=— —r—i—n—g—s—[—i—]— —a—s— —T—H—R—E—E—.—M—e—s—h—;—
+— — — — — — — — —r—i—n—g—.—r—o—t—a—t—i—o—n—.—z— —=— —t—i—m—e— —*— —(—0—.—4— —+— —i— —*— —0—.—1—5—)— —*— —(—i— —%— —2— —=—=—=— —0— —?— —1— —:— —-—1—)—;—
+— — — — — — — — —c—o—n—s—t— —s—c—a—l—e—P—u—l—s—e— —=— —1—.—0— —+— —M—a—t—h—.—s—i—n—(—t—i—m—e— —*— —2—.—0— —+— —i— —*— —0—.—5—)— —*— —0—.—0—6—;—
+— — — — — — — — —r—i—n—g—.—s—c—a—l—e—.—s—e—t—(—s—c—a—l—e—P—u—l—s—e—,— —s—c—a—l—e—P—u—l—s—e—,— —s—c—a—l—e—P—u—l—s—e—)—;—
+— — — — — — —}—
+— — — — —}—
+— — —}—)—;—
+—
+— — —r—e—t—u—r—n— —(—
+— — — — —<—g—r—o—u—p—>—
+— — — — — — —
+— — — — — — —{—/—*— —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—
+— — — — — — — — — — —M—O—D—E—L— —1—:— —L—O—S—S— —L—A—N—D—S—C—A—P—E— —O—P—T—I—M—I—Z—E—R— —(—Y— —=— —0—)—
+— — — — — — — — — — —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=— —*—/—}—
+— — — — — — —<—g—r—o—u—p— —r—e—f—=—{—l—a—n—d—s—c—a—p—e—R—e—f—}— —p—o—s—i—t—i—o—n—=—{—[—1—.—6—,— —0—,— —0—]—}— —r—o—t—a—t—i—o—n—=—{—[—-—M—a—t—h—.—P—I— —/— —3—,— —0—,— —0—]—}—>—
+— — — — — — — — —<—l—i—n—e—S—e—g—m—e—n—t—s— —g—e—o—m—e—t—r—y—=—{—w—i—r—e—f—r—a—m—e—G—e—o—m—e—t—r—y—}—>—
+— — — — — — — — — — —<—l—i—n—e—B—a—s—i—c—M—a—t—e—r—i—a—l—
+— — — — — — — — — — — — —c—o—l—o—r—=—"—#—0—6—b—6—d—4—"—
+— — — — — — — — — — — — —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —o—p—a—c—i—t—y—=—{—0—.—2—2—}—
+— — — — — — — — — — — — —b—l—e—n—d—i—n—g—=—{—T—H—R—E—E—.—A—d—d—i—t—i—v—e—B—l—e—n—d—i—n—g—}—
+— — — — — — — — — — —/—>—
+— — — — — — — — —<—/—l—i—n—e—S—e—g—m—e—n—t—s—>—
+—
+— — — — — — — — —<—m—e—s—h— —g—e—o—m—e—t—r—y—=—{—l—a—n—d—s—c—a—p—e—G—e—o—m—e—t—r—y—}—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l—
+— — — — — — — — — — — — —c—o—l—o—r—=—"—#—1—e—1—b—4—b—"—
+— — — — — — — — — — — — —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —o—p—a—c—i—t—y—=—{—0—.—0—8—}—
+— — — — — — — — — — — — —s—i—d—e—=—{—T—H—R—E—E—.—D—o—u—b—l—e—S—i—d—e—}—
+— — — — — — — — — — — — —d—e—p—t—h—W—r—i—t—e—=—{—f—a—l—s—e—}—
+— — — — — — — — — — —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —<—m—e—s—h— —r—e—f—=—{—b—a—l—l—R—e—f—}—>—
+— — — — — — — — — — —<—s—p—h—e—r—e—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—1—5—,— —1—2—,— —1—2—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—a—8—5—5—f—7—"— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—9—}— —/—>—
+— — — — — — — — — — —<—H—t—m—l— —d—i—s—t—a—n—c—e—F—a—c—t—o—r—=—{—5—}— —c—e—n—t—e—r—>—
+— — — — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—b—g—-—z—i—n—c—-—9—5—0—/—9—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—p—u—r—p—l—e—-—5—0—0—/—3—0— —t—e—x—t—-—[—7—p—x—]— —f—o—n—t—-—m—o—n—o— —p—x—-—2— —p—y—-—0—.—5— —r—o—u—n—d—e—d— —t—e—x—t—-—p—u—r—p—l—e—-—4—0—0— —s—e—l—e—c—t—-—n—o—n—e— —b—a—c—k—d—r—o—p—-—b—l—u—r—-—s—m— —s—h—a—d—o—w—-—l—g— —t—r—a—c—k—i—n—g—-—w—i—d—e—r— —w—h—i—t—e—s—p—a—c—e—-—n—o—w—r—a—p— —t—r—a—n—s—l—a—t—e—-—y—-—[—-—1—2—p—x—]—"—>—
+— — — — — — — — — — — — — — —L—O—S—S—:— —{—m—e—t—r—i—c—s—.—l—o—s—s—.—t—o—F—i—x—e—d—(—4—)—}—
+— — — — — — — — — — — — —<—/—d—i—v—>—
+— — — — — — — — — — —<—/—H—t—m—l—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —<—l—i—n—e— —r—e—f—=—{—t—r—a—i—l—R—e—f— —a—s— —a—n—y—}—>—
+— — — — — — — — — — —<—b—u—f—f—e—r—G—e—o—m—e—t—r—y— —/—>—
+— — — — — — — — — — —<—l—i—n—e—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—6—3—6—6—f—1—"— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—5—}— —/—>—
+— — — — — — — — —<—/—l—i—n—e—>—
+— — — — — — —<—/—g—r—o—u—p—>—
+—
+— — — — — — —{—/—*— —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—
+— — — — — — — — — — —M—O—D—E—L— —2—:— —C—Y—B—E—R— —B—R—A—I—N— —D—U—A—L— —C—O—R—E— —(—Y— —=— —-—5—.—5—)—
+— — — — — — — — — — —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=— —*—/—}—
+— — — — — — —<—g—r—o—u—p— —r—e—f—=—{—b—r—a—i—n—R—e—f—}— —p—o—s—i—t—i—o—n—=—{—[—-—1—.—8—,— —-—5—.—5—,— —0—]—}—>—
+— — — — — — — — —{—/—*— —G—l—o—w—i—n—g— —b—r—a—i—n— —s—y—n—a—p—s—e—s— —*—/—}—
+— — — — — — — — —<—p—o—i—n—t—s—>—
+— — — — — — — — — — —<—b—u—f—f—e—r—G—e—o—m—e—t—r—y—>—
+— — — — — — — — — — — — —<—b—u—f—f—e—r—A—t—t—r—i—b—u—t—e—
+— — — — — — — — — — — — — — —a—t—t—a—c—h—=—"—a—t—t—r—i—b—u—t—e—s—-—p—o—s—i—t—i—o—n—"—
+— — — — — — — — — — — — — — —a—r—g—s—=—{—[—n—e—w— —F—l—o—a—t—3—2—A—r—r—a—y—(—b—r—a—i—n—N—o—d—e—C—o—u—n—t— —*— —3—)—,— —3—]—}—
+— — — — — — — — — — — — — — —c—o—u—n—t—=—{—b—r—a—i—n—N—o—d—e—C—o—u—n—t—}—
+— — — — — — — — — — — — — — —a—r—r—a—y—=—{—n—e—w— —F—l—o—a—t—3—2—A—r—r—a—y—(—b—r—a—i—n—N—o—d—e—s—.—f—l—a—t—M—a—p—(—n— —=—>— —[—n—.—x—,— —n—.—y—,— —n—.—z—]—)—)—}—
+— — — — — — — — — — — — — — —i—t—e—m—S—i—z—e—=—{—3—}—
+— — — — — — — — — — — — —/—>—
+— — — — — — — — — — —<—/—b—u—f—f—e—r—G—e—o—m—e—t—r—y—>—
+— — — — — — — — — — —<—p—o—i—n—t—s—M—a—t—e—r—i—a—l—
+— — — — — — — — — — — — —c—o—l—o—r—=—"—#—0—6—b—6—d—4—"—
+— — — — — — — — — — — — —s—i—z—e—=—{—0—.—0—8—}—
+— — — — — — — — — — — — —s—i—z—e—A—t—t—e—n—u—a—t—i—o—n—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —o—p—a—c—i—t—y—=—{—0—.—8—}—
+— — — — — — — — — — — — —b—l—e—n—d—i—n—g—=—{—T—H—R—E—E—.—A—d—d—i—t—i—v—e—B—l—e—n—d—i—n—g—}—
+— — — — — — — — — — —/—>—
+— — — — — — — — —<—/—p—o—i—n—t—s—>—
+—
+— — — — — — — — —{—/—*— —C—o—n—n—e—c—t—i—n—g— —s—y—n—a—p—s—e— —l—i—n—e—s— —*—/—}—
+— — — — — — — — —<—l—i—n—e—S—e—g—m—e—n—t—s—>—
+— — — — — — — — — — —<—b—u—f—f—e—r—G—e—o—m—e—t—r—y—>—
+— — — — — — — — — — — — —<—b—u—f—f—e—r—A—t—t—r—i—b—u—t—e—
+— — — — — — — — — — — — — — —a—t—t—a—c—h—=—"—a—t—t—r—i—b—u—t—e—s—-—p—o—s—i—t—i—o—n—"—
+— — — — — — — — — — — — — — —a—r—g—s—=—{—[—n—e—w— —F—l—o—a—t—3—2—A—r—r—a—y—(—b—r—a—i—n—C—o—n—n—e—c—t—i—o—n—s—)—,— —3—]—}—
+— — — — — — — — — — — — — — —c—o—u—n—t—=—{—b—r—a—i—n—C—o—n—n—e—c—t—i—o—n—s—.—l—e—n—g—t—h— —/— —3—}—
+— — — — — — — — — — — — — — —a—r—r—a—y—=—{—n—e—w— —F—l—o—a—t—3—2—A—r—r—a—y—(—b—r—a—i—n—C—o—n—n—e—c—t—i—o—n—s—)—}—
+— — — — — — — — — — — — — — —i—t—e—m—S—i—z—e—=—{—3—}—
+— — — — — — — — — — — — —/—>—
+— — — — — — — — — — —<—/—b—u—f—f—e—r—G—e—o—m—e—t—r—y—>—
+— — — — — — — — — — —<—l—i—n—e—B—a—s—i—c—M—a—t—e—r—i—a—l—
+— — — — — — — — — — — — —c—o—l—o—r—=—"—#—6—3—6—6—f—1—"—
+— — — — — — — — — — — — —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —o—p—a—c—i—t—y—=—{—0—.—3—5—}—
+— — — — — — — — — — — — —b—l—e—n—d—i—n—g—=—{—T—H—R—E—E—.—A—d—d—i—t—i—v—e—B—l—e—n—d—i—n—g—}—
+— — — — — — — — — — —/—>—
+— — — — — — — — —<—/—l—i—n—e—S—e—g—m—e—n—t—s—>—
+—
+— — — — — — — — —{—/—*— —C—o—r—e— —b—r—a—i—n— —g—l—o—w— —s—p—h—e—r—e— —*—/—}—
+— — — — — — — — —<—m—e—s—h—>—
+— — — — — — — — — — —<—s—p—h—e—r—e—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—7—,— —1—6—,— —1—6—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l—
+— — — — — — — — — — — — —c—o—l—o—r—=—"—#—8—b—5—c—f—6—"—
+— — — — — — — — — — — — —w—i—r—e—f—r—a—m—e—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —o—p—a—c—i—t—y—=—{—0—.—2—5—}—
+— — — — — — — — — — — — —b—l—e—n—d—i—n—g—=—{—T—H—R—E—E—.—A—d—d—i—t—i—v—e—B—l—e—n—d—i—n—g—}—
+— — — — — — — — — — —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —<—H—t—m—l— —p—o—s—i—t—i—o—n—=—{—[—0—,— —1—.—6—,— —0—]—}— —d—i—s—t—a—n—c—e—F—a—c—t—o—r—=—{—5—}— —c—e—n—t—e—r—>—
+— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—b—g—-—z—i—n—c—-—9—5—0—/—9—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—i—n—d—i—g—o—-—5—0—0—/—2—5— —t—e—x—t—-—[—7—p—x—]— —f—o—n—t—-—m—o—n—o— —p—x—-—2— —p—y—-—0—.—5— —r—o—u—n—d—e—d— —t—e—x—t—-—i—n—d—i—g—o—-—4—0—0— —s—e—l—e—c—t—-—n—o—n—e— —t—r—a—c—k—i—n—g—-—w—i—d—e—r— —w—h—i—t—e—s—p—a—c—e—-—n—o—w—r—a—p—"—>—
+— — — — — — — — — — — — —[— —A—G—E—N—T—_—B—R—A—I—N— —/—/— —C—O—N—T—E—X—T—_—S—I—Z—E—:— —1—2—8—K— —]—
+— — — — — — — — — — —<—/—d—i—v—>—
+— — — — — — — — —<—/—H—t—m—l—>—
+— — — — — — —<—/—g—r—o—u—p—>—
+—
+— — — — — — —{—/—*— —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—
+— — — — — — — — — — —M—O—D—E—L— —3—:— —C—O—N—C—E—N—T—R—I—C— —S—K—I—L—L—S— —R—I—N—G—S— —(—Y— —=— —-—1—1—.—0—)—
+— — — — — — — — — — —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=— —*—/—}—
+— — — — — — —<—g—r—o—u—p— —r—e—f—=—{—s—k—i—l—l—s—R—e—f—}— —p—o—s—i—t—i—o—n—=—{—[—1—.—8—,— —-—1—1—.—0—,— —0—]—}—>—
+— — — — — — — — —{—/—*— —O—u—t—e—r— —T—o—r—u—s— —*—/—}—
+— — — — — — — — —<—m—e—s—h—>—
+— — — — — — — — — — —<—t—o—r—u—s—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—1—.—5—,— —0—.—0—3—,— —1—0—,— —4—8—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l—
+— — — — — — — — — — — — —c—o—l—o—r—=—"—#—0—6—b—6—d—4—"—
+— — — — — — — — — — — — —w—i—r—e—f—r—a—m—e—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —o—p—a—c—i—t—y—=—{—0—.—3—5—}—
+— — — — — — — — — — — — —b—l—e—n—d—i—n—g—=—{—T—H—R—E—E—.—A—d—d—i—t—i—v—e—B—l—e—n—d—i—n—g—}—
+— — — — — — — — — — —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —{—/—*— —I—n—n—e—r— —T—o—r—u—s— —*—/—}—
+— — — — — — — — —<—m—e—s—h—>—
+— — — — — — — — — — —<—t—o—r—u—s—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—9—,— —0—.—0—2—,— —8—,— —3—6—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l—
+— — — — — — — — — — — — —c—o—l—o—r—=—"—#—a—8—5—5—f—7—"—
+— — — — — — — — — — — — —w—i—r—e—f—r—a—m—e—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —o—p—a—c—i—t—y—=—{—0—.—4—}—
+— — — — — — — — — — — — —b—l—e—n—d—i—n—g—=—{—T—H—R—E—E—.—A—d—d—i—t—i—v—e—B—l—e—n—d—i—n—g—}—
+— — — — — — — — — — —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —{—/—*— —C—e—n—t—e—r— —N—u—c—l—e—u—s— —*—/—}—
+— — — — — — — — —<—m—e—s—h—>—
+— — — — — — — — — — —<—o—c—t—a—h—e—d—r—o—n—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—3—,— —0—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l—
+— — — — — — — — — — — — —c—o—l—o—r—=—"—#—6—3—6—6—f—1—"—
+— — — — — — — — — — — — —w—i—r—e—f—r—a—m—e—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}—
+— — — — — — — — — — — — —o—p—a—c—i—t—y—=—{—0—.—6—}—
+— — — — — — — — — — — — —b—l—e—n—d—i—n—g—=—{—T—H—R—E—E—.—A—d—d—i—t—i—v—e—B—l—e—n—d—i—n—g—}—
+— — — — — — — — — — —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —<—H—t—m—l— —p—o—s—i—t—i—o—n—=—{—[—0—,— —1—.—8—,— —0—]—}— —d—i—s—t—a—n—c—e—F—a—c—t—o—r—=—{—5—}— —c—e—n—t—e—r—>—
+— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—b—g—-—z—i—n—c—-—9—5—0—/—9—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—c—y—a—n—-—5—0—0—/—2—5— —t—e—x—t—-—[—7—p—x—]— —f—o—n—t—-—m—o—n—o— —p—x—-—2— —p—y—-—0—.—5— —r—o—u—n—d—e—d— —t—e—x—t—-—c—y—a—n—-—4—0—0— —s—e—l—e—c—t—-—n—o—n—e— —t—r—a—c—k—i—n—g—-—w—i—d—e—r— —w—h—i—t—e—s—p—a—c—e—-—n—o—w—r—a—p—"—>—
+— — — — — — — — — — — — —C—O—R—E—_—M—A—T—R—I—X—:— —O—N—L—I—N—E—
+— — — — — — — — — — —<—/—d—i—v—>—
+— — — — — — — — —<—/—H—t—m—l—>—
+— — — — — — —<—/—g—r—o—u—p—>—
+—
+— — — — — — —{—/—*— —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—
+— — — — — — — — — — —M—O—D—E—L— —4—:— —R—A—G— —P—I—P—E—L—I—N—E— —N—O—D—E—S— —(—Y— —=— —-—1—6—.—5—)—
+— — — — — — — — — — —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=— —*—/—}—
+— — — — — — —<—g—r—o—u—p— —r—e—f—=—{—w—o—r—k—f—l—o—w—R—e—f—}— —p—o—s—i—t—i—o—n—=—{—[—0—,— —-—1—6—.—5—,— —0—]—}—>—
+— — — — — — — — —{—/—*— —N—o—d—e— —1—:— —I—n—g—e—s—t—i—o—n— —*—/—}—
+— — — — — — — — —<—m—e—s—h— —p—o—s—i—t—i—o—n—=—{—[—-—1—.—8—,— —0—,— —0—]—}—>—
+— — — — — — — — — — —<—b—o—x—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—4—,— —0—.—4—,— —0—.—4—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—0—6—b—6—d—4—"— —w—i—r—e—f—r—a—m—e—=—{—t—r—u—e—}— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—5—}— —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —{—/—*— —N—o—d—e— —2—:— —V—e—c—t—o—r— —D—B— —*—/—}—
+— — — — — — — — —<—m—e—s—h— —p—o—s—i—t—i—o—n—=—{—[—0—,— —0—.—3—,— —0—]—}—>—
+— — — — — — — — — — —<—o—c—t—a—h—e—d—r—o—n—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—3—,— —0—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—a—8—5—5—f—7—"— —w—i—r—e—f—r—a—m—e—=—{—t—r—u—e—}— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—6—}— —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —{—/—*— —N—o—d—e— —3—:— —L—L—M— —R—e—a—d—e—r— —*—/—}—
+— — — — — — — — —<—m—e—s—h— —p—o—s—i—t—i—o—n—=—{—[—1—.—8—,— —0—,— —0—]—}—>—
+— — — — — — — — — — —<—b—o—x—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—4—,— —0—.—4—,— —0—.—4—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—6—3—6—6—f—1—"— —w—i—r—e—f—r—a—m—e—=—{—t—r—u—e—}— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—5—}— —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —{—/—*— —L—i—n—k—i—n—g— —l—i—n—e—s— —*—/—}—
+— — — — — — — — —<—l—i—n—e—S—e—g—m—e—n—t—s—>—
+— — — — — — — — — — —<—b—u—f—f—e—r—G—e—o—m—e—t—r—y—>—
+— — — — — — — — — — — — —<—b—u—f—f—e—r—A—t—t—r—i—b—u—t—e—
+— — — — — — — — — — — — — — —a—t—t—a—c—h—=—"—a—t—t—r—i—b—u—t—e—s—-—p—o—s—i—t—i—o—n—"—
+— — — — — — — — — — — — — — —a—r—g—s—=—{—[—n—e—w— —F—l—o—a—t—3—2—A—r—r—a—y—(—1—8—)—,— —3—]—}—
+— — — — — — — — — — — — — — —c—o—u—n—t—=—{—3—}—
+— — — — — — — — — — — — — — —a—r—r—a—y—=—{—n—e—w— —F—l—o—a—t—3—2—A—r—r—a—y—(—[—
+— — — — — — — — — — — — — — — — —-—1—.—8—,— —0—,— —0—,— — —0—,— —0—.—3—,— —0—,—
+— — — — — — — — — — — — — — — — —0—,— —0—.—3—,— —0—,— — — —1—.—8—,— —0—,— —0—,—
+— — — — — — — — — — — — — — — — —-—1—.—8—,— —0—,— —0—,— — —1—.—8—,— —0—,— —0—
+— — — — — — — — — — — — — — —]—)—}—
+— — — — — — — — — — — — — — —i—t—e—m—S—i—z—e—=—{—3—}—
+— — — — — — — — — — — — —/—>—
+— — — — — — — — — — —<—/—b—u—f—f—e—r—G—e—o—m—e—t—r—y—>—
+— — — — — — — — — — —<—l—i—n—e—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—5—2—5—2—5—b—"— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—4—}— —/—>—
+— — — — — — — — —<—/—l—i—n—e—S—e—g—m—e—n—t—s—>—
+—
+— — — — — — — — —<—H—t—m—l— —p—o—s—i—t—i—o—n—=—{—[—0—,— —1—.—4—,— —0—]—}— —d—i—s—t—a—n—c—e—F—a—c—t—o—r—=—{—5—}— —c—e—n—t—e—r—>—
+— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—b—g—-—z—i—n—c—-—9—5—0—/—9—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—z—i—n—c—-—8—0—0— —t—e—x—t—-—[—7—p—x—]— —f—o—n—t—-—m—o—n—o— —p—x—-—2— —p—y—-—0—.—5— —r—o—u—n—d—e—d— —t—e—x—t—-—z—i—n—c—-—4—0—0— —s—e—l—e—c—t—-—n—o—n—e— —t—r—a—c—k—i—n—g—-—w—i—d—e—r— —w—h—i—t—e—s—p—a—c—e—-—n—o—w—r—a—p—"—>—
+— — — — — — — — — — — — —V—E—C—T—O—R—_—R—E—T—R— —/—/— —C—O—S—I—N—E—_—S—I—M—:— —{—(—m—e—t—r—i—c—s—.—a—c—c—u—r—a—c—y— —/— —1—0—0—)—.—t—o—F—i—x—e—d—(—4—)—}—
+— — — — — — — — — — —<—/—d—i—v—>—
+— — — — — — — — —<—/—H—t—m—l—>—
+— — — — — — —<—/—g—r—o—u—p—>—
+—
+— — — — — — —{—/—*— —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—
+— — — — — — — — — — —M—O—D—E—L— —5—:— —O—R—B—I—T—I—N—G— —P—R—O—J—E—C—T—S— —S—Y—S—T—E—M— —(—Y— —=— —-—2—2—.—0—)—
+— — — — — — — — — — —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=— —*—/—}—
+— — — — — — —<—g—r—o—u—p— —r—e—f—=—{—p—r—o—j—e—c—t—s—G—r—o—u—p—R—e—f—}— —p—o—s—i—t—i—o—n—=—{—[—-—1—.—8—,— —-—2—2—.—0—,— —0—]—}—>—
+— — — — — — — — —{—/—*— —C—o—r—e— —P—r—o—f—i—l—e— —N—o—d—e— —*—/—}—
+— — — — — — — — —<—m—e—s—h—>—
+— — — — — — — — — — —<—s—p—h—e—r—e—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—4—,— —1—2—,— —1—2—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—6—3—6—6—f—1—"— —w—i—r—e—f—r—a—m—e—=—{—t—r—u—e—}— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—7—}— —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —{—/—*— —S—a—t—e—l—l—i—t—e—s— —p—r—o—j—e—c—t— —c—o—o—r—d—i—n—a—t—e—s— —(—d—y—n—a—m—i—c—a—l—l—y— —u—p—d—a—t—e—d— —i—n— —u—s—e—F—r—a—m—e—)— —*—/—}—
+— — — — — — — — —<—m—e—s—h—>—
+— — — — — — — — — — —<—s—p—h—e—r—e—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—1—2—,— —8—,— —8—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—0—6—b—6—d—4—"— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—8—}— —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+— — — — — — — — —<—m—e—s—h—>—
+— — — — — — — — — — —<—s—p—h—e—r—e—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—1—2—,— —8—,— —8—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—a—8—5—5—f—7—"— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—8—}— —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+— — — — — — — — —<—m—e—s—h—>—
+— — — — — — — — — — —<—s—p—h—e—r—e—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—1—2—,— —8—,— —8—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—c—b—d—5—e—1—"— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—7—}— —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —<—H—t—m—l— —p—o—s—i—t—i—o—n—=—{—[—0—,— —1—.—6—,— —0—]—}— —d—i—s—t—a—n—c—e—F—a—c—t—o—r—=—{—5—}— —c—e—n—t—e—r—>—
+— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—b—g—-—z—i—n—c—-—9—5—0—/—9—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—p—u—r—p—l—e—-—5—0—0—/—2—5— —t—e—x—t—-—[—7—p—x—]— —f—o—n—t—-—m—o—n—o— —p—x—-—2— —p—y—-—0—.—5— —r—o—u—n—d—e—d— —t—e—x—t—-—p—u—r—p—l—e—-—4—0—0— —s—e—l—e—c—t—-—n—o—n—e— —t—r—a—c—k—i—n—g—-—w—i—d—e—r— —w—h—i—t—e—s—p—a—c—e—-—n—o—w—r—a—p—"—>—
+— — — — — — — — — — — — —P—R—O—J—E—C—T—S—_—C—L—U—S—T—E—R— —/—/— —A—C—T—I—V—E—_—R—E—P—O—S—:— —4—
+— — — — — — — — — — —<—/—d—i—v—>—
+— — — — — — — — —<—/—H—t—m—l—>—
+— — — — — — —<—/—g—r—o—u—p—>—
+—
+— — — — — — —{—/—*— —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—
+— — — — — — — — — — —M—O—D—E—L— —6—:— —Q—U—A—N—T—U—M— —P—O—R—T—A—L— —W—O—R—M—H—O—L—E— —(—Y— —=— —-—3—3—.—0—)—
+— — — — — — — — — — —=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=— —*—/—}—
+— — — — — — —<—g—r—o—u—p— —r—e—f—=—{—p—o—r—t—a—l—R—e—f—}— —p—o—s—i—t—i—o—n—=—{—[—0—,— —-—3—3—.—0—,— —0—]—}—>—
+— — — — — — — — —<—m—e—s—h—>—
+— — — — — — — — — — —<—t—o—r—u—s—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—1—.—5—,— —0—.—0—5—,— —1—2—,— —6—4—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—8—b—5—c—f—6—"— —w—i—r—e—f—r—a—m—e—=—{—t—r—u—e—}— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—3—}— —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —<—m—e—s—h—>—
+— — — — — — — — — — —<—t—o—r—u—s—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—1—.—0—,— —0—.—0—4—,— —1—0—,— —4—8—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—0—6—b—6—d—4—"— —w—i—r—e—f—r—a—m—e—=—{—t—r—u—e—}— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—4—}— —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —<—m—e—s—h—>—
+— — — — — — — — — — —<—t—o—r—u—s—G—e—o—m—e—t—r—y— —a—r—g—s—=—{—[—0—.—6—,— —0—.—0—3—,— —8—,— —3—6—]—}— —/—>—
+— — — — — — — — — — —<—m—e—s—h—B—a—s—i—c—M—a—t—e—r—i—a—l— —c—o—l—o—r—=—"—#—e—c—4—8—9—9—"— —w—i—r—e—f—r—a—m—e—=—{—t—r—u—e—}— —t—r—a—n—s—p—a—r—e—n—t—=—{—t—r—u—e—}— —o—p—a—c—i—t—y—=—{—0—.—4—5—}— —/—>—
+— — — — — — — — —<—/—m—e—s—h—>—
+—
+— — — — — — — — —<—H—t—m—l— —p—o—s—i—t—i—o—n—=—{—[—0—,— —2—.—2—,— —0—]—}— —d—i—s—t—a—n—c—e—F—a—c—t—o—r—=—{—5—}— —c—e—n—t—e—r—>—
+— — — — — — — — — — —<—d—i—v— —c—l—a—s—s—N—a—m—e—=—"—b—g—-—z—i—n—c—-—9—5—0—/—9—0— —b—o—r—d—e—r— —b—o—r—d—e—r—-—i—n—d—i—g—o—-—5—0—0—/—3—0— —t—e—x—t—-—[—7—p—x—]— —f—o—n—t—-—m—o—n—o— —p—x—-—2— —p—y—-—0—.—5— —r—o—u—n—d—e—d— —t—e—x—t—-—i—n—d—i—g—o—-—4—0—0— —s—e—l—e—c—t—-—n—o—n—e— —t—r—a—c—k—i—n—g—-—w—i—d—e—r— —w—h—i—t—e—s—p—a—c—e—-—n—o—w—r—a—p—"—>—
+— — — — — — — — — — — — —[— —Q—U—A—N—T—U—M—_—B—R—I—D—G—E— —/—/— —P—O—R—T—A—L—_—A—C—T—I—V—E— —]—
+— — — — — — — — — — —<—/—d—i—v—>—
+— — — — — — — — —<—/—H—t—m—l—>—
+— — — — — — —<—/—g—r—o—u—p—>—
+—
+— — — — —<—/—g—r—o—u—p—>—
+— — —)—;—
+—}—
+—
