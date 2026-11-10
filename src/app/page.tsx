@@ -9,6 +9,7 @@ import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import Certifications from "@/components/sections/Certifications";
 import LearningJourney from "@/components/sections/LearningJourney";
+import Hackathons from "@/components/sections/Hackathons";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/Footer";
 import Preloader from "@/components/ui/Preloader";
@@ -49,6 +50,8 @@ export default function Home() {
           <Certifications />
           <div className="divider mx-6" />
           <LearningJourney />
+          <div className="divider mx-6" />
+          <Hackathons />
           <div className="divider mx-6" />
           <Contact />
         </main>
