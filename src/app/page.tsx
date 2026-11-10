@@ -49,9 +49,9 @@ export default function Home() {
           <div className="divider mx-6" />
           <Certifications />
           <div className="divider mx-6" />
-          <LearningJourney />
-          <div className="divider mx-6" />
           <Hackathons />
+          <div className="divider mx-6" />
+          <LearningJourney />
           <div className="divider mx-6" />
           <Contact />
         </main>
